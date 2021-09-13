@@ -7,7 +7,7 @@ package login;
 
 /**
  * 로그인 관련 GUI
- * @author user
+ * @author 김창진
  */
 public class Login extends javax.swing.JFrame {
 
