@@ -35,16 +35,23 @@ public class Login extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         AdminidTextField = new javax.swing.JTextField();
         AdminpwPasswordField = new javax.swing.JPasswordField();
-        AdminJoinInBtn = new javax.swing.JButton();
+        AdminSignInBtn = new javax.swing.JButton();
         AdminCancelBtn = new javax.swing.JButton();
-        AdminJoinUpBtn = new javax.swing.JButton();
+        AdminSignUpBtn = new javax.swing.JButton();
         UserLogin = new javax.swing.JDialog();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        UseridTextField = new javax.swing.JTextField();
+        UserpwPasswordField = new javax.swing.JPasswordField();
+        UserSignInBtn = new javax.swing.JButton();
+        UserCancelBtn = new javax.swing.JButton();
+        UserSignUpBtn = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        AdminLoginBtn = new javax.swing.JButton();
-        UserLoginBtn = new javax.swing.JButton();
-
-        AdminLogin.setPreferredSize(new java.awt.Dimension(430, 380));
+        MainAdminSignInBtn = new javax.swing.JButton();
+        MainUserSignInBtn = new javax.swing.JButton();
 
         jPanel2.setPreferredSize(new java.awt.Dimension(400, 340));
 
@@ -55,10 +62,10 @@ public class Login extends javax.swing.JFrame {
 
         jLabel4.setText("패스워드 :");
 
-        AdminJoinInBtn.setText("로그인");
-        AdminJoinInBtn.addActionListener(new java.awt.event.ActionListener() {
+        AdminSignInBtn.setText("로그인");
+        AdminSignInBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AdminJoinInBtnActionPerformed(evt);
+                AdminSignInBtnActionPerformed(evt);
             }
         });
 
@@ -69,10 +76,10 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
-        AdminJoinUpBtn.setText("관리자 가입");
-        AdminJoinUpBtn.addActionListener(new java.awt.event.ActionListener() {
+        AdminSignUpBtn.setText("관리자 가입");
+        AdminSignUpBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AdminJoinUpBtnActionPerformed(evt);
+                AdminSignUpBtnActionPerformed(evt);
             }
         });
 
@@ -98,13 +105,12 @@ public class Login extends javax.swing.JFrame {
                                     .addComponent(AdminpwPasswordField, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(20, 20, 20)
-                                .addComponent(AdminJoinInBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(AdminSignInBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(74, 74, 74)
-                                .addComponent(AdminCancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(19, 19, 19)))))
-                .addGap(57, 57, 57))
+                                .addComponent(AdminCancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(76, 76, 76))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addComponent(AdminJoinUpBtn)
+                .addComponent(AdminSignUpBtn)
                 .addGap(32, 32, 32))
         );
         jPanel2Layout.setVerticalGroup(
@@ -122,10 +128,10 @@ public class Login extends javax.swing.JFrame {
                     .addComponent(AdminpwPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(33, 33, 33)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(AdminJoinInBtn)
+                    .addComponent(AdminSignInBtn)
                     .addComponent(AdminCancelBtn))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
-                .addComponent(AdminJoinUpBtn)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
+                .addComponent(AdminSignUpBtn)
                 .addGap(18, 18, 18))
         );
 
@@ -140,15 +146,101 @@ public class Login extends javax.swing.JFrame {
             .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
+        UserLogin.setPreferredSize(new java.awt.Dimension(402, 350));
+
+        jPanel3.setPreferredSize(new java.awt.Dimension(400, 340));
+
+        jLabel5.setFont(new java.awt.Font("맑은 고딕", 1, 18)); // NOI18N
+        jLabel5.setText("이용객 로그인");
+
+        jLabel6.setText("아이디 :");
+
+        jLabel7.setText("패스워드 :");
+
+        UserSignInBtn.setText("로그인");
+        UserSignInBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UserSignInBtnActionPerformed(evt);
+            }
+        });
+
+        UserCancelBtn.setText("이전");
+        UserCancelBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UserCancelBtnActionPerformed(evt);
+            }
+        });
+
+        UserSignUpBtn.setText("회원가입");
+        UserSignUpBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UserSignUpBtnActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(86, 86, 86)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(65, 65, 65)
+                                .addComponent(jLabel5))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(jLabel6)
+                                .addGap(18, 18, 18)
+                                .addComponent(UseridTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(8, 8, 8)
+                                .addComponent(UserSignInBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(81, 81, 81)
+                                .addComponent(UserCancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addGap(18, 18, 18)
+                                .addComponent(UserpwPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addGap(203, 203, 203)
+                        .addComponent(UserSignUpBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(34, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(56, 56, 56)
+                .addComponent(jLabel5)
+                .addGap(32, 32, 32)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(UseridTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(UserpwPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(51, 51, 51)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(UserSignInBtn)
+                    .addComponent(UserCancelBtn))
+                .addGap(32, 32, 32)
+                .addComponent(UserSignUpBtn)
+                .addGap(38, 38, 38))
+        );
+
         javax.swing.GroupLayout UserLoginLayout = new javax.swing.GroupLayout(UserLogin.getContentPane());
         UserLogin.getContentPane().setLayout(UserLoginLayout);
         UserLoginLayout.setHorizontalGroup(
             UserLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 402, Short.MAX_VALUE)
         );
         UserLoginLayout.setVerticalGroup(
             UserLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE)
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -156,17 +248,17 @@ public class Login extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("맑은 고딕", 1, 18)); // NOI18N
         jLabel1.setText("호텔 관리 프로그램");
 
-        AdminLoginBtn.setText("관리자");
-        AdminLoginBtn.addActionListener(new java.awt.event.ActionListener() {
+        MainAdminSignInBtn.setText("관리자");
+        MainAdminSignInBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AdminLoginBtnActionPerformed(evt);
+                MainAdminSignInBtnActionPerformed(evt);
             }
         });
 
-        UserLoginBtn.setText("이용객");
-        UserLoginBtn.addActionListener(new java.awt.event.ActionListener() {
+        MainUserSignInBtn.setText("이용객");
+        MainUserSignInBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                UserLoginBtnActionPerformed(evt);
+                MainUserSignInBtnActionPerformed(evt);
             }
         });
 
@@ -181,9 +273,9 @@ public class Login extends javax.swing.JFrame {
                         .addComponent(jLabel1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(77, 77, 77)
-                        .addComponent(AdminLoginBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(MainAdminSignInBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(53, 53, 53)
-                        .addComponent(UserLoginBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(MainUserSignInBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(70, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -193,8 +285,8 @@ public class Login extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(45, 45, 45)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(AdminLoginBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(UserLoginBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(MainAdminSignInBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(MainUserSignInBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(98, Short.MAX_VALUE))
         );
 
@@ -212,32 +304,45 @@ public class Login extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void AdminLoginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AdminLoginBtnActionPerformed
+    private void MainAdminSignInBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MainAdminSignInBtnActionPerformed
         // TODO add your handling code here:
         AdminLogin.setVisible(true);
         AdminLogin.setLocationRelativeTo(this);
         AdminLogin.setSize(430, 380);
-    }//GEN-LAST:event_AdminLoginBtnActionPerformed
+    }//GEN-LAST:event_MainAdminSignInBtnActionPerformed
 
-    private void UserLoginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UserLoginBtnActionPerformed
+    private void MainUserSignInBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MainUserSignInBtnActionPerformed
         // TODO add your handling code here:
         UserLogin.setVisible(true);
         UserLogin.setLocationRelativeTo(this);
         UserLogin.setSize(430, 380);
-    }//GEN-LAST:event_UserLoginBtnActionPerformed
+    }//GEN-LAST:event_MainUserSignInBtnActionPerformed
 
-    private void AdminJoinInBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AdminJoinInBtnActionPerformed
+    private void AdminSignInBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AdminSignInBtnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_AdminJoinInBtnActionPerformed
+    }//GEN-LAST:event_AdminSignInBtnActionPerformed
 
     private void AdminCancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AdminCancelBtnActionPerformed
         // TODO add your handling code here:
         AdminLogin.dispose();
     }//GEN-LAST:event_AdminCancelBtnActionPerformed
 
-    private void AdminJoinUpBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AdminJoinUpBtnActionPerformed
+    private void AdminSignUpBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AdminSignUpBtnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_AdminJoinUpBtnActionPerformed
+    }//GEN-LAST:event_AdminSignUpBtnActionPerformed
+
+    private void UserSignInBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UserSignInBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_UserSignInBtnActionPerformed
+
+    private void UserCancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UserCancelBtnActionPerformed
+        // TODO add your handling code here:
+        UserLogin.dispose();
+    }//GEN-LAST:event_UserCancelBtnActionPerformed
+
+    private void UserSignUpBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UserSignUpBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_UserSignUpBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -276,19 +381,28 @@ public class Login extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AdminCancelBtn;
-    private javax.swing.JButton AdminJoinInBtn;
-    private javax.swing.JButton AdminJoinUpBtn;
     private javax.swing.JDialog AdminLogin;
-    private javax.swing.JButton AdminLoginBtn;
+    private javax.swing.JButton AdminSignInBtn;
+    private javax.swing.JButton AdminSignUpBtn;
     private javax.swing.JTextField AdminidTextField;
     private javax.swing.JPasswordField AdminpwPasswordField;
+    private javax.swing.JButton MainAdminSignInBtn;
+    private javax.swing.JButton MainUserSignInBtn;
+    private javax.swing.JButton UserCancelBtn;
     private javax.swing.JDialog UserLogin;
-    private javax.swing.JButton UserLoginBtn;
+    private javax.swing.JButton UserSignInBtn;
+    private javax.swing.JButton UserSignUpBtn;
+    private javax.swing.JTextField UseridTextField;
+    private javax.swing.JPasswordField UserpwPasswordField;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     // End of variables declaration//GEN-END:variables
 }
