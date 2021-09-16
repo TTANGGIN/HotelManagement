@@ -48,6 +48,12 @@ public class Login extends javax.swing.JFrame {
         UserSignInBtn = new javax.swing.JButton();
         UserCancelBtn = new javax.swing.JButton();
         UserSignUpBtn = new javax.swing.JButton();
+        AdminSignUp = new javax.swing.JDialog();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel8 = new javax.swing.JLabel();
+        UserSignUp = new javax.swing.JDialog();
+        jPanel5 = new javax.swing.JPanel();
+        jLabel9 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         MainAdminSignInBtn = new javax.swing.JButton();
@@ -130,7 +136,7 @@ public class Login extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(AdminSignInBtn)
                     .addComponent(AdminCancelBtn))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
                 .addComponent(AdminSignUpBtn)
                 .addGap(18, 18, 18))
         );
@@ -146,6 +152,7 @@ public class Login extends javax.swing.JFrame {
             .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
+        UserLogin.setMinimumSize(new java.awt.Dimension(400, 350));
         UserLogin.setPreferredSize(new java.awt.Dimension(402, 350));
 
         jPanel3.setPreferredSize(new java.awt.Dimension(400, 340));
@@ -207,8 +214,8 @@ public class Login extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addGap(203, 203, 203)
-                        .addComponent(UserSignUpBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(34, Short.MAX_VALUE))
+                        .addComponent(UserSignUpBtn)))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -243,7 +250,75 @@ public class Login extends javax.swing.JFrame {
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE)
         );
 
+        AdminSignUp.setMinimumSize(new java.awt.Dimension(400, 520));
+
+        jLabel8.setFont(new java.awt.Font("맑은 고딕", 1, 18)); // NOI18N
+        jLabel8.setText("관리자 가입");
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(156, 156, 156)
+                .addComponent(jLabel8)
+                .addContainerGap(147, Short.MAX_VALUE))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(57, 57, 57)
+                .addComponent(jLabel8)
+                .addContainerGap(438, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout AdminSignUpLayout = new javax.swing.GroupLayout(AdminSignUp.getContentPane());
+        AdminSignUp.getContentPane().setLayout(AdminSignUpLayout);
+        AdminSignUpLayout.setHorizontalGroup(
+            AdminSignUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        AdminSignUpLayout.setVerticalGroup(
+            AdminSignUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        UserSignUp.setMinimumSize(new java.awt.Dimension(400, 520));
+
+        jLabel9.setFont(new java.awt.Font("맑은 고딕", 1, 18)); // NOI18N
+        jLabel9.setText("회원가입");
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(169, 169, 169)
+                .addComponent(jLabel9)
+                .addContainerGap(159, Short.MAX_VALUE))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(60, 60, 60)
+                .addComponent(jLabel9)
+                .addContainerGap(435, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout UserSignUpLayout = new javax.swing.GroupLayout(UserSignUp.getContentPane());
+        UserSignUp.getContentPane().setLayout(UserSignUpLayout);
+        UserSignUpLayout.setHorizontalGroup(
+            UserSignUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        UserSignUpLayout.setVerticalGroup(
+            UserSignUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(400, 340));
+        setPreferredSize(new java.awt.Dimension(400, 340));
 
         jLabel1.setFont(new java.awt.Font("맑은 고딕", 1, 18)); // NOI18N
         jLabel1.setText("호텔 관리 프로그램");
@@ -383,6 +458,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JButton AdminCancelBtn;
     private javax.swing.JDialog AdminLogin;
     private javax.swing.JButton AdminSignInBtn;
+    private javax.swing.JDialog AdminSignUp;
     private javax.swing.JButton AdminSignUpBtn;
     private javax.swing.JTextField AdminidTextField;
     private javax.swing.JPasswordField AdminpwPasswordField;
@@ -391,6 +467,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JButton UserCancelBtn;
     private javax.swing.JDialog UserLogin;
     private javax.swing.JButton UserSignInBtn;
+    private javax.swing.JDialog UserSignUp;
     private javax.swing.JButton UserSignUpBtn;
     private javax.swing.JTextField UseridTextField;
     private javax.swing.JPasswordField UserpwPasswordField;
@@ -401,8 +478,12 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     // End of variables declaration//GEN-END:variables
 }
