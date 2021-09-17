@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package login;
+package deu.cse.team.login;
 
 /**
  * 로그인 관련 GUI
@@ -153,7 +153,6 @@ public class Login extends javax.swing.JFrame {
         );
 
         UserLogin.setMinimumSize(new java.awt.Dimension(400, 350));
-        UserLogin.setPreferredSize(new java.awt.Dimension(402, 350));
 
         jPanel3.setPreferredSize(new java.awt.Dimension(400, 340));
 
