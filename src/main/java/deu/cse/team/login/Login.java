@@ -28,64 +28,113 @@ public class Login extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        AdminLogin = new javax.swing.JDialog();
+        SignUp = new javax.swing.JDialog();
         jPanel2 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        AdminidTextField = new javax.swing.JTextField();
-        AdminpwPasswordField = new javax.swing.JPasswordField();
-        AdminSignInBtn = new javax.swing.JButton();
-        AdminCancelBtn = new javax.swing.JButton();
-        AdminSignUpBtn = new javax.swing.JButton();
-        UserLogin = new javax.swing.JDialog();
-        jPanel3 = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
+        jLable5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        UseridTextField = new javax.swing.JTextField();
-        UserpwPasswordField = new javax.swing.JPasswordField();
-        UserSignInBtn = new javax.swing.JButton();
-        UserCancelBtn = new javax.swing.JButton();
-        UserSignUpBtn = new javax.swing.JButton();
-        AdminSignUp = new javax.swing.JDialog();
-        jPanel4 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
-        UserSignUp = new javax.swing.JDialog();
-        jPanel5 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        SignUpNameField = new javax.swing.JTextField();
+        SignUpIdField = new javax.swing.JTextField();
+        SignUpPwField = new javax.swing.JPasswordField();
+        SignUpPwCheckField = new javax.swing.JPasswordField();
+        SignUpPhoneField = new javax.swing.JTextField();
+        SignUpEmailField = new javax.swing.JTextField();
+        SignUpAddressField = new javax.swing.JTextField();
+        SignUpOkButt = new javax.swing.JButton();
+        SignUpCancelButt = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        MainAdminSignInBtn = new javax.swing.JButton();
-        MainUserSignInBtn = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        SignInIdField = new javax.swing.JTextField();
+        SignInPwField = new javax.swing.JPasswordField();
+        SignInButt = new javax.swing.JButton();
+        SignUpButt = new javax.swing.JButton();
 
-        jPanel2.setPreferredSize(new java.awt.Dimension(400, 340));
+        SignUp.setMinimumSize(new java.awt.Dimension(400, 520));
 
-        jLabel2.setFont(new java.awt.Font("맑은 고딕", 1, 18)); // NOI18N
-        jLabel2.setText("관리자 로그인");
+        jPanel2.setPreferredSize(new java.awt.Dimension(400, 520));
 
-        jLabel3.setText("아이디 :");
+        jLabel4.setFont(new java.awt.Font("맑은 고딕", 1, 18)); // NOI18N
+        jLabel4.setText("회원가입");
 
-        jLabel4.setText("패스워드 :");
+        jLable5.setFont(new java.awt.Font("맑은 고딕", 0, 14)); // NOI18N
+        jLable5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLable5.setText("이름");
+        jLable5.setMaximumSize(new java.awt.Dimension(89, 20));
+        jLable5.setMinimumSize(new java.awt.Dimension(89, 20));
+        jLable5.setPreferredSize(new java.awt.Dimension(89, 20));
 
-        AdminSignInBtn.setText("로그인");
-        AdminSignInBtn.addActionListener(new java.awt.event.ActionListener() {
+        jLabel6.setFont(new java.awt.Font("맑은 고딕", 0, 14)); // NOI18N
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel6.setText("아이디");
+        jLabel6.setMaximumSize(new java.awt.Dimension(89, 20));
+        jLabel6.setMinimumSize(new java.awt.Dimension(89, 20));
+        jLabel6.setPreferredSize(new java.awt.Dimension(89, 20));
+
+        jLabel7.setFont(new java.awt.Font("맑은 고딕", 0, 14)); // NOI18N
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setText("비밀번호");
+        jLabel7.setMaximumSize(new java.awt.Dimension(89, 20));
+        jLabel7.setMinimumSize(new java.awt.Dimension(89, 20));
+        jLabel7.setPreferredSize(new java.awt.Dimension(89, 20));
+
+        jLabel8.setFont(new java.awt.Font("맑은 고딕", 0, 14)); // NOI18N
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel8.setText("비밀번호 확인");
+        jLabel8.setPreferredSize(new java.awt.Dimension(89, 20));
+
+        jLabel9.setFont(new java.awt.Font("맑은 고딕", 0, 14)); // NOI18N
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel9.setText("전화번호");
+        jLabel9.setMaximumSize(new java.awt.Dimension(89, 20));
+        jLabel9.setMinimumSize(new java.awt.Dimension(89, 20));
+        jLabel9.setPreferredSize(new java.awt.Dimension(89, 20));
+
+        jLabel10.setFont(new java.awt.Font("맑은 고딕", 0, 14)); // NOI18N
+        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel10.setText("이메일");
+        jLabel10.setMaximumSize(new java.awt.Dimension(89, 20));
+        jLabel10.setMinimumSize(new java.awt.Dimension(89, 20));
+        jLabel10.setPreferredSize(new java.awt.Dimension(89, 20));
+
+        jLabel11.setFont(new java.awt.Font("맑은 고딕", 0, 14)); // NOI18N
+        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel11.setText("거주지");
+        jLabel11.setMaximumSize(new java.awt.Dimension(89, 20));
+        jLabel11.setMinimumSize(new java.awt.Dimension(89, 20));
+        jLabel11.setPreferredSize(new java.awt.Dimension(89, 20));
+
+        SignUpNameField.setPreferredSize(new java.awt.Dimension(165, 23));
+
+        SignUpIdField.setPreferredSize(new java.awt.Dimension(165, 23));
+
+        SignUpPwField.setPreferredSize(new java.awt.Dimension(165, 23));
+
+        SignUpPwCheckField.setPreferredSize(new java.awt.Dimension(165, 23));
+
+        SignUpPhoneField.setPreferredSize(new java.awt.Dimension(165, 23));
+
+        SignUpEmailField.setPreferredSize(new java.awt.Dimension(165, 23));
+
+        SignUpAddressField.setPreferredSize(new java.awt.Dimension(165, 23));
+
+        SignUpOkButt.setText("확인");
+        SignUpOkButt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AdminSignInBtnActionPerformed(evt);
+                SignUpOkButtActionPerformed(evt);
             }
         });
 
-        AdminCancelBtn.setText("이전");
-        AdminCancelBtn.addActionListener(new java.awt.event.ActionListener() {
+        SignUpCancelButt.setText("이전");
+        SignUpCancelButt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AdminCancelBtnActionPerformed(evt);
-            }
-        });
-
-        AdminSignUpBtn.setText("관리자 가입");
-        AdminSignUpBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AdminSignUpBtnActionPerformed(evt);
+                SignUpCancelButtActionPerformed(evt);
             }
         });
 
@@ -94,245 +143,127 @@ public class Login extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(56, 56, 56)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLable5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(SignUpCancelButt, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(152, 152, 152)
-                        .addComponent(jLabel2))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(80, 80, 80)
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel3))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(AdminidTextField)
-                                    .addComponent(AdminpwPasswordField, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(20, 20, 20)
-                                .addComponent(AdminSignInBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(74, 74, 74)
-                                .addComponent(AdminCancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(76, 76, 76))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addComponent(AdminSignUpBtn)
-                .addGap(32, 32, 32))
+                            .addComponent(jLabel4)
+                            .addComponent(SignUpNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(SignUpIdField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(SignUpPwField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(SignUpPwCheckField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(SignUpPhoneField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(SignUpEmailField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(SignUpAddressField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(119, 119, 119)
+                        .addComponent(SignUpOkButt, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(60, Short.MAX_VALUE))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(74, 74, 74)
-                .addComponent(jLabel2)
-                .addGap(31, 31, 31)
+                .addGap(49, 49, 49)
+                .addComponent(jLabel4)
+                .addGap(36, 36, 36)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(AdminidTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(jLable5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(SignUpNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(28, 28, 28)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(AdminpwPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(33, 33, 33)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(SignUpIdField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(AdminSignInBtn)
-                    .addComponent(AdminCancelBtn))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
-                .addComponent(AdminSignUpBtn)
-                .addGap(18, 18, 18))
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(SignUpPwField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(27, 27, 27)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(SignUpPwCheckField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(23, 23, 23)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(SignUpPhoneField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(28, 28, 28)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(SignUpEmailField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(27, 27, 27)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(SignUpAddressField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(35, 35, 35)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(SignUpOkButt)
+                    .addComponent(SignUpCancelButt))
+                .addGap(28, 28, 28))
         );
 
-        javax.swing.GroupLayout AdminLoginLayout = new javax.swing.GroupLayout(AdminLogin.getContentPane());
-        AdminLogin.getContentPane().setLayout(AdminLoginLayout);
-        AdminLoginLayout.setHorizontalGroup(
-            AdminLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 402, Short.MAX_VALUE)
+        javax.swing.GroupLayout SignUpLayout = new javax.swing.GroupLayout(SignUp.getContentPane());
+        SignUp.getContentPane().setLayout(SignUpLayout);
+        SignUpLayout.setHorizontalGroup(
+            SignUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-        AdminLoginLayout.setVerticalGroup(
-            AdminLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-
-        UserLogin.setMinimumSize(new java.awt.Dimension(400, 350));
-
-        jPanel3.setPreferredSize(new java.awt.Dimension(400, 340));
-
-        jLabel5.setFont(new java.awt.Font("맑은 고딕", 1, 18)); // NOI18N
-        jLabel5.setText("이용객 로그인");
-
-        jLabel6.setText("아이디 :");
-
-        jLabel7.setText("패스워드 :");
-
-        UserSignInBtn.setText("로그인");
-        UserSignInBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                UserSignInBtnActionPerformed(evt);
-            }
-        });
-
-        UserCancelBtn.setText("이전");
-        UserCancelBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                UserCancelBtnActionPerformed(evt);
-            }
-        });
-
-        UserSignUpBtn.setText("회원가입");
-        UserSignUpBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                UserSignUpBtnActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(86, 86, 86)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(65, 65, 65)
-                                .addComponent(jLabel5))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addComponent(jLabel6)
-                                .addGap(18, 18, 18)
-                                .addComponent(UseridTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(8, 8, 8)
-                                .addComponent(UserSignInBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(81, 81, 81)
-                                .addComponent(UserCancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jLabel7)
-                                .addGap(18, 18, 18)
-                                .addComponent(UserpwPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addGap(203, 203, 203)
-                        .addComponent(UserSignUpBtn)))
-                .addContainerGap(35, Short.MAX_VALUE))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(56, 56, 56)
-                .addComponent(jLabel5)
-                .addGap(32, 32, 32)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(UseridTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(UserpwPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(51, 51, 51)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(UserSignInBtn)
-                    .addComponent(UserCancelBtn))
-                .addGap(32, 32, 32)
-                .addComponent(UserSignUpBtn)
-                .addGap(38, 38, 38))
-        );
-
-        javax.swing.GroupLayout UserLoginLayout = new javax.swing.GroupLayout(UserLogin.getContentPane());
-        UserLogin.getContentPane().setLayout(UserLoginLayout);
-        UserLoginLayout.setHorizontalGroup(
-            UserLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 402, Short.MAX_VALUE)
-        );
-        UserLoginLayout.setVerticalGroup(
-            UserLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE)
-        );
-
-        AdminSignUp.setMinimumSize(new java.awt.Dimension(400, 520));
-
-        jLabel8.setFont(new java.awt.Font("맑은 고딕", 1, 18)); // NOI18N
-        jLabel8.setText("관리자 가입");
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(156, 156, 156)
-                .addComponent(jLabel8)
-                .addContainerGap(147, Short.MAX_VALUE))
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(57, 57, 57)
-                .addComponent(jLabel8)
-                .addContainerGap(438, Short.MAX_VALUE))
-        );
-
-        javax.swing.GroupLayout AdminSignUpLayout = new javax.swing.GroupLayout(AdminSignUp.getContentPane());
-        AdminSignUp.getContentPane().setLayout(AdminSignUpLayout);
-        AdminSignUpLayout.setHorizontalGroup(
-            AdminSignUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        AdminSignUpLayout.setVerticalGroup(
-            AdminSignUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-
-        UserSignUp.setMinimumSize(new java.awt.Dimension(400, 520));
-
-        jLabel9.setFont(new java.awt.Font("맑은 고딕", 1, 18)); // NOI18N
-        jLabel9.setText("회원가입");
-
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(169, 169, 169)
-                .addComponent(jLabel9)
-                .addContainerGap(159, Short.MAX_VALUE))
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(60, 60, 60)
-                .addComponent(jLabel9)
-                .addContainerGap(435, Short.MAX_VALUE))
-        );
-
-        javax.swing.GroupLayout UserSignUpLayout = new javax.swing.GroupLayout(UserSignUp.getContentPane());
-        UserSignUp.getContentPane().setLayout(UserSignUpLayout);
-        UserSignUpLayout.setHorizontalGroup(
-            UserSignUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        UserSignUpLayout.setVerticalGroup(
-            UserSignUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        SignUpLayout.setVerticalGroup(
+            SignUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(400, 340));
-        setPreferredSize(new java.awt.Dimension(400, 340));
+        setPreferredSize(new java.awt.Dimension(400, 360));
+
+        jPanel1.setPreferredSize(new java.awt.Dimension(400, 360));
 
         jLabel1.setFont(new java.awt.Font("맑은 고딕", 1, 18)); // NOI18N
         jLabel1.setText("호텔 관리 프로그램");
 
-        MainAdminSignInBtn.setText("관리자");
-        MainAdminSignInBtn.addActionListener(new java.awt.event.ActionListener() {
+        jLabel2.setFont(new java.awt.Font("맑은 고딕", 0, 14)); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel2.setText("아이디 :");
+        jLabel2.setMaximumSize(new java.awt.Dimension(64, 20));
+        jLabel2.setMinimumSize(new java.awt.Dimension(64, 20));
+        jLabel2.setPreferredSize(new java.awt.Dimension(64, 20));
+
+        jLabel3.setFont(new java.awt.Font("맑은 고딕", 0, 14)); // NOI18N
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel3.setText("비밀번호 :");
+
+        SignInIdField.setMinimumSize(new java.awt.Dimension(160, 23));
+        SignInIdField.setPreferredSize(new java.awt.Dimension(160, 23));
+
+        SignInPwField.setPreferredSize(new java.awt.Dimension(160, 23));
+
+        SignInButt.setText("로그인");
+        SignInButt.setMaximumSize(new java.awt.Dimension(72, 25));
+        SignInButt.setMinimumSize(new java.awt.Dimension(72, 25));
+        SignInButt.setPreferredSize(new java.awt.Dimension(78, 25));
+        SignInButt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MainAdminSignInBtnActionPerformed(evt);
+                SignInButtActionPerformed(evt);
             }
         });
 
-        MainUserSignInBtn.setText("이용객");
-        MainUserSignInBtn.addActionListener(new java.awt.event.ActionListener() {
+        SignUpButt.setText("회원가입");
+        SignUpButt.setMaximumSize(new java.awt.Dimension(78, 25));
+        SignUpButt.setMinimumSize(new java.awt.Dimension(78, 25));
+        SignUpButt.setPreferredSize(new java.awt.Dimension(78, 25));
+        SignUpButt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MainUserSignInBtnActionPerformed(evt);
+                SignUpButtActionPerformed(evt);
             }
         });
 
@@ -346,22 +277,40 @@ public class Login extends javax.swing.JFrame {
                         .addGap(120, 120, 120)
                         .addComponent(jLabel1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(77, 77, 77)
-                        .addComponent(MainAdminSignInBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(53, 53, 53)
-                        .addComponent(MainUserSignInBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(70, Short.MAX_VALUE))
+                        .addGap(59, 59, 59)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(SignUpButt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(45, 45, 45)
+                                .addComponent(SignInButt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(SignInIdField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(SignInPwField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addContainerGap(99, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(56, 56, 56)
                 .addComponent(jLabel1)
-                .addGap(45, 45, 45)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(MainAdminSignInBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(MainUserSignInBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(98, Short.MAX_VALUE))
+                .addGap(48, 48, 48)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(SignInIdField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(46, 46, 46)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(SignInPwField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(44, 44, 44)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(SignInButt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(SignUpButt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(70, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -378,46 +327,26 @@ public class Login extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void MainAdminSignInBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MainAdminSignInBtnActionPerformed
+    private void SignUpButtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SignUpButtActionPerformed
         // TODO add your handling code here:
-        AdminLogin.setVisible(true);
-        AdminLogin.setLocationRelativeTo(this);
-        AdminLogin.setSize(430, 380);
-    }//GEN-LAST:event_MainAdminSignInBtnActionPerformed
+        SignUp.setVisible(true);
+        SignUp.setLocationRelativeTo(this);
+        SignUp.setSize(410, 600);
+    }//GEN-LAST:event_SignUpButtActionPerformed
 
-    private void MainUserSignInBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MainUserSignInBtnActionPerformed
+    private void SignInButtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SignInButtActionPerformed
         // TODO add your handling code here:
-        UserLogin.setVisible(true);
-        UserLogin.setLocationRelativeTo(this);
-        UserLogin.setSize(430, 380);
-    }//GEN-LAST:event_MainUserSignInBtnActionPerformed
+    }//GEN-LAST:event_SignInButtActionPerformed
 
-    private void AdminSignInBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AdminSignInBtnActionPerformed
+    private void SignUpCancelButtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SignUpCancelButtActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_AdminSignInBtnActionPerformed
+        SignUp.dispose();
+    }//GEN-LAST:event_SignUpCancelButtActionPerformed
 
-    private void AdminCancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AdminCancelBtnActionPerformed
+    private void SignUpOkButtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SignUpOkButtActionPerformed
         // TODO add your handling code here:
-        AdminLogin.dispose();
-    }//GEN-LAST:event_AdminCancelBtnActionPerformed
-
-    private void AdminSignUpBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AdminSignUpBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_AdminSignUpBtnActionPerformed
-
-    private void UserSignInBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UserSignInBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_UserSignInBtnActionPerformed
-
-    private void UserCancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UserCancelBtnActionPerformed
-        // TODO add your handling code here:
-        UserLogin.dispose();
-    }//GEN-LAST:event_UserCancelBtnActionPerformed
-
-    private void UserSignUpBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UserSignUpBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_UserSignUpBtnActionPerformed
-
+    }//GEN-LAST:event_SignUpOkButtActionPerformed
+    
     /**
      * @param args the command line arguments
      */
@@ -454,35 +383,32 @@ public class Login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton AdminCancelBtn;
-    private javax.swing.JDialog AdminLogin;
-    private javax.swing.JButton AdminSignInBtn;
-    private javax.swing.JDialog AdminSignUp;
-    private javax.swing.JButton AdminSignUpBtn;
-    private javax.swing.JTextField AdminidTextField;
-    private javax.swing.JPasswordField AdminpwPasswordField;
-    private javax.swing.JButton MainAdminSignInBtn;
-    private javax.swing.JButton MainUserSignInBtn;
-    private javax.swing.JButton UserCancelBtn;
-    private javax.swing.JDialog UserLogin;
-    private javax.swing.JButton UserSignInBtn;
-    private javax.swing.JDialog UserSignUp;
-    private javax.swing.JButton UserSignUpBtn;
-    private javax.swing.JTextField UseridTextField;
-    private javax.swing.JPasswordField UserpwPasswordField;
+    private javax.swing.JButton SignInButt;
+    private javax.swing.JTextField SignInIdField;
+    private javax.swing.JPasswordField SignInPwField;
+    private javax.swing.JDialog SignUp;
+    private javax.swing.JTextField SignUpAddressField;
+    private javax.swing.JButton SignUpButt;
+    private javax.swing.JButton SignUpCancelButt;
+    private javax.swing.JTextField SignUpEmailField;
+    private javax.swing.JTextField SignUpIdField;
+    private javax.swing.JTextField SignUpNameField;
+    private javax.swing.JButton SignUpOkButt;
+    private javax.swing.JTextField SignUpPhoneField;
+    private javax.swing.JPasswordField SignUpPwCheckField;
+    private javax.swing.JPasswordField SignUpPwField;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLable5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
     // End of variables declaration//GEN-END:variables
 }
