@@ -5,6 +5,11 @@
  */
 package deu.cse.team.login;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  * 로그인 관련 GUI
  * @author 김창진
@@ -345,6 +350,27 @@ public class Login extends javax.swing.JFrame {
 
     private void SignUpOkButtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SignUpOkButtActionPerformed
         // TODO add your handling code here:
+        String name = SignUpNameField.getText();
+        String id = SignUpIdField.getText();
+        String pw = SignUpPwField.getText();
+        String phone = SignUpPhoneField.getText();
+        String email = SignUpEmailField.getText();
+        String address = SignUpAddressField.getText();
+        
+        boolean check = true;
+        boolean black = false;
+
+        if (check){
+            if (!"".equals(name) && !"".equals(id) && !"".equals(pw) && !"".equals(phone) && !"".equals(email) && !"".equals(address)){
+                    if (!pw.equals(SignUpPwCheckField.getText())){
+                        JOptionPane.showMessageDialog(null, "비밀번호가 일치하지 않습니다\n 다시입력해주세요.");
+                        SignUpPwField.setText("");
+                        SignUpPwCheckField.setText("");
+                    }
+            } else {
+                JOptionPane.showMessageDialog(null, "모든 항목을 입력해주세요");
+            }
+        }
     }//GEN-LAST:event_SignUpOkButtActionPerformed
     
     /**
