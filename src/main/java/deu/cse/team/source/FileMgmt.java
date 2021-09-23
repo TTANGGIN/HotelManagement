@@ -20,12 +20,13 @@ import java.util.ArrayList;
  */
 public class FileMgmt implements FileInterface {
     ArrayList<String> readinfo = new ArrayList();
+    ArrayList<UserInfo> userinfo = new ArrayList<>();
     
     @Override
     public void FileRead(String path) {
         try {
-            File Stext = new File(path);
-            FileReader textRead = new FileReader(Stext);
+            File text = new File(path);
+            FileReader textRead = new FileReader(text);
             BufferedReader bfReader = new BufferedReader(textRead);
             String line = "";
             while ((line = bfReader.readLine()) != null) {
@@ -55,8 +56,11 @@ public class FileMgmt implements FileInterface {
         for (int i = 0; i < readinfo.size(); i++) {
             line = readinfo.get(i);
             String[] str = line.split("\t");
-            
+            userinfo.add(new UserInfo(str[0],str[1],str[2],str[3],str[4],str[5]));
         }
     }
     
+    public ArrayList<UserInfo> returnUserInfo() throws IOException {
+        return userinfo;
+    }
 }

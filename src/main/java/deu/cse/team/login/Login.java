@@ -5,7 +5,11 @@
  */
 package deu.cse.team.login;
 
+import deu.cse.team.source.FileMgmt;
+import deu.cse.team.source.UserInfo;
+import deu.cse.team.source.UserInfoBuilder;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -15,7 +19,7 @@ import javax.swing.JOptionPane;
  * @author 김창진
  */
 public class Login extends javax.swing.JFrame {
-
+    ArrayList<UserInfo> userinfo = new ArrayList<>();
     /**
      * Creates new form Login
      */
@@ -350,6 +354,9 @@ public class Login extends javax.swing.JFrame {
 
     private void SignUpOkButtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SignUpOkButtActionPerformed
         // TODO add your handling code here:
+        UserInfoBuilder uib = new UserInfoBuilder();
+        FileMgmt fm = new FileMgmt();
+        
         String name = SignUpNameField.getText();
         String id = SignUpIdField.getText();
         String pw = SignUpPwField.getText();
@@ -359,13 +366,42 @@ public class Login extends javax.swing.JFrame {
         
         boolean check = true;
         boolean black = false;
-
+        try {
+            fm.FileRead("C:\\DB\\userList.txt");
+            fm.FileDataSplit();
+            userinfo = fm.returnUserInfo();
+        } catch (IOException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
         if (check){
             if (!"".equals(name) && !"".equals(id) && !"".equals(pw) && !"".equals(phone) && !"".equals(email) && !"".equals(address)){
                     if (!pw.equals(SignUpPwCheckField.getText())){
                         JOptionPane.showMessageDialog(null, "비밀번호가 일치하지 않습니다\n 다시입력해주세요.");
                         SignUpPwField.setText("");
                         SignUpPwCheckField.setText("");
+                    } else {
+                        UserInfo data = uib
+                                .setName(name)
+                                .setId(id)
+                                .setPw(pw)
+                                .setPhone(phone)
+                                .setEmail(email)
+                                .setAddress(address)
+                                .build();
+                        try {
+                            fm.FileWrite("C:\\DB\\userList.txt", data.getUserInfo());
+                            JOptionPane.showMessageDialog(null, "회원 가입 완료");
+                            SignUpNameField.setText("");
+                            SignUpIdField.setText("");
+                            SignUpPwField.setText("");
+                            SignUpPwCheckField.setText("");
+                            SignUpPhoneField.setText("");
+                            SignUpEmailField.setText("");
+                            SignUpAddressField.setText("");
+                            SignUp.dispose();
+                        } catch (IOException ex) {
+                            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+                        }
                     }
             } else {
                 JOptionPane.showMessageDialog(null, "모든 항목을 입력해주세요");
