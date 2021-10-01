@@ -354,8 +354,8 @@ public class Login extends javax.swing.JFrame {
 
     private void SignUpOkButtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SignUpOkButtActionPerformed
         // TODO add your handling code here:
-        UserInfoBuilder uib = new UserInfoBuilder();
-        FileMgmt fm = new FileMgmt();
+        UserInfoBuilder userInfoBuilder = new UserInfoBuilder();
+        FileMgmt fileMgmt = new FileMgmt();
         
         String name = SignUpNameField.getText();
         String id = SignUpIdField.getText();
@@ -367,9 +367,9 @@ public class Login extends javax.swing.JFrame {
         boolean check = true;
         boolean black = false;
         try {
-            fm.readFileData("C:\\DB\\userList.txt");
-            fm.splitFileData();
-            userinfo = fm.returnUserInfo();
+            fileMgmt.readFileData("C:\\DB\\userList.txt");
+            fileMgmt.splitFileData();
+            userinfo = fileMgmt.returnUserInfo();
         } catch (IOException ex) {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -379,8 +379,9 @@ public class Login extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(null, "비밀번호가 일치하지 않습니다\n 다시입력해주세요.");
                         SignUpPwField.setText("");
                         SignUpPwCheckField.setText("");
+                        // 이곳에 로그인 조건에 대한 분기 추가
                     } else {
-                        UserInfo data = uib
+                        UserInfo data = userInfoBuilder
                                 .setName(name)
                                 .setId(id)
                                 .setPw(pw)
@@ -389,7 +390,7 @@ public class Login extends javax.swing.JFrame {
                                 .setAddress(address)
                                 .build();
                         try {
-                            fm.writeFileData("C:\\DB\\userList.txt", data.getUserInfo());
+                            fileMgmt.writeFileData("C:\\DB\\userList.txt", data.getUserInfo());
                             JOptionPane.showMessageDialog(null, "회원 가입 완료");
                             SignUpNameField.setText("");
                             SignUpIdField.setText("");
