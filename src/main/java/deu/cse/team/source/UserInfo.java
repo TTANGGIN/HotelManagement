@@ -51,7 +51,7 @@ public class UserInfo {
     }
     
     public String getUserInfo() {
-        String userinfo = String.format("%s\t%s\t%s\t%s\t%s\t%s", name, id, pw, phone, email, address);
-        return userinfo;
+        String userInfo = String.format("%s\t%s\t%s\t%s\t%s\t%s", name, id, pw, phone, email, address);
+        return userInfo;
     }
 }

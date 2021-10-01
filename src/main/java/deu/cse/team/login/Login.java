@@ -367,8 +367,8 @@ public class Login extends javax.swing.JFrame {
         boolean check = true;
         boolean black = false;
         try {
-            fm.FileRead("C:\\DB\\userList.txt");
-            fm.FileDataSplit();
+            fm.readFileData("C:\\DB\\userList.txt");
+            fm.splitFileData();
             userinfo = fm.returnUserInfo();
         } catch (IOException ex) {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
@@ -389,7 +389,7 @@ public class Login extends javax.swing.JFrame {
                                 .setAddress(address)
                                 .build();
                         try {
-                            fm.FileWrite("C:\\DB\\userList.txt", data.getUserInfo());
+                            fm.writeFileData("C:\\DB\\userList.txt", data.getUserInfo());
                             JOptionPane.showMessageDialog(null, "회원 가입 완료");
                             SignUpNameField.setText("");
                             SignUpIdField.setText("");

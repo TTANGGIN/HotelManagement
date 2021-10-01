@@ -12,7 +12,7 @@ import java.io.IOException;
  * @author CHANG
  */
 public interface FileInterface {
-    void FileRead(String path);
-    void FileWrite(String path, String data) throws IOException;
-    void FileDataSplit();
+    void readFileData(String path);
+    void writeFileData(String path, String data) throws IOException;
+    void splitFileData();
 }
