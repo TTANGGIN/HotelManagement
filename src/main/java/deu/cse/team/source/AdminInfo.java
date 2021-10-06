@@ -9,31 +9,28 @@ package deu.cse.team.source;
  *
  * @author CHANG
  */
-public class UserInfo {
-    private String name;
-    private String id;
-    private String pw;
+public class AdminInfo {
+    String id;
+    String pw;
     
-    public UserInfo (String name, String id, String pw) {
-        this.name = name;
+    public AdminInfo(String id, String pw){
         this.id = id;
         this.pw = pw;
     }
-    
-    public String getName() {
-        return name;
-    }
-    
+
     public String getId() {
         return id;
     }
-    
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
     public String getPw() {
         return pw;
     }
 
-    public String getUserInfo() {
-        String userInfo = String.format("%s\t%s\t%s", name, id, pw);
-        return userInfo;
+    public void setPw(String pw) {
+        this.pw = pw;
     }
 }

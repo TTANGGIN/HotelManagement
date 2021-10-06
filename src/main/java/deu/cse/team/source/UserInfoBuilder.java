@@ -13,9 +13,6 @@ public class UserInfoBuilder {
     private String name;
     private String id;
     private String pw;
-    private String phone;
-    private String email;
-    private String address;
     
     public UserInfoBuilder setName(String name) {
         this.name = name;
@@ -31,24 +28,9 @@ public class UserInfoBuilder {
         this.pw = pw;
         return this;
     }
-    
-    public UserInfoBuilder setPhone(String phone) {
-        this.phone = phone;
-        return this;
-    }
-    
-    public UserInfoBuilder setEmail(String email) {
-        this.email = email;
-        return this;
-    }
-    
-    public UserInfoBuilder setAddress(String address) {
-        this.address = address;
-        return this;
-    }
-    
+
     public UserInfo build() {
-        UserInfo userinfo = new UserInfo(name, id, pw, phone, email, address);
+        UserInfo userinfo = new UserInfo(name, id, pw);
         return userinfo;
     }
 }

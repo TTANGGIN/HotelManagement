@@ -19,18 +19,18 @@ import java.util.ArrayList;
  * @author CHANG
  */
 public class FileMgmt implements FileInterface {
-    ArrayList<String> readInfo = new ArrayList();
+    ArrayList<String> readUserInfo = new ArrayList();
+    ArrayList<String> readAdminInfo = new ArrayList();
     ArrayList<UserInfo> userInfo = new ArrayList<>();
+    ArrayList<AdminInfo> adminInfo = new ArrayList<>();
     
     @Override
     public void readFileData(String path) {
         try {
-            File text = new File(path);
-            FileReader textRead = new FileReader(text);
-            BufferedReader bfReader = new BufferedReader(textRead);
+            BufferedReader bfReader = new BufferedReader(new FileReader(new File(path)));
             String line = "";
             while ((line = bfReader.readLine()) != null) {
-                readInfo.add(line);
+                readUserInfo.add(line);
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -41,12 +41,10 @@ public class FileMgmt implements FileInterface {
     }
     public void readCsrFileData(String path) {
         try {
-            File text = new File(path);
-            FileReader textRead = new FileReader(text);
-            BufferedReader bfReader = new BufferedReader(textRead);
+            BufferedReader bfReader = new BufferedReader(new FileReader(new File(path)));
             String line = "";
             while ((line = bfReader.readLine()) != null) {
-                readInfo.add(line);
+                readUserInfo.add(line);
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -57,12 +55,10 @@ public class FileMgmt implements FileInterface {
     }
     public void readManagerFileData(String path) {
         try {
-            File text = new File(path);
-            FileReader textRead = new FileReader(text);
-            BufferedReader bfReader = new BufferedReader(textRead);
+            BufferedReader bfReader = new BufferedReader(new FileReader(new File(path)));
             String line = "";
             while ((line = bfReader.readLine()) != null) {
-                readInfo.add(line);
+                readAdminInfo.add(line);
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -74,22 +70,19 @@ public class FileMgmt implements FileInterface {
     
     @Override
     public void writeFileData(String path, String data) throws IOException {
-        BufferedWriter bw = new BufferedWriter(new FileWriter(path,true));
-        PrintWriter pw = new PrintWriter(bw,true);
+        PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(path,true)),true);
         pw.write(data+"\n");
         pw.flush();
         pw.close();
     }
     public void writeCsrFileData(String path, String data) throws IOException {
-        BufferedWriter bw = new BufferedWriter(new FileWriter(path,true));
-        PrintWriter pw = new PrintWriter(bw,true);
+        PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(path,true)),true);
         pw.write(data+"\n");
         pw.flush();
         pw.close();
     }
     public void writeManagerFileData(String path, String data) throws IOException {
-        BufferedWriter bw = new BufferedWriter(new FileWriter(path,true));
-        PrintWriter pw = new PrintWriter(bw,true);
+        PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(path,true)),true);
         pw.write(data+"\n");
         pw.flush();
         pw.close();
@@ -99,14 +92,29 @@ public class FileMgmt implements FileInterface {
     public void splitFileData() {
         String line;
 
-        for (int i = 0; i < readInfo.size(); i++) {
-            line = readInfo.get(i);
+        for (int i = 0; i < readUserInfo.size(); i++) {
+            line = readUserInfo.get(i);
             String[] str = line.split("\t");
-            userInfo.add(new UserInfo(str[0],str[1],str[2],str[3],str[4],str[5]));
+            userInfo.add(new UserInfo(str[0], str[1], str[2]));
+        }
+    }
+    public void splitManagerFileData() {
+        String line;
+
+        for (int i = 0; i < readAdminInfo.size(); i++) {
+            line = readAdminInfo.get(i);
+            String[] str = line.split("\t");
+            adminInfo.add(new AdminInfo(str[0],str[1]));
         }
     }
     
     public ArrayList<UserInfo> returnUserInfo() throws IOException {
         return userInfo;
+    }
+    public ArrayList<UserInfo> returnCsrInfo() throws IOException {
+        return userInfo;
+    }
+    public ArrayList<AdminInfo> returnManagerInfo() throws IOException {
+        return adminInfo;
     }
 }
