@@ -138,7 +138,7 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void SignInButtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SignInButtActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here: 로그인 버튼
         ArrayList<UserInfo> userInfo = new ArrayList<>();
         ArrayList<AdminInfo> adminInfo = new ArrayList<>();
         String id = SignInIdField.getText();
