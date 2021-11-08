@@ -67,10 +67,6 @@ public class CheckOut extends javax.swing.JFrame {
 
         jLabel7.setText("추가금액");
 
-        jTextField5.setText("jTextField5");
-
-        jTextField6.setText("jTextField6");
-
         jButton1.setText("체크아웃");
 
         jButton2.setText("이전으로");
