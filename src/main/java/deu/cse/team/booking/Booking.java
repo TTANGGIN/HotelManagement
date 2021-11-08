@@ -18,6 +18,8 @@ public class Booking extends javax.swing.JFrame {
      */
     public Booking() {
         initComponents();
+        setLocationRelativeTo(this);
+        setTitle("Booking");        
     }
 
     /**
@@ -106,6 +108,11 @@ public class Booking extends javax.swing.JFrame {
         });
 
         BookingCancelBtn.setText("이전");
+        BookingCancelBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BookingCancelBtnActionPerformed(evt);
+            }
+        });
 
         jLabel10.setText("-");
 
@@ -253,6 +260,11 @@ public class Booking extends javax.swing.JFrame {
                 + BookingEnterDateCB3.getSelectedItem().toString();
         JOptionPane.showMessageDialog(null, enterDate);
     }//GEN-LAST:event_BookingOkBtnActionPerformed
+
+    private void BookingCancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BookingCancelBtnActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_BookingCancelBtnActionPerformed
 
     /**
      * @param args the command line arguments
