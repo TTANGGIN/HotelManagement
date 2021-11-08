@@ -5,6 +5,8 @@
  */
 package deu.cse.team.mainmenu;
 
+import deu.cse.team.booking.Booking;
+import deu.cse.team.checkin.CheckIn;
 import deu.cse.team.login.Login;
 
 /**
@@ -149,10 +151,14 @@ public class MainMenu extends javax.swing.JFrame {
 
     private void BookingButtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BookingButtActionPerformed
         // TODO add your handling code here:
+        Booking booking = new Booking();
+        booking.setVisible(true);
     }//GEN-LAST:event_BookingButtActionPerformed
 
     private void CheckInButtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckInButtActionPerformed
         // TODO add your handling code here:
+        CheckIn checkIn = new CheckIn();
+        checkIn.setVisible(true);
     }//GEN-LAST:event_CheckInButtActionPerformed
 
     private void CheckOutButtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckOutButtActionPerformed
