@@ -5,6 +5,10 @@
  */
 package deu.cse.team.booking;
 
+import deu.cse.team.source.FileMgmt;
+import deu.cse.team.source.UserInfo;
+import deu.cse.team.source.UserInfoBuilder;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -59,6 +63,7 @@ public class Booking extends javax.swing.JFrame {
         BookingCancelBtn = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
+        AddressLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -118,6 +123,8 @@ public class Booking extends javax.swing.JFrame {
 
         jLabel11.setText("-");
 
+        AddressLabel.setText("테스트");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -148,15 +155,18 @@ public class Booking extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(47, 47, 47)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel9)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel9)
+                                .addGap(18, 18, 18)
+                                .addComponent(AddressLabel))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel5)
                                     .addComponent(jLabel4))
                                 .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(BookingMemberCB, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(BookingNameField)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(BookingMemberCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(BookingNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel7)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -234,7 +244,9 @@ public class Booking extends javax.swing.JFrame {
                     .addComponent(jLabel11))
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel9)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel9)
+                        .addComponent(AddressLabel))
                     .addComponent(BookingSearchAddressBtn))
                 .addGap(76, 76, 76)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -253,12 +265,23 @@ public class Booking extends javax.swing.JFrame {
 
     private void BookingOkBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BookingOkBtnActionPerformed
         // TODO add your handling code here:
-        
-        String str;
-        String enterDate = BookingEnterDateCB1.getSelectedItem().toString() 
-                + BookingEnterDateCB2.getSelectedItem().toString() 
+        String enterDate = BookingEnterDateCB1.getSelectedItem().toString() + "-"           // 입실 날짜
+                + BookingEnterDateCB2.getSelectedItem().toString() + "-"
                 + BookingEnterDateCB3.getSelectedItem().toString();
-        JOptionPane.showMessageDialog(null, enterDate);
+        String entranceDate = BookingEntranceDateCB1.getSelectedItem().toString() + "-"     // 퇴실 날짜
+                + BookingEntranceDateCB2.getSelectedItem().toString() + "-"
+                + BookingEntranceDateCB3.getSelectedItem().toString();
+        String customerName = BookingNameField.getText();                                   // 고객 이름
+        String roomNumber = BookingRomNumField.getText();                                   // 객실 번호
+        String totalNum = BookingMemberCB.getSelectedItem().toString();                     // 인원수
+        String phoneNum = BookingPhoneNumField1.getText() + "-"                             // 연락처
+                + BookingPhoneNumField2.getText() + "-"
+                + BookingPhoneNumField3.getText();
+        String address = AddressLabel.getText();
+        String str = enterDate + "\t" + entranceDate + "\t" + customerName + "\t" 
+                + roomNumber + "\t" + totalNum + "\t" + phoneNum + "\t" + address;
+        
+        JOptionPane.showMessageDialog(null, str);
     }//GEN-LAST:event_BookingOkBtnActionPerformed
 
     private void BookingCancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BookingCancelBtnActionPerformed
@@ -302,6 +325,7 @@ public class Booking extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel AddressLabel;
     private javax.swing.JButton BookingCancelBtn;
     private javax.swing.JButton BookingCheckChargeBtn;
     private javax.swing.JComboBox<String> BookingEnterDateCB1;
