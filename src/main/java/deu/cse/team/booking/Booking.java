@@ -41,6 +41,12 @@ public class Booking extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        searchAddressDlg = new javax.swing.JDialog();
+        BookingSearchAddressField = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        SearchAddressBtn = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         BookingEnterDateCB1 = new javax.swing.JComboBox<>();
@@ -70,6 +76,71 @@ public class Booking extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         AddressLabel = new javax.swing.JLabel();
+
+        jLabel12.setText("도로명 주소 :");
+
+        SearchAddressBtn.setText("검색");
+        SearchAddressBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SearchAddressBtnActionPerformed(evt);
+            }
+        });
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "우편번호", "건물명", "도로명 주소"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTable1.setColumnSelectionAllowed(true);
+        jScrollPane1.setViewportView(jTable1);
+        jTable1.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+
+        javax.swing.GroupLayout searchAddressDlgLayout = new javax.swing.GroupLayout(searchAddressDlg.getContentPane());
+        searchAddressDlg.getContentPane().setLayout(searchAddressDlgLayout);
+        searchAddressDlgLayout.setHorizontalGroup(
+            searchAddressDlgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(searchAddressDlgLayout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addGroup(searchAddressDlgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(searchAddressDlgLayout.createSequentialGroup()
+                        .addComponent(jLabel12)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(BookingSearchAddressField, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(SearchAddressBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(43, Short.MAX_VALUE))
+        );
+        searchAddressDlgLayout.setVerticalGroup(
+            searchAddressDlgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(searchAddressDlgLayout.createSequentialGroup()
+                .addGap(69, 69, 69)
+                .addGroup(searchAddressDlgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(BookingSearchAddressField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel12)
+                    .addComponent(SearchAddressBtn))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(45, 45, 45))
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -108,6 +179,11 @@ public class Booking extends javax.swing.JFrame {
         jLabel9.setText("주소");
 
         BookingSearchAddressBtn.setText("주소 검색");
+        BookingSearchAddressBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BookingSearchAddressBtnActionPerformed(evt);
+            }
+        });
 
         BookingModifyBtn.setText("예약 수정");
 
@@ -300,6 +376,17 @@ public class Booking extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_BookingCancelBtnActionPerformed
 
+    private void BookingSearchAddressBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BookingSearchAddressBtnActionPerformed
+        // TODO add your handling code here:
+        searchAddressDlg.setVisible(true);
+        searchAddressDlg.setLocationRelativeTo(this);
+        searchAddressDlg.setSize(550, 500);
+    }//GEN-LAST:event_BookingSearchAddressBtnActionPerformed
+
+    private void SearchAddressBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchAddressBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_SearchAddressBtnActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -354,9 +441,12 @@ public class Booking extends javax.swing.JFrame {
     private javax.swing.JTextField BookingPhoneNumField3;
     private javax.swing.JTextField BookingRomNumField;
     private javax.swing.JButton BookingSearchAddressBtn;
+    private javax.swing.JTextField BookingSearchAddressField;
+    private javax.swing.JButton SearchAddressBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -365,5 +455,8 @@ public class Booking extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JDialog searchAddressDlg;
     // End of variables declaration//GEN-END:variables
 }
