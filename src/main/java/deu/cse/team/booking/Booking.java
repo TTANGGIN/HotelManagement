@@ -8,7 +8,13 @@ package deu.cse.team.booking;
 import deu.cse.team.source.FileMgmt;
 import deu.cse.team.source.UserInfo;
 import deu.cse.team.source.UserInfoBuilder;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -265,6 +271,7 @@ public class Booking extends javax.swing.JFrame {
 
     private void BookingOkBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BookingOkBtnActionPerformed
         // TODO add your handling code here:
+        FileMgmt fileMgmt = new FileMgmt();
         String enterDate = BookingEnterDateCB1.getSelectedItem().toString() + "-"           // 입실 날짜
                 + BookingEnterDateCB2.getSelectedItem().toString() + "-"
                 + BookingEnterDateCB3.getSelectedItem().toString();
@@ -280,7 +287,11 @@ public class Booking extends javax.swing.JFrame {
         String address = AddressLabel.getText();
         String str = enterDate + "\t" + entranceDate + "\t" + customerName + "\t" 
                 + roomNumber + "\t" + totalNum + "\t" + phoneNum + "\t" + address;
-        
+        try {
+            fileMgmt.writeFileData("C:\\DB\\BookingList.txt", str);
+        } catch (IOException ex) {
+            Logger.getLogger(Booking.class.getName()).log(Level.SEVERE, null, ex);
+        }
         JOptionPane.showMessageDialog(null, str);
     }//GEN-LAST:event_BookingOkBtnActionPerformed
 
