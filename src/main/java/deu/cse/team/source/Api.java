@@ -26,20 +26,8 @@ import org.xml.sax.SAXException;
  *
  * @author CHANG
  */
-public class ApiExplorer {
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) throws IOException, ParserConfigurationException, SAXException {
-        // TODO code application logic here
-        String size = "30";
-        String page = "1";
-        String address = "좌동순환로 99번길 22";
-        String format = "xml";
-        String key = "2E7FAFA0-660C-33D8-845B-206BB87641E2";
-        
-        
+public class Api {
+    public void Api(String size, String page, String address, String format, String key) throws IOException, ParserConfigurationException, SAXException {
         // 1. URL을 만들기 위한 StringBuilder.
         StringBuilder urlBuilder = new StringBuilder("http://api.vworld.kr/req/search"); /*URL*/
         // 2. 오픈 API의요청 규격에 맞는 파라미터 생성, 발급받은 인증키.
@@ -115,8 +103,7 @@ public class ApiExplorer {
             }
         }
     }
-    
-    private static String getTagValue(String tag, Element eElement) {
+    String getTagValue(String tag, Element eElement) {
         NodeList nlList = eElement.getElementsByTagName(tag).item(0).getChildNodes();
         Node nValue = (Node) nlList.item(0);
         if (nValue == null)
