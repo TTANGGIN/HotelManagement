@@ -20,14 +20,14 @@ public class BookingInfo {
     String money;
     
     public BookingInfo (String entrance, String exit, String name, String room, String personnel, String phonenumber, String adress, String money) {
-        this.entrance = entrance;
-        this.exit = exit;
-        this.name = name;
-        this.room = room;
-        this.personnel = personnel;
-        this.phonenumber = phonenumber;
-        this.adress = adress;
-        this.money = money;
+        this.entrance = entrance; // 입실
+        this.exit = exit; // 퇴실
+        this.name = name; // 이름
+        this.room = room; // 호실
+        this.personnel = personnel; // 인원
+        this.phonenumber = phonenumber; // 전화번호
+        this.adress = adress; // 주소
+        this.money = money; // 금액
 
     }
 
