@@ -5,6 +5,7 @@
  */
 package deu.cse.team.booking;
 
+import deu.cse.team.source.Api;
 import deu.cse.team.source.FileMgmt;
 import deu.cse.team.source.UserInfo;
 import deu.cse.team.source.UserInfoBuilder;
@@ -16,6 +17,8 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.xml.parsers.ParserConfigurationException;
+import org.xml.sax.SAXException;
 
 /**
  *
@@ -385,6 +388,16 @@ public class Booking extends javax.swing.JFrame {
 
     private void SearchAddressBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchAddressBtnActionPerformed
         // TODO add your handling code here:
+        Api api = new Api();
+        try {
+            api.Api(BookingSearchAddressField.getText());
+        } catch (IOException ex) {
+            Logger.getLogger(Booking.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ParserConfigurationException ex) {
+            Logger.getLogger(Booking.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SAXException ex) {
+            Logger.getLogger(Booking.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_SearchAddressBtnActionPerformed
 
     /**

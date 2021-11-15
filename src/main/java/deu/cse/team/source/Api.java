@@ -27,7 +27,11 @@ import org.xml.sax.SAXException;
  * @author CHANG
  */
 public class Api {
-    public void Api(String size, String page, String address, String format, String key) throws IOException, ParserConfigurationException, SAXException {
+    public void Api(String address) throws IOException, ParserConfigurationException, SAXException {
+        String size = "30";
+        String page = "1";
+        String format = "xml";
+        String key = "2E7FAFA0-660C-33D8-845B-206BB87641E2";
         // 1. URL을 만들기 위한 StringBuilder.
         StringBuilder urlBuilder = new StringBuilder("http://api.vworld.kr/req/search"); /*URL*/
         // 2. 오픈 API의요청 규격에 맞는 파라미터 생성, 발급받은 인증키.
