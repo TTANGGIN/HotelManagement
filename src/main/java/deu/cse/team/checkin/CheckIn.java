@@ -20,24 +20,35 @@ public class CheckIn extends javax.swing.JFrame {
      */
     public CheckIn() {
         initComponents();
+        jTextField1.setEnabled(false); 
+        jTextField2.setEnabled(false);
+        
+        jTable1.getColumn("이름").setPreferredWidth(10); //jTable 크기 조절
+        jTable1.getColumn("호수").setPreferredWidth(10);
+        jTable1.getColumn("인원").setPreferredWidth(10);
+        jTable1.getColumn("번호").setPreferredWidth(100);
+        jTable1.getColumn("기간").setPreferredWidth(100);
+
+
         try {
             String value;
             String[] Arr;
-            int i=0;
+            int i = 0;
             BufferedReader is = new BufferedReader(new FileReader("C:\\DB\\BookingList.txt"));
             while ((value = is.readLine()) != null) {
                 Arr = value.split("\t");
-                jTable1.setValueAt(Arr[2],i,0);
-                jTable1.setValueAt(Arr[3],i,1);
-                jTable1.setValueAt(Arr[4],i,2);
-                jTable1.setValueAt(Arr[5],i,3);
-                jTable1.setValueAt((Arr[0]+" ~ "+Arr[1]),i,4);
+                jTable1.setValueAt(Arr[2], i, 0);
+                jTable1.setValueAt(Arr[3], i, 1);
+                jTable1.setValueAt(Arr[4], i, 2);
+                jTable1.setValueAt(Arr[5], i, 3);
+                jTable1.setValueAt((Arr[0] + " ~ " + Arr[1]), i, 4);
                 i++;
             }
             is.close();
         } catch (IOException e) {
         }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -63,9 +74,19 @@ public class CheckIn extends javax.swing.JFrame {
 
         buttonGroup1.add(jRadioButton1);
         jRadioButton1.setText("이름");
+        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton1ActionPerformed(evt);
+            }
+        });
 
         buttonGroup1.add(jRadioButton2);
         jRadioButton2.setText("호실");
+        jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton2ActionPerformed(evt);
+            }
+        });
 
         jButton1.setText("검색");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -152,7 +173,28 @@ public class CheckIn extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        String str = jTextField1.getText() + jTextField2.getText();
+        for (int i = 0; i < jTable1.getColumnCount(); i++) {
+            if (str.equals(jTable1.getValueAt(i, 0)) || str.equals(jTable1.getValueAt(i, 1)))  {
+                jTable1.requestFocus();
+                jTable1.changeSelection(i, 0, false, false);
+            }
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+        // TODO add your handling code here:
+        jTextField1.setEnabled(true);
+        jTextField2.setEnabled(false);
+        jTextField2.setText("");
+    }//GEN-LAST:event_jRadioButton1ActionPerformed
+
+    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
+        // TODO add your handling code here:
+        jTextField1.setEnabled(false);
+        jTextField2.setEnabled(true);
+        jTextField1.setText("");
+    }//GEN-LAST:event_jRadioButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -182,7 +224,6 @@ public class CheckIn extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new CheckIn().setVisible(true);
