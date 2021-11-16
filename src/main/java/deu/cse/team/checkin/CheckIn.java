@@ -5,6 +5,10 @@
  */
 package deu.cse.team.checkin;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
 /**
  *
  * @author PC
@@ -16,8 +20,24 @@ public class CheckIn extends javax.swing.JFrame {
      */
     public CheckIn() {
         initComponents();
+        try {
+            String value;
+            String[] Arr;
+            int i=0;
+            BufferedReader is = new BufferedReader(new FileReader("C:\\DB\\BookingList.txt"));
+            while ((value = is.readLine()) != null) {
+                Arr = value.split("\t");
+                jTable1.setValueAt(Arr[2],i,0);
+                jTable1.setValueAt(Arr[3],i,1);
+                jTable1.setValueAt(Arr[4],i,2);
+                jTable1.setValueAt(Arr[5],i,3);
+                jTable1.setValueAt((Arr[0]+" ~ "+Arr[1]),i,4);
+                i++;
+            }
+            is.close();
+        } catch (IOException e) {
+        }
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -48,6 +68,11 @@ public class CheckIn extends javax.swing.JFrame {
         jRadioButton2.setText("호실");
 
         jButton1.setText("검색");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("예약자 명단");
 
@@ -64,7 +89,7 @@ public class CheckIn extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        jButton2.setText("가져오기");
+        jButton2.setText("체크인");
 
         jButton3.setText("닫기");
 
@@ -78,7 +103,7 @@ public class CheckIn extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 568, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 579, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -125,6 +150,10 @@ public class CheckIn extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -153,6 +182,7 @@ public class CheckIn extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
+        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new CheckIn().setVisible(true);
