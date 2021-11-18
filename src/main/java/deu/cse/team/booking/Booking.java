@@ -6,14 +6,11 @@
 package deu.cse.team.booking;
 
 import deu.cse.team.source.Api;
+import deu.cse.team.source.DefaultRoomRate;
 import deu.cse.team.source.FileMgmt;
-import deu.cse.team.source.UserInfo;
-import deu.cse.team.source.UserInfoBuilder;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -70,7 +67,7 @@ public class Booking extends javax.swing.JFrame {
         BookingPhoneNumField1 = new javax.swing.JTextField();
         BookingPhoneNumField2 = new javax.swing.JTextField();
         BookingPhoneNumField3 = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
+        BookingRoomRateLabel = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         BookingSearchAddressBtn = new javax.swing.JButton();
         BookingModifyBtn = new javax.swing.JButton();
@@ -176,8 +173,14 @@ public class Booking extends javax.swing.JFrame {
         jLabel7.setText("전화번호");
 
         BookingCheckChargeBtn.setText("예상 금액 확인");
+        BookingCheckChargeBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BookingCheckChargeBtnActionPerformed(evt);
+            }
+        });
 
-        jLabel8.setText("jLabel8");
+        BookingRoomRateLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        BookingRoomRateLabel.setText("0원");
 
         jLabel9.setText("주소");
 
@@ -273,20 +276,23 @@ public class Booking extends javax.swing.JFrame {
                                 .addComponent(BookingPhoneNumField3, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addGap(39, 39, 39)
-                            .addComponent(BookingModifyBtn)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(BookingOkBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(BookingCancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(32, 32, 32))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addGap(291, 291, 291)
-                            .addComponent(jLabel8)
-                            .addGap(18, 18, 18)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(BookingCheckChargeBtn)
-                                .addComponent(BookingSearchAddressBtn)))))
+                            .addGap(328, 328, 328)
+                            .addComponent(BookingSearchAddressBtn))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(BookingRoomRateLabel)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(BookingCheckChargeBtn))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(39, 39, 39)
+                                    .addComponent(BookingModifyBtn)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(BookingOkBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(BookingCancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGap(32, 32, 32))))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -333,11 +339,11 @@ public class Booking extends javax.swing.JFrame {
                         .addComponent(jLabel9)
                         .addComponent(AddressLabel))
                     .addComponent(BookingSearchAddressBtn))
-                .addGap(76, 76, 76)
+                .addGap(75, 75, 75)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BookingCheckChargeBtn)
-                    .addComponent(jLabel8))
-                .addGap(63, 63, 63)
+                    .addComponent(BookingRoomRateLabel))
+                .addGap(64, 64, 64)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BookingModifyBtn)
                     .addComponent(BookingOkBtn)
@@ -349,7 +355,7 @@ public class Booking extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BookingOkBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BookingOkBtnActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here: 예약 버튼
         FileMgmt fileMgmt = new FileMgmt();
         String enterDate = BookingEnterDateCB1.getSelectedItem().toString() + "-"           // 입실 날짜
                 + BookingEnterDateCB2.getSelectedItem().toString() + "-"
@@ -387,7 +393,7 @@ public class Booking extends javax.swing.JFrame {
     }//GEN-LAST:event_BookingSearchAddressBtnActionPerformed
 
     private void SearchAddressBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchAddressBtnActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here: 주소 검색 폼의 검색버튼(API 호출)
         Api api = new Api();
         try {
             api.Api(BookingSearchAddressField.getText());
@@ -399,6 +405,27 @@ public class Booking extends javax.swing.JFrame {
             Logger.getLogger(Booking.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_SearchAddressBtnActionPerformed
+
+    private void BookingCheckChargeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BookingCheckChargeBtnActionPerformed
+        // TODO add your handling code here: 예상 금액 확인 버튼
+        long lengthOfStay = 0;
+        String enterDate = BookingEnterDateCB1.getSelectedItem().toString()             // 입실 날짜
+                + BookingEnterDateCB2.getSelectedItem().toString()
+                + BookingEnterDateCB3.getSelectedItem().toString();
+        String entranceDate = BookingEntranceDateCB1.getSelectedItem().toString()       // 퇴실 날짜
+                + BookingEntranceDateCB2.getSelectedItem().toString()
+                + BookingEntranceDateCB3.getSelectedItem().toString();
+        SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
+        try {
+            lengthOfStay = format.parse(entranceDate).getTime() - format.parse(enterDate).getTime();
+        } catch (ParseException ex) {
+            Logger.getLogger(Booking.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        lengthOfStay /= (24 * 60 * 60 * 1000);
+        lengthOfStay = Math.abs(lengthOfStay);
+        DefaultRoomRate defaultRoomRate = new DefaultRoomRate();
+        BookingRoomRateLabel.setText(defaultRoomRate.DefaultRoomRate((int)lengthOfStay) + "원");
+    }//GEN-LAST:event_BookingCheckChargeBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -453,6 +480,7 @@ public class Booking extends javax.swing.JFrame {
     private javax.swing.JTextField BookingPhoneNumField2;
     private javax.swing.JTextField BookingPhoneNumField3;
     private javax.swing.JTextField BookingRomNumField;
+    private javax.swing.JLabel BookingRoomRateLabel;
     private javax.swing.JButton BookingSearchAddressBtn;
     private javax.swing.JTextField BookingSearchAddressField;
     private javax.swing.JButton SearchAddressBtn;
@@ -466,7 +494,6 @@ public class Booking extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
