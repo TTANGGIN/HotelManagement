@@ -22,9 +22,11 @@ public class FileMgmt implements FileInterface {
     ArrayList<String> readUserInfo = new ArrayList();
     ArrayList<String> readAdminInfo = new ArrayList();
     ArrayList<String> readBookingInfo = new ArrayList();
+    ArrayList<String> readCheckInInfo = new ArrayList();
     ArrayList<UserInfo> userInfo = new ArrayList<>();
     ArrayList<AdminInfo> adminInfo = new ArrayList<>();
     ArrayList<BookingInfo> bookingInfo = new ArrayList<>();
+    ArrayList<CheckInInfo> checkInInfo = new ArrayList<>();
     
     @Override
     public void readFileData(String path) {
@@ -118,6 +120,15 @@ public class FileMgmt implements FileInterface {
             bookingInfo.add(new BookingInfo(str[0],str[1],str[2],str[3],str[4],str[5],str[6],str[7]));
         }
     }
+    public void splitCheckInFileData() {
+        String line;
+
+        for (int i = 0; i < readCheckInInfo.size(); i++) {
+            line = readCheckInInfo.get(i);
+            String[] str = line.split("\t");
+            checkInInfo.add(new CheckInInfo(str[0],str[1],str[2],str[3],str[4],str[5],str[6],str[7]));
+        }
+    }
     
     public ArrayList<UserInfo> returnUserInfo() throws IOException {
         return userInfo;
@@ -130,5 +141,8 @@ public class FileMgmt implements FileInterface {
     }
     public ArrayList<BookingInfo> returnBookingInfo() throws IOException {
         return bookingInfo;
+    }
+    public ArrayList<CheckInInfo> returnCheckInInfo() throws IOException {
+        return checkInInfo;
     }
 }
