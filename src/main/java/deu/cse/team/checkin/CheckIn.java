@@ -5,9 +5,11 @@
  */
 package deu.cse.team.checkin;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
+import deu.cse.team.source.BookingInfo;
+import deu.cse.team.source.FileMgmt;
 import java.io.IOException;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -20,33 +22,9 @@ public class CheckIn extends javax.swing.JFrame {
      */
     public CheckIn() {
         initComponents();
-        jTextField1.setEnabled(false); 
-        jTextField2.setEnabled(false);
-        
-        jTable1.getColumn("이름").setPreferredWidth(10); //jTable 크기 조절
-        jTable1.getColumn("호수").setPreferredWidth(10);
-        jTable1.getColumn("인원").setPreferredWidth(10);
-        jTable1.getColumn("번호").setPreferredWidth(100);
-        jTable1.getColumn("기간").setPreferredWidth(100);
-
-
-        try {
-            String value;
-            String[] Arr;
-            int i = 0;
-            BufferedReader is = new BufferedReader(new FileReader("C:\\DB\\BookingList.txt"));
-            while ((value = is.readLine()) != null) {
-                Arr = value.split("\t");
-                jTable1.setValueAt(Arr[2], i, 0);
-                jTable1.setValueAt(Arr[3], i, 1);
-                jTable1.setValueAt(Arr[4], i, 2);
-                jTable1.setValueAt(Arr[5], i, 3);
-                jTable1.setValueAt((Arr[0] + " ~ " + Arr[1]), i, 4);
-                i++;
-            }
-            is.close();
-        } catch (IOException e) {
-        }
+        loadBookingData();
+        CheckInIndexRB.setSelected(true);
+        CheckInNameField.setEnabled(false);
     }
 
     /**
@@ -59,56 +37,86 @@ public class CheckIn extends javax.swing.JFrame {
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        CheckInNameRB = new javax.swing.JRadioButton();
+        CheckInIndexRB = new javax.swing.JRadioButton();
+        CheckInNameField = new javax.swing.JTextField();
+        CheckInIndexField = new javax.swing.JTextField();
+        CheckInSearchBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        CheckInBookingTable = new javax.swing.JTable();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        buttonGroup1.add(jRadioButton1);
-        jRadioButton1.setText("이름");
-        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroup1.add(CheckInNameRB);
+        CheckInNameRB.setText("이름");
+        CheckInNameRB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton1ActionPerformed(evt);
+                CheckInNameRBActionPerformed(evt);
             }
         });
 
-        buttonGroup1.add(jRadioButton2);
-        jRadioButton2.setText("호실");
-        jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroup1.add(CheckInIndexRB);
+        CheckInIndexRB.setText("고유번호");
+        CheckInIndexRB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton2ActionPerformed(evt);
+                CheckInIndexRBActionPerformed(evt);
             }
         });
 
-        jButton1.setText("검색");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        CheckInSearchBtn.setText("검색");
+        CheckInSearchBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                CheckInSearchBtnActionPerformed(evt);
             }
         });
 
         jLabel1.setText("예약자 명단");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        CheckInBookingTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
-                "이름", "호수", "인원", "번호", "기간"
+                "고유번호", "이름", "호수", "인원", "연락처", "입실", "퇴실", "상태", "주소", "금액"
             }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        CheckInBookingTable.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        CheckInBookingTable.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(CheckInBookingTable);
+        if (CheckInBookingTable.getColumnModel().getColumnCount() > 0) {
+            CheckInBookingTable.getColumnModel().getColumn(0).setMinWidth(60);
+            CheckInBookingTable.getColumnModel().getColumn(0).setMaxWidth(60);
+            CheckInBookingTable.getColumnModel().getColumn(1).setMinWidth(60);
+            CheckInBookingTable.getColumnModel().getColumn(1).setMaxWidth(60);
+            CheckInBookingTable.getColumnModel().getColumn(2).setMinWidth(50);
+            CheckInBookingTable.getColumnModel().getColumn(2).setMaxWidth(50);
+            CheckInBookingTable.getColumnModel().getColumn(3).setMinWidth(50);
+            CheckInBookingTable.getColumnModel().getColumn(3).setMaxWidth(50);
+            CheckInBookingTable.getColumnModel().getColumn(7).setMinWidth(50);
+            CheckInBookingTable.getColumnModel().getColumn(7).setMaxWidth(50);
+            CheckInBookingTable.getColumnModel().getColumn(8).setMinWidth(0);
+            CheckInBookingTable.getColumnModel().getColumn(8).setMaxWidth(0);
+            CheckInBookingTable.getColumnModel().getColumn(9).setMinWidth(0);
+            CheckInBookingTable.getColumnModel().getColumn(9).setMaxWidth(0);
+        }
 
         jButton2.setText("체크인");
 
@@ -135,14 +143,14 @@ public class CheckIn extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jRadioButton2))
-                .addGap(50, 50, 50)
+                    .addComponent(CheckInNameRB)
+                    .addComponent(CheckInIndexRB))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField1)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(CheckInNameField)
+                    .addComponent(CheckInIndexField, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(41, 41, 41)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(CheckInSearchBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(139, 139, 139))
         );
         layout.setVerticalGroup(
@@ -150,13 +158,13 @@ public class CheckIn extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(64, 64, 64)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(CheckInNameRB)
+                    .addComponent(CheckInNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton2)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(CheckInIndexRB)
+                    .addComponent(CheckInIndexField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CheckInSearchBtn))
                 .addGap(29, 29, 29)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -171,31 +179,60 @@ public class CheckIn extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void CheckInSearchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckInSearchBtnActionPerformed
         // TODO add your handling code here:
-        String str = jTextField1.getText() + jTextField2.getText();
-        for (int i = 0; i < jTable1.getColumnCount(); i++) {
-            if (str.equals(jTable1.getValueAt(i, 0)) || str.equals(jTable1.getValueAt(i, 1)))  {
-                jTable1.requestFocus();
-                jTable1.changeSelection(i, 0, false, false);
+        try {
+            String str = CheckInNameField.getText() + CheckInIndexField.getText();
+            for (int i = 0; i < CheckInBookingTable.getColumnCount(); i++) {
+                if (str.equals(CheckInBookingTable.getValueAt(i, 0)) || str.equals(CheckInBookingTable.getValueAt(i, 1)))  {
+                    CheckInBookingTable.requestFocus();
+                    CheckInBookingTable.changeSelection(i, 0, false, false);
+                }
             }
+        } catch (Exception e) {
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_CheckInSearchBtnActionPerformed
 
-    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+    private void CheckInNameRBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckInNameRBActionPerformed
         // TODO add your handling code here:
-        jTextField1.setEnabled(true);
-        jTextField2.setEnabled(false);
-        jTextField2.setText("");
-    }//GEN-LAST:event_jRadioButton1ActionPerformed
+        CheckInNameField.setEnabled(true);
+        CheckInIndexField.setEnabled(false);
+        CheckInIndexField.setText("");
+    }//GEN-LAST:event_CheckInNameRBActionPerformed
 
-    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
+    private void CheckInIndexRBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckInIndexRBActionPerformed
         // TODO add your handling code here:
-        jTextField1.setEnabled(false);
-        jTextField2.setEnabled(true);
-        jTextField1.setText("");
-    }//GEN-LAST:event_jRadioButton2ActionPerformed
+        CheckInNameField.setEnabled(false);
+        CheckInIndexField.setEnabled(true);
+        CheckInNameField.setText("");
+    }//GEN-LAST:event_CheckInIndexRBActionPerformed
 
+    private void loadBookingData() {
+        ArrayList<BookingInfo> bookingInfo = new ArrayList<>();
+        DefaultTableModel model = (DefaultTableModel) CheckInBookingTable.getModel();
+        FileMgmt fileMgmt = new FileMgmt();
+        fileMgmt.readBookingFileData("C:\\DB\\BookingList.txt");
+        fileMgmt.splitBookingFileData();
+        try {
+            bookingInfo = fileMgmt.returnBookingInfo();
+            for (int i = 0; i < bookingInfo.size(); i++) {
+                model.addRow(new Object[]{
+                    bookingInfo.get(i).getIndex(),
+                    bookingInfo.get(i).getName(),
+                    bookingInfo.get(i).getRoom(),
+                    bookingInfo.get(i).getPersonnel(),
+                    bookingInfo.get(i).getPhonenumber(),
+                    bookingInfo.get(i).getEntrance(),
+                    bookingInfo.get(i).getExit(),
+                    bookingInfo.get(i).getStatus(),
+                    bookingInfo.get(i).getAddress(),
+                    bookingInfo.get(i).getMoney()
+                });
+            }
+        } catch (IOException e) {
+        }
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -232,16 +269,16 @@ public class CheckIn extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable CheckInBookingTable;
+    private javax.swing.JTextField CheckInIndexField;
+    private javax.swing.JRadioButton CheckInIndexRB;
+    private javax.swing.JTextField CheckInNameField;
+    private javax.swing.JRadioButton CheckInNameRB;
+    private javax.swing.JButton CheckInSearchBtn;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
 }
