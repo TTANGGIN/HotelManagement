@@ -58,8 +58,8 @@ public class Booking extends javax.swing.JFrame {
         SearchAddressBtn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         SearchAddressTable = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        SearchAddressOkBtn = new javax.swing.JButton();
+        SearchAddressCancelBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         BookingEnterDateCB1 = new javax.swing.JComboBox<>();
@@ -88,8 +88,10 @@ public class Booking extends javax.swing.JFrame {
         BookingCancelBtn = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        AddressLabel = new javax.swing.JLabel();
+        AddressLabel1 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
+        AddressLabel2 = new javax.swing.JLabel();
+        AddressLabel3 = new javax.swing.JLabel();
 
         jLabel12.setText("도로명 주소 :");
 
@@ -126,17 +128,17 @@ public class Booking extends javax.swing.JFrame {
         SearchAddressTable.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(SearchAddressTable);
 
-        jButton1.setText("확인");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        SearchAddressOkBtn.setText("확인");
+        SearchAddressOkBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                SearchAddressOkBtnActionPerformed(evt);
             }
         });
 
-        jButton2.setText("취소");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        SearchAddressCancelBtn.setText("취소");
+        SearchAddressCancelBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                SearchAddressCancelBtnActionPerformed(evt);
             }
         });
 
@@ -148,9 +150,9 @@ public class Booking extends javax.swing.JFrame {
                 .addGap(40, 40, 40)
                 .addGroup(searchAddressDlgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(searchAddressDlgLayout.createSequentialGroup()
-                        .addComponent(jButton1)
+                        .addComponent(SearchAddressOkBtn)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton2))
+                        .addComponent(SearchAddressCancelBtn))
                     .addGroup(searchAddressDlgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(searchAddressDlgLayout.createSequentialGroup()
@@ -173,8 +175,8 @@ public class Booking extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(searchAddressDlgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(SearchAddressOkBtn)
+                    .addComponent(SearchAddressCancelBtn))
                 .addContainerGap(28, Short.MAX_VALUE))
         );
 
@@ -218,7 +220,7 @@ public class Booking extends javax.swing.JFrame {
         BookingRoomRateLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         BookingRoomRateLabel.setText("0");
 
-        jLabel9.setText("주소");
+        jLabel9.setText("주소 :");
 
         BookingSearchAddressBtn.setText("주소 검색");
         BookingSearchAddressBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -246,8 +248,6 @@ public class Booking extends javax.swing.JFrame {
         jLabel10.setText("-");
 
         jLabel11.setText("-");
-
-        AddressLabel.setText("테스트");
 
         jLabel8.setText("원");
 
@@ -278,61 +278,66 @@ public class Booking extends javax.swing.JFrame {
                                 .addComponent(BookingEntranceDateCB2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(BookingEntranceDateCB3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(47, 47, 47)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel9)
-                                .addGap(18, 18, 18)
-                                .addComponent(AddressLabel))
-                            .addGroup(layout.createSequentialGroup()
+                                .addGap(47, 47, 47)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel4))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(jLabel5)
+                                                    .addComponent(jLabel4))
+                                                .addGap(18, 18, 18)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(BookingMemberCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(BookingNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jLabel7)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(BookingPhoneNumField1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jLabel10)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(BookingPhoneNumField2, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jLabel11)))
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGap(34, 34, 34)
+                                                .addComponent(jLabel6)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(BookingRomNumField, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(BookingPhoneNumField3, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel9)
+                                        .addGap(18, 18, 18)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(AddressLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                    .addComponent(AddressLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                                                    .addComponent(AddressLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(BookingSearchAddressBtn))))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(BookingRoomRateLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel8)
                                 .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(BookingMemberCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(BookingNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(BookingCheckChargeBtn))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel7)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(BookingPhoneNumField1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel10)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(BookingPhoneNumField2, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel11)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(34, 34, 34)
-                                .addComponent(jLabel6)
+                                .addGap(39, 39, 39)
+                                .addComponent(BookingModifyBtn)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(BookingOkBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(BookingRomNumField, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(BookingPhoneNumField3, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addGap(328, 328, 328)
-                            .addComponent(BookingSearchAddressBtn))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(BookingRoomRateLabel)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jLabel8)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(BookingCheckChargeBtn))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(39, 39, 39)
-                                    .addComponent(BookingModifyBtn)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(BookingOkBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(BookingCancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGap(32, 32, 32))))
+                                .addComponent(BookingCancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(32, 32, 32)))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -373,13 +378,16 @@ public class Booking extends javax.swing.JFrame {
                     .addComponent(BookingPhoneNumField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10)
                     .addComponent(jLabel11))
-                .addGap(23, 23, 23)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel9)
-                        .addComponent(AddressLabel))
+                .addGap(26, 26, 26)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel9)
+                    .addComponent(AddressLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(BookingSearchAddressBtn))
-                .addGap(75, 75, 75)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(AddressLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(AddressLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(47, 47, 47)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BookingCheckChargeBtn)
                     .addComponent(BookingRoomRateLabel)
@@ -410,7 +418,7 @@ public class Booking extends javax.swing.JFrame {
         String phoneNum = BookingPhoneNumField1.getText() + "-"                             // 연락처
                 + BookingPhoneNumField2.getText() + "-"
                 + BookingPhoneNumField3.getText();
-        String address = AddressLabel.getText();                                            // 주소
+        String address = AddressLabel1.getText();                                            // 주소
         String roomRate = BookingRoomRateLabel.getText();                                   // 객실 요금
         String str = enterDate + "\t" + entranceDate + "\t" + customerName + "\t" 
                 + roomNumber + "\t" + totalNum + "\t" + phoneNum + "\t" + address + "\t" + roomRate;
@@ -437,6 +445,8 @@ public class Booking extends javax.swing.JFrame {
     private void SearchAddressBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchAddressBtnActionPerformed
         // TODO add your handling code here: 주소 검색 폼의 검색버튼(API 호출)
         Api api = new Api();
+        DefaultTableModel model = (DefaultTableModel) SearchAddressTable.getModel();
+        model.setRowCount(0);
         String xml = null;
         try {
             xml = api.Api(BookingSearchAddressField.getText());
@@ -451,7 +461,6 @@ public class Booking extends javax.swing.JFrame {
             System.out.println("Root Element :" + document.getDocumentElement().getNodeName());
             NodeList nList = document.getElementsByTagName("item");
 
-            DefaultTableModel model = (DefaultTableModel) SearchAddressTable.getModel();
             String overlap = "";    // 중복 주소 확인
             String zipcode;         // 우편번호
             String bldnm;           // 건물명
@@ -505,21 +514,21 @@ public class Booking extends javax.swing.JFrame {
         BookingRoomRateLabel.setText(defaultRoomRate.DefaultRoomRate((int)lengthOfStay));
     }//GEN-LAST:event_BookingCheckChargeBtnActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void SearchAddressOkBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchAddressOkBtnActionPerformed
         // TODO add your handling code here:
         int row = SearchAddressTable.getSelectedRow();
         TableModel addressData = SearchAddressTable.getModel();
         
-        AddressLabel.setText("(" + addressData.getValueAt(row, 0).toString() + ") "
-                            + addressData.getValueAt(row, 1).toString() + " "
-                            + addressData.getValueAt(row, 2).toString());
-        searchAddressDlg.dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+        AddressLabel1.setText(addressData.getValueAt(row, 0).toString());
+        AddressLabel2.setText(addressData.getValueAt(row, 1).toString());
+        AddressLabel3.setText(addressData.getValueAt(row, 2).toString());
+        searchAddressDlg.setVisible(false);
+    }//GEN-LAST:event_SearchAddressOkBtnActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void SearchAddressCancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchAddressCancelBtnActionPerformed
         // TODO add your handling code here:
         searchAddressDlg.dispose();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_SearchAddressCancelBtnActionPerformed
     // 입력한 tag 정보
     String getTagValue(String tag, Element eElement) {
         NodeList nlList = eElement.getElementsByTagName(tag).item(0).getChildNodes();
@@ -564,7 +573,9 @@ public class Booking extends javax.swing.JFrame {
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel AddressLabel;
+    private javax.swing.JLabel AddressLabel1;
+    private javax.swing.JLabel AddressLabel2;
+    private javax.swing.JLabel AddressLabel3;
     private javax.swing.JButton BookingCancelBtn;
     private javax.swing.JButton BookingCheckChargeBtn;
     private javax.swing.JComboBox<String> BookingEnterDateCB1;
@@ -585,9 +596,9 @@ public class Booking extends javax.swing.JFrame {
     private javax.swing.JButton BookingSearchAddressBtn;
     private javax.swing.JTextField BookingSearchAddressField;
     private javax.swing.JButton SearchAddressBtn;
+    private javax.swing.JButton SearchAddressCancelBtn;
+    private javax.swing.JButton SearchAddressOkBtn;
     private javax.swing.JTable SearchAddressTable;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
