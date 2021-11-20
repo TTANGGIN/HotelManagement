@@ -518,11 +518,14 @@ public class Booking extends javax.swing.JFrame {
         // TODO add your handling code here:
         int row = SearchAddressTable.getSelectedRow();
         TableModel addressData = SearchAddressTable.getModel();
-        
-        AddressLabel1.setText(addressData.getValueAt(row, 0).toString());
-        AddressLabel2.setText(addressData.getValueAt(row, 1).toString());
-        AddressLabel3.setText(addressData.getValueAt(row, 2).toString());
-        searchAddressDlg.setVisible(false);
+        if (row < 0) {
+            JOptionPane.showMessageDialog(null, "선택된 주소가 없습니다.");
+        } else {
+            AddressLabel1.setText(addressData.getValueAt(row, 0).toString());
+            AddressLabel2.setText(addressData.getValueAt(row, 1).toString());
+            AddressLabel3.setText(addressData.getValueAt(row, 2).toString());
+            searchAddressDlg.setVisible(false);
+        }
     }//GEN-LAST:event_SearchAddressOkBtnActionPerformed
 
     private void SearchAddressCancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchAddressCancelBtnActionPerformed
