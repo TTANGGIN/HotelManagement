@@ -52,7 +52,7 @@ public class Booking extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        searchAddressDlg = new javax.swing.JDialog();
+        SearchAddressDlg = new javax.swing.JDialog();
         BookingSearchAddressField = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         SearchAddressBtn = new javax.swing.JButton();
@@ -60,14 +60,15 @@ public class Booking extends javax.swing.JFrame {
         SearchAddressTable = new javax.swing.JTable();
         SearchAddressOkBtn = new javax.swing.JButton();
         SearchAddressCancelBtn = new javax.swing.JButton();
+        ModifyBookingDlg = new javax.swing.JDialog();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        BookingEnterDateCB1 = new javax.swing.JComboBox<>();
-        BookingEnterDateCB2 = new javax.swing.JComboBox<>();
-        BookingEnterDateCB3 = new javax.swing.JComboBox<>();
         BookingEntranceDateCB1 = new javax.swing.JComboBox<>();
         BookingEntranceDateCB2 = new javax.swing.JComboBox<>();
         BookingEntranceDateCB3 = new javax.swing.JComboBox<>();
+        BookingExitDateCB1 = new javax.swing.JComboBox<>();
+        BookingExitDateCB2 = new javax.swing.JComboBox<>();
+        BookingExitDateCB3 = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -142,20 +143,20 @@ public class Booking extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout searchAddressDlgLayout = new javax.swing.GroupLayout(searchAddressDlg.getContentPane());
-        searchAddressDlg.getContentPane().setLayout(searchAddressDlgLayout);
-        searchAddressDlgLayout.setHorizontalGroup(
-            searchAddressDlgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(searchAddressDlgLayout.createSequentialGroup()
+        javax.swing.GroupLayout SearchAddressDlgLayout = new javax.swing.GroupLayout(SearchAddressDlg.getContentPane());
+        SearchAddressDlg.getContentPane().setLayout(SearchAddressDlgLayout);
+        SearchAddressDlgLayout.setHorizontalGroup(
+            SearchAddressDlgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(SearchAddressDlgLayout.createSequentialGroup()
                 .addGap(40, 40, 40)
-                .addGroup(searchAddressDlgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(searchAddressDlgLayout.createSequentialGroup()
+                .addGroup(SearchAddressDlgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(SearchAddressDlgLayout.createSequentialGroup()
                         .addComponent(SearchAddressOkBtn)
                         .addGap(18, 18, 18)
                         .addComponent(SearchAddressCancelBtn))
-                    .addGroup(searchAddressDlgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(SearchAddressDlgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(searchAddressDlgLayout.createSequentialGroup()
+                        .addGroup(SearchAddressDlgLayout.createSequentialGroup()
                             .addComponent(jLabel12)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(BookingSearchAddressField, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -163,21 +164,32 @@ public class Booking extends javax.swing.JFrame {
                             .addComponent(SearchAddressBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(43, Short.MAX_VALUE))
         );
-        searchAddressDlgLayout.setVerticalGroup(
-            searchAddressDlgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(searchAddressDlgLayout.createSequentialGroup()
+        SearchAddressDlgLayout.setVerticalGroup(
+            SearchAddressDlgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(SearchAddressDlgLayout.createSequentialGroup()
                 .addGap(69, 69, 69)
-                .addGroup(searchAddressDlgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(SearchAddressDlgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BookingSearchAddressField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel12)
                     .addComponent(SearchAddressBtn))
                 .addGap(27, 27, 27)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(searchAddressDlgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(SearchAddressDlgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(SearchAddressOkBtn)
                     .addComponent(SearchAddressCancelBtn))
                 .addContainerGap(28, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout ModifyBookingDlgLayout = new javax.swing.GroupLayout(ModifyBookingDlg.getContentPane());
+        ModifyBookingDlg.getContentPane().setLayout(ModifyBookingDlgLayout);
+        ModifyBookingDlgLayout.setHorizontalGroup(
+            ModifyBookingDlgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 669, Short.MAX_VALUE)
+        );
+        ModifyBookingDlgLayout.setVerticalGroup(
+            ModifyBookingDlgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 462, Short.MAX_VALUE)
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -186,17 +198,17 @@ public class Booking extends javax.swing.JFrame {
 
         jLabel2.setText("퇴실 날짜");
 
-        BookingEnterDateCB1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2020", "2021", "2022", "2023", "2024", "2025", "2026", "2027", "2028", "2029", "2030" }));
-
-        BookingEnterDateCB2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12" }));
-
-        BookingEnterDateCB3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
-
         BookingEntranceDateCB1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2020", "2021", "2022", "2023", "2024", "2025", "2026", "2027", "2028", "2029", "2030" }));
 
         BookingEntranceDateCB2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12" }));
 
         BookingEntranceDateCB3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
+
+        BookingExitDateCB1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2020", "2021", "2022", "2023", "2024", "2025", "2026", "2027", "2028", "2029", "2030" }));
+
+        BookingExitDateCB2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12" }));
+
+        BookingExitDateCB3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
 
         jLabel3.setText("고객 정보");
 
@@ -265,19 +277,19 @@ public class Booking extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel1)
                                 .addGap(18, 18, 18)
-                                .addComponent(BookingEnterDateCB1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(BookingEnterDateCB2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(BookingEnterDateCB3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(18, 18, 18)
                                 .addComponent(BookingEntranceDateCB1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(BookingEntranceDateCB2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(BookingEntranceDateCB3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(BookingEntranceDateCB3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(18, 18, 18)
+                                .addComponent(BookingExitDateCB1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(BookingExitDateCB2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(BookingExitDateCB3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
@@ -348,18 +360,18 @@ public class Booking extends javax.swing.JFrame {
                         .addGap(27, 27, 27)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
-                            .addComponent(BookingEnterDateCB1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(BookingEnterDateCB2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(BookingEnterDateCB3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(BookingEntranceDateCB1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(BookingEntranceDateCB2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(BookingEntranceDateCB3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(46, 46, 46)
                         .addComponent(jLabel3)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(BookingEntranceDateCB1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BookingEntranceDateCB2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BookingEntranceDateCB3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(BookingExitDateCB1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BookingExitDateCB2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BookingExitDateCB3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(45, 45, 45)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
@@ -406,12 +418,12 @@ public class Booking extends javax.swing.JFrame {
     private void BookingOkBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BookingOkBtnActionPerformed
         // TODO add your handling code here: 예약 버튼
         FileMgmt fileMgmt = new FileMgmt();
-        String enterDate = BookingEnterDateCB1.getSelectedItem().toString() + "-"           // 입실 날짜
-                + BookingEnterDateCB2.getSelectedItem().toString() + "-"
-                + BookingEnterDateCB3.getSelectedItem().toString();
-        String entranceDate = BookingEntranceDateCB1.getSelectedItem().toString() + "-"     // 퇴실 날짜
+        String entranceDate = BookingEntranceDateCB1.getSelectedItem().toString() + "-"     // 입실 날짜
                 + BookingEntranceDateCB2.getSelectedItem().toString() + "-"
                 + BookingEntranceDateCB3.getSelectedItem().toString();
+        String exitDate = BookingExitDateCB1.getSelectedItem().toString() + "-"             // 퇴실 날짜
+                + BookingExitDateCB2.getSelectedItem().toString() + "-"
+                + BookingExitDateCB3.getSelectedItem().toString();
         String customerName = BookingNameField.getText();                                   // 고객 이름
         String roomNumber = BookingRomNumField.getText();                                   // 객실 번호
         String totalNum = BookingMemberCB.getSelectedItem().toString();                     // 인원수
@@ -422,10 +434,12 @@ public class Booking extends javax.swing.JFrame {
                 + AddressLabel2.getText() + " "
                 + AddressLabel3.getText();
         String roomRate = BookingRoomRateLabel.getText();                                   // 객실 요금
-        String str = enterDate + "\t" + entranceDate + "\t" + customerName + "\t" 
-                + roomNumber + "\t" + totalNum + "\t" + phoneNum + "\t" + address + "\t" + roomRate;
+        String isCheckIn = "N";
+        String str = entranceDate + "\t" + exitDate + "\t" + customerName + "\t" 
+                + roomNumber + "\t" + totalNum + "\t" + phoneNum + "\t" 
+                + address + "\t" + roomRate + "\t" + isCheckIn;
         try {
-            fileMgmt.writeFileData("C:\\DB\\BookingList.txt", str);
+            fileMgmt.writeBookingFileData("C:\\DB\\BookingList.txt", str);
         } catch (IOException ex) {
             Logger.getLogger(Booking.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -439,9 +453,9 @@ public class Booking extends javax.swing.JFrame {
 
     private void BookingSearchAddressBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BookingSearchAddressBtnActionPerformed
         // TODO add your handling code here:
-        searchAddressDlg.setVisible(true);
-        searchAddressDlg.setLocationRelativeTo(this);
-        searchAddressDlg.setSize(550, 500);
+        SearchAddressDlg.setVisible(true);
+        SearchAddressDlg.setLocationRelativeTo(this);
+        SearchAddressDlg.setSize(550, 500);
     }//GEN-LAST:event_BookingSearchAddressBtnActionPerformed
 
     private void SearchAddressBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchAddressBtnActionPerformed
@@ -498,15 +512,15 @@ public class Booking extends javax.swing.JFrame {
     private void BookingCheckChargeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BookingCheckChargeBtnActionPerformed
         // TODO add your handling code here: 예상 금액 확인 버튼
         long lengthOfStay = 0;
-        String enterDate = BookingEnterDateCB1.getSelectedItem().toString()             // 입실 날짜
-                + BookingEnterDateCB2.getSelectedItem().toString()
-                + BookingEnterDateCB3.getSelectedItem().toString();
-        String entranceDate = BookingEntranceDateCB1.getSelectedItem().toString()       // 퇴실 날짜
+        String entranceDate = BookingEntranceDateCB1.getSelectedItem().toString()             // 입실 날짜
                 + BookingEntranceDateCB2.getSelectedItem().toString()
                 + BookingEntranceDateCB3.getSelectedItem().toString();
+        String exitDate = BookingExitDateCB1.getSelectedItem().toString()       // 퇴실 날짜
+                + BookingExitDateCB2.getSelectedItem().toString()
+                + BookingExitDateCB3.getSelectedItem().toString();
         SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
         try {
-            lengthOfStay = format.parse(entranceDate).getTime() - format.parse(enterDate).getTime();
+            lengthOfStay = format.parse(exitDate).getTime() - format.parse(entranceDate).getTime();
         } catch (ParseException ex) {
             Logger.getLogger(Booking.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -526,13 +540,13 @@ public class Booking extends javax.swing.JFrame {
             AddressLabel1.setText(addressData.getValueAt(row, 0).toString());
             AddressLabel2.setText(addressData.getValueAt(row, 1).toString());
             AddressLabel3.setText(addressData.getValueAt(row, 2).toString());
-            searchAddressDlg.setVisible(false);
+            SearchAddressDlg.setVisible(false);
         }
     }//GEN-LAST:event_SearchAddressOkBtnActionPerformed
 
     private void SearchAddressCancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchAddressCancelBtnActionPerformed
         // TODO add your handling code here:
-        searchAddressDlg.dispose();
+        SearchAddressDlg.dispose();
     }//GEN-LAST:event_SearchAddressCancelBtnActionPerformed
     // 입력한 tag 정보
     String getTagValue(String tag, Element eElement) {
@@ -583,12 +597,12 @@ public class Booking extends javax.swing.JFrame {
     private javax.swing.JLabel AddressLabel3;
     private javax.swing.JButton BookingCancelBtn;
     private javax.swing.JButton BookingCheckChargeBtn;
-    private javax.swing.JComboBox<String> BookingEnterDateCB1;
-    private javax.swing.JComboBox<String> BookingEnterDateCB2;
-    private javax.swing.JComboBox<String> BookingEnterDateCB3;
     private javax.swing.JComboBox<String> BookingEntranceDateCB1;
     private javax.swing.JComboBox<String> BookingEntranceDateCB2;
     private javax.swing.JComboBox<String> BookingEntranceDateCB3;
+    private javax.swing.JComboBox<String> BookingExitDateCB1;
+    private javax.swing.JComboBox<String> BookingExitDateCB2;
+    private javax.swing.JComboBox<String> BookingExitDateCB3;
     private javax.swing.JComboBox<String> BookingMemberCB;
     private javax.swing.JButton BookingModifyBtn;
     private javax.swing.JTextField BookingNameField;
@@ -600,8 +614,10 @@ public class Booking extends javax.swing.JFrame {
     private javax.swing.JLabel BookingRoomRateLabel;
     private javax.swing.JButton BookingSearchAddressBtn;
     private javax.swing.JTextField BookingSearchAddressField;
+    private javax.swing.JDialog ModifyBookingDlg;
     private javax.swing.JButton SearchAddressBtn;
     private javax.swing.JButton SearchAddressCancelBtn;
+    private javax.swing.JDialog SearchAddressDlg;
     private javax.swing.JButton SearchAddressOkBtn;
     private javax.swing.JTable SearchAddressTable;
     private javax.swing.JLabel jLabel1;
@@ -617,6 +633,5 @@ public class Booking extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JDialog searchAddressDlg;
     // End of variables declaration//GEN-END:variables
 }
