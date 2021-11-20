@@ -418,7 +418,9 @@ public class Booking extends javax.swing.JFrame {
         String phoneNum = BookingPhoneNumField1.getText() + "-"                             // 연락처
                 + BookingPhoneNumField2.getText() + "-"
                 + BookingPhoneNumField3.getText();
-        String address = AddressLabel1.getText();                                            // 주소
+        String address = AddressLabel1.getText() + " "                                      // 주소
+                + AddressLabel2.getText() + " "
+                + AddressLabel3.getText();
         String roomRate = BookingRoomRateLabel.getText();                                   // 객실 요금
         String str = enterDate + "\t" + entranceDate + "\t" + customerName + "\t" 
                 + roomNumber + "\t" + totalNum + "\t" + phoneNum + "\t" + address + "\t" + roomRate;
