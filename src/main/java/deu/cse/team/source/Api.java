@@ -11,23 +11,12 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.StringReader;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-import org.xml.sax.InputSource;
-import org.xml.sax.SAXException;
 /**
  *
  * @author CHANG
  */
 public class Api {
-    public void Api(String address) throws IOException, ParserConfigurationException, SAXException {
+    public String Api(String address) throws IOException {
         String size = "30";
         String page = "1";
         String format = "xml";
@@ -72,46 +61,7 @@ public class Api {
         // 10. 객체 해제.
         rd.close();
         conn.disconnect();
-        // 11. 전달받은 데이터 확인.
-        System.out.println(sb.toString());
-        // 12. XML 파싱
-        String xml = sb.toString();
-        InputSource is = new InputSource(new StringReader(xml));
-        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-        DocumentBuilder documentBuilder = factory.newDocumentBuilder();
-        Document document = documentBuilder.parse(is);
-        // 13. root 구하기
-        document.getDocumentElement().normalize();
-        System.out.println("Root Element :" + document.getDocumentElement().getNodeName());
-        NodeList nList = document.getElementsByTagName("item");
-        
-        String overlap = ""; // 중복 주소 확인
-        
-        for (int temp = 0; temp < nList.getLength(); temp++) {
-            Node nNode = nList.item(temp);
-            System.out.println("\nCurrent Element :" + nNode.getNodeName());
-            if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-                Element eElement = (Element) nNode;
-                if (getTagValue("id", eElement).equals(overlap)) {
-                    System.out.println("중복주소");
-                    continue;
-                } else {
-                    overlap = getTagValue("id", eElement);
-                }
-                System.out.println("----------------------------");
-                System.out.println("고유번호 : " + getTagValue("id", eElement));
-                System.out.println("우편번호 : " + getTagValue("zipcode", eElement));
-                System.out.println("도로명 주소 : " + getTagValue("road", eElement));
-                System.out.println("지번 : " + getTagValue("parcel", eElement));
-                System.out.println("건물명 : " + getTagValue("bldnm", eElement));
-            }
-        }
-    }
-    String getTagValue(String tag, Element eElement) {
-        NodeList nlList = eElement.getElementsByTagName(tag).item(0).getChildNodes();
-        Node nValue = (Node) nlList.item(0);
-        if (nValue == null)
-            return null;
-        return nValue.getNodeValue();
+        // 11. 전달받은 데이터 반환.
+        return sb.toString();
     }
 }
