@@ -113,6 +113,12 @@ public class FileMgmt implements FileInterface {
         pw.flush();
         pw.close();
     }
+    public void writeCheckInFileData(String path, String data) throws IOException {
+        PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(path,true)),true);
+        pw.write(data+"\n");
+        pw.flush();
+        pw.close();
+    }
     
     @Override
     public void splitFileData() {
@@ -148,7 +154,7 @@ public class FileMgmt implements FileInterface {
         for (int i = 0; i < readCheckInInfo.size(); i++) {
             line = readCheckInInfo.get(i);
             String[] str = line.split("\t");
-            checkInInfo.add(new CheckInInfo(str[0],str[1],str[2],str[3],str[4],str[5],str[6],str[7]));
+            checkInInfo.add(new CheckInInfo(str[0],str[1],str[2],str[3],str[4],str[5],str[6],str[7],str[8]));
         }
     }
     

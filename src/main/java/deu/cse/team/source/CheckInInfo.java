@@ -10,6 +10,8 @@ package deu.cse.team.source;
  * @author PC
  */
 public class CheckInInfo {
+
+    String index;
     String entrance;
     String exit;
     String name;
@@ -18,8 +20,8 @@ public class CheckInInfo {
     String phonenumber;
     String adress;
     String money;
-    
-    public CheckInInfo (String entrance, String exit, String name, String room, String personnel, String phonenumber, String adress, String money) {
+
+    public CheckInInfo(String index, String entrance, String exit, String name, String room, String personnel, String phonenumber, String adress, String money) {
         this.entrance = entrance; // 입실
         this.exit = exit; // 퇴실
         this.name = name; // 이름
@@ -29,6 +31,10 @@ public class CheckInInfo {
         this.adress = adress; // 주소
         this.money = money; // 금액
 
+    }
+
+    public String getIndex() {
+        return index;
     }
 
     public String getEntrance() {
@@ -63,6 +69,10 @@ public class CheckInInfo {
         return money;
     }
 
+    public void setIndex(String index) {
+        this.index = index;
+    }
+    
     public void setEntrance(String entrance) {
         this.entrance = entrance;
     }
