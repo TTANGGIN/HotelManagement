@@ -12,6 +12,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.LineNumberReader;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 /**
@@ -71,7 +72,20 @@ public class FileMgmt implements FileInterface {
             e.printStackTrace();
         }
     }
-    
+    public void readBookingFileData(String path) {
+        try {
+            BufferedReader bfReader = new BufferedReader(new FileReader(new File(path)));
+            String line = "";
+            while ((line = bfReader.readLine()) != null) {
+                readBookingInfo.add(line);
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            System.out.println("파일이 존재하지않습니다. 경로를 확인해주세요");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     @Override
     public void writeFileData(String path, String data) throws IOException {
         PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(path,true)),true);
@@ -88,6 +102,14 @@ public class FileMgmt implements FileInterface {
     public void writeManagerFileData(String path, String data) throws IOException {
         PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(path,true)),true);
         pw.write(data+"\n");
+        pw.flush();
+        pw.close();
+    }
+    public void writeBookingFileData(String path, String data) throws IOException {
+        PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(path,true)),true);
+        LineNumberReader reader = new LineNumberReader(new FileReader(path));
+        while (reader.readLine() != null);
+        pw.write(Integer.toString(reader.getLineNumber()) + "\t" + data + "\n");
         pw.flush();
         pw.close();
     }
@@ -117,7 +139,7 @@ public class FileMgmt implements FileInterface {
         for (int i = 0; i < readBookingInfo.size(); i++) {
             line = readBookingInfo.get(i);
             String[] str = line.split("\t");
-            bookingInfo.add(new BookingInfo(str[0],str[1],str[2],str[3],str[4],str[5],str[6],str[7]));
+            bookingInfo.add(new BookingInfo(str[0],str[1],str[2],str[3],str[4],str[5],str[6],str[7],str[8],str[9]));
         }
     }
     public void splitCheckInFileData() {
