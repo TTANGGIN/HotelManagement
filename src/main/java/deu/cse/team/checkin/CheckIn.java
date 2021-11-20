@@ -7,8 +7,14 @@ package deu.cse.team.checkin;
 
 import deu.cse.team.source.BookingInfo;
 import deu.cse.team.source.FileMgmt;
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Scanner;
+import java.util.function.Function;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -22,9 +28,10 @@ public class CheckIn extends javax.swing.JFrame {
      */
     public CheckIn() {
         initComponents();
+        setLocationRelativeTo(this);
         loadBookingData();
-        CheckInIndexRB.setSelected(true);
-        CheckInNameField.setEnabled(false);
+        CheckInNameRB.setSelected(true);
+        CheckInIndexField.setEnabled(false);
     }
 
     /**
@@ -119,8 +126,18 @@ public class CheckIn extends javax.swing.JFrame {
         }
 
         jButton2.setText("체크인");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
-        jButton3.setText("닫기");
+        jButton3.setText("이전");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -184,7 +201,7 @@ public class CheckIn extends javax.swing.JFrame {
         try {
             String str = CheckInNameField.getText() + CheckInIndexField.getText();
             for (int i = 0; i < CheckInBookingTable.getColumnCount(); i++) {
-                if (str.equals(CheckInBookingTable.getValueAt(i, 0)) || str.equals(CheckInBookingTable.getValueAt(i, 1)))  {
+                if (str.equals(CheckInBookingTable.getValueAt(i, 0)) || str.equals(CheckInBookingTable.getValueAt(i, 1))) {
                     CheckInBookingTable.requestFocus();
                     CheckInBookingTable.changeSelection(i, 0, false, false);
                 }
@@ -207,6 +224,73 @@ public class CheckIn extends javax.swing.JFrame {
         CheckInNameField.setText("");
     }//GEN-LAST:event_CheckInIndexRBActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        FileMgmt fileMgmt = new FileMgmt();
+        int row = CheckInBookingTable.getSelectedRow();
+        String str = String.valueOf(CheckInBookingTable.getValueAt(row, 0));
+        try (FileReader r = new FileReader("C:\\DB\\BookingList.txt")) {
+            BufferedReader reader = new BufferedReader(r);
+            String array;
+            String[] Arr;
+            String state = "N";
+            while ((array = reader.readLine()) != null) {
+                Arr = array.split("\t");
+                if (str.equals(Arr[0])&&state.equals(Arr[9])) { // 고유번호가 str과 같으면 info에 정보 저장
+                    String info = Arr[0] + "\t" + Arr[1] + "\t" + Arr[2] + "\t"
+                            + Arr[3] + "\t" + Arr[4] + "\t" + Arr[5] + "\t"
+                            + Arr[6] + "\t" + Arr[7] + "\t" + Arr[8];
+                    try {
+                        fileMgmt.writeCheckInFileData("C:\\DB\\CheckInList.txt", info);
+                    } catch (IOException ex) {
+                    }
+
+                    // 체크인 시 상태 Y로 변경
+                    ArrayList<String> tempArray = new ArrayList<>();
+                    try (FileReader fr = new FileReader("C:\\DB\\BookingList.txt")) {
+                        Scanner scanner = new Scanner(fr);
+                        String line = null;
+                        String[] Array;
+
+                        while ((line = scanner.nextLine()) != null) {
+                            Array = line.split("\t");
+                            if (Array[0].equals(str)) {
+                                tempArray.add(
+                                        Array[0] + "\t" + Array[1] + "\t" + Array[2] + "\t"
+                                        + Array[3] + "\t" + Array[4] + "\t" + Array[5] + "\t"
+                                        + Array[6] + "\t" + Array[7] + "\t" + Array[8] + "\t" + "Y");
+                            } else {
+                                tempArray.add(line);
+                            }
+                        }
+                        fr.close();
+                    } catch (Exception e) {
+                    }
+
+                    try (PrintWriter pr = new PrintWriter("C:\\DB\\BookingList.txt")) {
+                        for (String temp : tempArray) {
+                            pr.println(temp);
+                        }
+                        pr.close();
+                    } catch (Exception e) {
+                    }
+
+                    JOptionPane.showMessageDialog(null, "" + Arr[4] + "호실을 체크인 하였습니다.");
+                    DefaultTableModel model = (DefaultTableModel) CheckInBookingTable.getModel();
+                    model.setNumRows(0);
+                    loadBookingData();
+                }
+            }
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    
     private void loadBookingData() {
         ArrayList<BookingInfo> bookingInfo = new ArrayList<>();
         DefaultTableModel model = (DefaultTableModel) CheckInBookingTable.getModel();
@@ -232,7 +316,7 @@ public class CheckIn extends javax.swing.JFrame {
         } catch (IOException e) {
         }
     }
-    
+
     /**
      * @param args the command line arguments
      */
@@ -264,6 +348,7 @@ public class CheckIn extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new CheckIn().setVisible(true);
+
             }
         });
     }
