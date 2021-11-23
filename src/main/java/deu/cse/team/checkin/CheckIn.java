@@ -236,7 +236,7 @@ public class CheckIn extends javax.swing.JFrame {
             String state = "N";
             while ((array = reader.readLine()) != null) {
                 Arr = array.split("\t");
-                if (str.equals(Arr[0])&&state.equals(Arr[9])) { // 고유번호가 str과 같으면 info에 정보 저장
+                if (str.equals(Arr[0]) && state.equals(Arr[9])) { // 고유번호가 str과 같으면 info에 정보 저장
                     String info = Arr[0] + "\t" + Arr[1] + "\t" + Arr[2] + "\t"
                             + Arr[3] + "\t" + Arr[4] + "\t" + Arr[5] + "\t"
                             + Arr[6] + "\t" + Arr[7] + "\t" + Arr[8];
@@ -290,14 +290,13 @@ public class CheckIn extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    
     private void loadBookingData() {
         ArrayList<BookingInfo> bookingInfo = new ArrayList<>();
         DefaultTableModel model = (DefaultTableModel) CheckInBookingTable.getModel();
-        FileMgmt fileMgmt = new FileMgmt();
-        fileMgmt.readBookingFileData("C:\\DB\\BookingList.txt");
-        fileMgmt.splitBookingFileData();
         try {
+            FileMgmt fileMgmt = new FileMgmt();
+            fileMgmt.readBookingFileData("C:\\DB\\BookingList.txt");
+            fileMgmt.splitBookingFileData();
             bookingInfo = fileMgmt.returnBookingInfo();
             for (int i = 0; i < bookingInfo.size(); i++) {
                 model.addRow(new Object[]{
