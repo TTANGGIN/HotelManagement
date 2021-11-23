@@ -5,12 +5,17 @@
  */
 package deu.cse.team.service;
 
+import deu.cse.team.booking.Booking;
+import deu.cse.team.source.BookingInfo;
 import deu.cse.team.source.FileMgmt;
-import deu.cse.team.source.ServiceList;
+import deu.cse.team.source.ServiceListInfo;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -24,7 +29,7 @@ public class RoomService extends javax.swing.JFrame {
      */
     public RoomService() {
         initComponents();
-        TableRewind();
+        
         jTextField1.setEditable(false);
         jTextField2.setEditable(false);
         try (FileReader r = new FileReader("C:\\DB\\CheckInList.txt")) {
@@ -37,6 +42,8 @@ public class RoomService extends javax.swing.JFrame {
             }
         } catch (IOException e) {
         }
+        
+        loadServiceList();
     }
 
     /**
@@ -79,15 +86,7 @@ public class RoomService extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+
             },
             new String [] {
                 "음식", "상품금액"
@@ -105,15 +104,7 @@ public class RoomService extends javax.swing.JFrame {
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+
             },
             new String [] {
                 "음식", "상품금액"
@@ -137,6 +128,11 @@ public class RoomService extends javax.swing.JFrame {
         });
 
         jButton3.setText("<");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("호실:");
 
@@ -169,7 +165,7 @@ public class RoomService extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton2)
                     .addComponent(jButton3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -202,7 +198,7 @@ public class RoomService extends javax.swing.JFrame {
                         .addComponent(jButton2)
                         .addGap(18, 18, 18)
                         .addComponent(jButton3)))
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(52, Short.MAX_VALUE))
         );
 
         pack();
@@ -210,13 +206,13 @@ public class RoomService extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-
         try (FileReader r = new FileReader("C:\\DB\\CheckInList.txt")) {
             BufferedReader reader = new BufferedReader(r);
             String array;
             String[] Arr;
             while ((array = reader.readLine()) != null) {
                 Arr = array.split("\t");
+                
                 jTextField1.setText(Arr[3]);
                 jTextField2.setText(Arr[0]);
             }
@@ -225,13 +221,26 @@ public class RoomService extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-        int row = jTable1.getSelectedRow();
-        for (int i = 0; String.valueOf(jTable2.getValueAt(i, 0)) == null; i++) {
-            jTable2.setValueAt(String.valueOf(jTable1.getValueAt(row, 0)), i, 0);
-                jTable2.setValueAt(String.valueOf(jTable1.getValueAt(row, 1)), i, 1);
+        String str = jTextField2.getText();
+        if(str.equals("")){
+            JOptionPane.showMessageDialog(null, "호실을 선택해주세요.");
+        }
+        else{
+            int row = jTable1.getSelectedRow();
+        DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
+        model.addRow(new Object[]{
+                    String.valueOf(jTable1.getValueAt(row, 0)), 
+                    String.valueOf(jTable1.getValueAt(row, 1))
+                });
         }
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        int row = jTable2.getSelectedRow();
+        DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
+        model.removeRow(row);
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -268,31 +277,24 @@ public class RoomService extends javax.swing.JFrame {
         });
     }
 
-    private void TableRewind() {
-        try (FileReader r = new FileReader("C:\\DB\\CheckInList.txt")) {
-            BufferedReader reader = new BufferedReader(r);
-            String array;
-            String[] Arr;
-            while ((array = reader.readLine()) != null) {
-                Arr = array.split("\t");
-                jTextField1.setText(Arr[3]);
-            }
-        } catch (IOException e) {
-        }
-        
-        
-        ArrayList<ServiceList> serviceList = new ArrayList<>();
+    private void loadServiceList() {
+
+        ArrayList<ServiceListInfo> serviceListInfo = new ArrayList<>();
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         try {
             FileMgmt fileMgmt = new FileMgmt();
             fileMgmt.readServiceListFileData("C:\\DB\\ServiceList.txt");
             fileMgmt.splitServiceListFileData();
-            serviceList = fileMgmt.returnServiceList();
+            serviceListInfo = fileMgmt.returnServiceListInfo();
             
-            for (int i = 0; i < serviceList.size(); i++) {
-                model.addRow(new Object[]{serviceList.get(i).getProductname(), serviceList.get(i).getPrice()});
+            for (int i = 0; i < serviceListInfo.size(); i++) {
+                model.addRow(new Object[]{
+                    serviceListInfo.get(i).getProductname(), 
+                    serviceListInfo.get(i).getPrice()
+                });
             }
-        } catch (IOException e) {
+        } catch (IOException ex) {
+            Logger.getLogger(RoomService.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
