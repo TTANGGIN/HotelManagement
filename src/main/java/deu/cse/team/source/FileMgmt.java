@@ -24,12 +24,12 @@ public class FileMgmt implements FileInterface {
     ArrayList<String> readAdminInfo = new ArrayList();
     ArrayList<String> readBookingInfo = new ArrayList();
     ArrayList<String> readCheckInInfo = new ArrayList();
-    ArrayList<String> readServiceList = new ArrayList();
+    ArrayList<String> readServiceListInfo = new ArrayList();
     ArrayList<UserInfo> userInfo = new ArrayList<>();
     ArrayList<AdminInfo> adminInfo = new ArrayList<>();
     ArrayList<BookingInfo> bookingInfo = new ArrayList<>();
     ArrayList<CheckInInfo> checkInInfo = new ArrayList<>();
-    ArrayList<ServiceList> serviceList = new ArrayList<>();
+    ArrayList<ServiceListInfo> serviceListInfo = new ArrayList<>();
     
     @Override
     public void readFileData(String path) {
@@ -93,7 +93,7 @@ public class FileMgmt implements FileInterface {
             BufferedReader bfReader = new BufferedReader(new FileReader(new File(path)));
             String line = "";
             while ((line = bfReader.readLine()) != null) {
-                readServiceList.add(line);
+                readServiceListInfo.add(line);
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -183,10 +183,10 @@ public class FileMgmt implements FileInterface {
     public void splitServiceListFileData() {
         String line;
 
-        for (int i = 0; i < readServiceList.size(); i++) {
-            line = readServiceList.get(i);
+        for (int i = 0; i < readServiceListInfo.size(); i++) {
+            line = readServiceListInfo.get(i);
             String[] str = line.split("\t");
-            serviceList.add(new ServiceList(str[0],str[1]));
+            serviceListInfo.add(new ServiceListInfo(str[0],str[1]));
         }
     }
     
@@ -205,7 +205,7 @@ public class FileMgmt implements FileInterface {
     public ArrayList<CheckInInfo> returnCheckInInfo() throws IOException {
         return checkInInfo;
     }
-    public ArrayList<ServiceList> returnServiceList() throws IOException {
-        return serviceList;
+    public ArrayList<ServiceListInfo> returnServiceListInfo() throws IOException {
+        return serviceListInfo;
     }
 }
