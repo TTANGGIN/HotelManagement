@@ -298,6 +298,7 @@ public class CheckIn extends javax.swing.JFrame {
             fileMgmt.readBookingFileData("C:\\DB\\BookingList.txt");
             fileMgmt.splitBookingFileData();
             bookingInfo = fileMgmt.returnBookingInfo();
+            
             for (int i = 0; i < bookingInfo.size(); i++) {
                 model.addRow(new Object[]{
                     bookingInfo.get(i).getIndex(),
