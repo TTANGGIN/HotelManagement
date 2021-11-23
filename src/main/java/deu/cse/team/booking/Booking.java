@@ -6,12 +6,14 @@
 package deu.cse.team.booking;
 
 import deu.cse.team.source.Api;
+import deu.cse.team.source.BookingInfo;
 import deu.cse.team.source.DefaultRoomRate;
 import deu.cse.team.source.FileMgmt;
 import java.io.IOException;
 import java.io.StringReader;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -61,6 +63,37 @@ public class Booking extends javax.swing.JFrame {
         SearchAddressOkBtn = new javax.swing.JButton();
         SearchAddressCancelBtn = new javax.swing.JButton();
         ModifyBookingDlg = new javax.swing.JDialog();
+        ModifyLoadBookingListBtn = new javax.swing.JButton();
+        jLabel13 = new javax.swing.JLabel();
+        ModifyBookingSearchIdxField = new javax.swing.JTextField();
+        jLabel14 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        ModifyBookingTable = new javax.swing.JTable();
+        ModifySearchIdxBtn = new javax.swing.JButton();
+        ModifyCancelBtn = new javax.swing.JButton();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        ModifyEntranceDateField = new javax.swing.JTextField();
+        ModifyExitDateField = new javax.swing.JTextField();
+        jLabel17 = new javax.swing.JLabel();
+        ModifyNameField = new javax.swing.JTextField();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        ModifyRoomNumField = new javax.swing.JTextField();
+        ModifyMemberField = new javax.swing.JTextField();
+        ModifyPhoneField = new javax.swing.JTextField();
+        jLabel21 = new javax.swing.JLabel();
+        ModifyIdxLabel = new javax.swing.JLabel();
+        jLabel23 = new javax.swing.JLabel();
+        ModifyAddressBtn = new javax.swing.JButton();
+        ModifyAddressLabel = new javax.swing.JLabel();
+        jLabel25 = new javax.swing.JLabel();
+        ModifyRateLabel = new javax.swing.JLabel();
+        jLabel27 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
+        ModifyBookingCancelBtn = new javax.swing.JButton();
+        ModifyOKBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         BookingEntranceDateCB1 = new javax.swing.JComboBox<>();
@@ -76,7 +109,7 @@ public class Booking extends javax.swing.JFrame {
         BookingNameField = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        BookingRomNumField = new javax.swing.JTextField();
+        BookingRoomNumField = new javax.swing.JTextField();
         BookingCheckChargeBtn = new javax.swing.JButton();
         BookingPhoneNumField1 = new javax.swing.JTextField();
         BookingPhoneNumField2 = new javax.swing.JTextField();
@@ -181,15 +214,268 @@ public class Booking extends javax.swing.JFrame {
                 .addContainerGap(28, Short.MAX_VALUE))
         );
 
+        ModifyLoadBookingListBtn.setText("불러오기");
+        ModifyLoadBookingListBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ModifyLoadBookingListBtnActionPerformed(evt);
+            }
+        });
+
+        jLabel13.setText("고유번호");
+
+        jLabel14.setText("예약자 명단");
+
+        ModifyBookingTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "고유번호", "이름", "입실날짜", "퇴실날짜", "호실", "인원", "연락처", "상태", "주소", "금액"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(ModifyBookingTable);
+        if (ModifyBookingTable.getColumnModel().getColumnCount() > 0) {
+            ModifyBookingTable.getColumnModel().getColumn(0).setMinWidth(60);
+            ModifyBookingTable.getColumnModel().getColumn(0).setMaxWidth(60);
+            ModifyBookingTable.getColumnModel().getColumn(1).setMinWidth(60);
+            ModifyBookingTable.getColumnModel().getColumn(1).setMaxWidth(60);
+            ModifyBookingTable.getColumnModel().getColumn(4).setMinWidth(40);
+            ModifyBookingTable.getColumnModel().getColumn(4).setMaxWidth(40);
+            ModifyBookingTable.getColumnModel().getColumn(5).setMinWidth(40);
+            ModifyBookingTable.getColumnModel().getColumn(5).setMaxWidth(40);
+            ModifyBookingTable.getColumnModel().getColumn(7).setMinWidth(40);
+            ModifyBookingTable.getColumnModel().getColumn(7).setMaxWidth(40);
+            ModifyBookingTable.getColumnModel().getColumn(8).setMinWidth(0);
+            ModifyBookingTable.getColumnModel().getColumn(8).setMaxWidth(0);
+            ModifyBookingTable.getColumnModel().getColumn(9).setMinWidth(0);
+            ModifyBookingTable.getColumnModel().getColumn(9).setMaxWidth(0);
+        }
+
+        ModifySearchIdxBtn.setText("검색");
+        ModifySearchIdxBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ModifySearchIdxBtnActionPerformed(evt);
+            }
+        });
+
+        ModifyCancelBtn.setText("취소");
+        ModifyCancelBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ModifyCancelBtnActionPerformed(evt);
+            }
+        });
+
+        jLabel15.setText("입실날짜:");
+
+        jLabel16.setText("퇴실날짜:");
+
+        ModifyExitDateField.setText("jTextField2");
+
+        jLabel17.setText("이름:");
+
+        ModifyNameField.setText("jTextField3");
+
+        jLabel18.setText("호실:");
+
+        jLabel19.setText("인원:");
+
+        jLabel20.setText("연락처:");
+
+        ModifyRoomNumField.setText("jTextField4");
+
+        ModifyMemberField.setText("jTextField5");
+
+        ModifyPhoneField.setText("jTextField6");
+
+        jLabel21.setText("고유번호:");
+
+        ModifyIdxLabel.setText("jLabel22");
+
+        jLabel23.setText("주소:");
+
+        ModifyAddressBtn.setText("주소변경");
+        ModifyAddressBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ModifyAddressBtnActionPerformed(evt);
+            }
+        });
+
+        ModifyAddressLabel.setText("jLabel24");
+
+        jLabel25.setText("예상금액 :");
+
+        ModifyRateLabel.setText("jLabel26");
+
+        jLabel27.setText("원");
+
+        jButton2.setText("예상금액 확인");
+
+        ModifyBookingCancelBtn.setText("예약 취소");
+        ModifyBookingCancelBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ModifyBookingCancelBtnActionPerformed(evt);
+            }
+        });
+
+        ModifyOKBtn.setText("수정");
+        ModifyOKBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ModifyOKBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout ModifyBookingDlgLayout = new javax.swing.GroupLayout(ModifyBookingDlg.getContentPane());
         ModifyBookingDlg.getContentPane().setLayout(ModifyBookingDlgLayout);
         ModifyBookingDlgLayout.setHorizontalGroup(
             ModifyBookingDlgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 669, Short.MAX_VALUE)
+            .addGroup(ModifyBookingDlgLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(ModifyBookingDlgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ModifyBookingDlgLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel13)
+                        .addGap(18, 18, 18)
+                        .addComponent(ModifyBookingSearchIdxField, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(ModifySearchIdxBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(111, 111, 111))
+                    .addGroup(ModifyBookingDlgLayout.createSequentialGroup()
+                        .addGroup(ModifyBookingDlgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(ModifyBookingDlgLayout.createSequentialGroup()
+                                .addComponent(jLabel14)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addContainerGap())))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ModifyBookingDlgLayout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addGroup(ModifyBookingDlgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(ModifyBookingDlgLayout.createSequentialGroup()
+                        .addGroup(ModifyBookingDlgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel21)
+                            .addComponent(jLabel15))
+                        .addGap(18, 18, 18)
+                        .addComponent(ModifyIdxLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(ModifyBookingDlgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel18)
+                            .addComponent(jLabel19)
+                            .addComponent(jLabel20))
+                        .addGap(18, 18, 18)
+                        .addGroup(ModifyBookingDlgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(ModifyRoomNumField)
+                            .addComponent(ModifyMemberField)
+                            .addComponent(ModifyPhoneField, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(8, 8, 8))
+                    .addGroup(ModifyBookingDlgLayout.createSequentialGroup()
+                        .addGroup(ModifyBookingDlgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel17)
+                            .addComponent(jLabel16)
+                            .addComponent(jLabel23)
+                            .addComponent(jLabel25))
+                        .addGroup(ModifyBookingDlgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(ModifyBookingDlgLayout.createSequentialGroup()
+                                .addGap(81, 81, 81)
+                                .addComponent(ModifyRateLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel27)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton2))
+                            .addGroup(ModifyBookingDlgLayout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addGroup(ModifyBookingDlgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(ModifyEntranceDateField, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(ModifyBookingDlgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(ModifyNameField, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
+                                        .addComponent(ModifyExitDateField)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 246, Short.MAX_VALUE))))
+                    .addGroup(ModifyBookingDlgLayout.createSequentialGroup()
+                        .addComponent(ModifyBookingCancelBtn)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(ModifyBookingDlgLayout.createSequentialGroup()
+                        .addGap(67, 67, 67)
+                        .addComponent(ModifyAddressLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(ModifyAddressBtn)))
+                .addGap(48, 48, 48))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ModifyBookingDlgLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(ModifyBookingDlgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ModifyBookingDlgLayout.createSequentialGroup()
+                        .addComponent(ModifyOKBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(ModifyCancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(27, 27, 27))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ModifyBookingDlgLayout.createSequentialGroup()
+                        .addComponent(ModifyLoadBookingListBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(208, 208, 208))))
         );
         ModifyBookingDlgLayout.setVerticalGroup(
             ModifyBookingDlgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 462, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ModifyBookingDlgLayout.createSequentialGroup()
+                .addGap(68, 68, 68)
+                .addGroup(ModifyBookingDlgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel13)
+                    .addComponent(ModifyBookingSearchIdxField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ModifySearchIdxBtn))
+                .addGap(44, 44, 44)
+                .addComponent(jLabel14)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(ModifyLoadBookingListBtn)
+                .addGap(15, 15, 15)
+                .addGroup(ModifyBookingDlgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel21)
+                    .addComponent(ModifyIdxLabel))
+                .addGap(18, 18, 18)
+                .addGroup(ModifyBookingDlgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel15)
+                    .addComponent(ModifyEntranceDateField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel18)
+                    .addComponent(ModifyRoomNumField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(ModifyBookingDlgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(ModifyBookingDlgLayout.createSequentialGroup()
+                        .addGroup(ModifyBookingDlgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel16)
+                            .addComponent(ModifyExitDateField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(ModifyBookingDlgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel17)
+                            .addComponent(ModifyNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(ModifyBookingDlgLayout.createSequentialGroup()
+                        .addGroup(ModifyBookingDlgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel19)
+                            .addComponent(ModifyMemberField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(ModifyBookingDlgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel20)
+                            .addComponent(ModifyPhoneField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(18, 18, 18)
+                .addGroup(ModifyBookingDlgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ModifyAddressBtn)
+                    .addComponent(ModifyAddressLabel)
+                    .addComponent(jLabel23))
+                .addGap(18, 18, 18)
+                .addGroup(ModifyBookingDlgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel25)
+                    .addComponent(ModifyRateLabel)
+                    .addComponent(jLabel27)
+                    .addComponent(jButton2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                .addGroup(ModifyBookingDlgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ModifyCancelBtn)
+                    .addComponent(ModifyBookingCancelBtn)
+                    .addComponent(ModifyOKBtn))
+                .addGap(22, 22, 22))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -242,6 +528,11 @@ public class Booking extends javax.swing.JFrame {
         });
 
         BookingModifyBtn.setText("예약 수정");
+        BookingModifyBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BookingModifyBtnActionPerformed(evt);
+            }
+        });
 
         BookingOkBtn.setText("예약");
         BookingOkBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -320,7 +611,7 @@ public class Booking extends javax.swing.JFrame {
                                                 .addGap(34, 34, 34)
                                                 .addComponent(jLabel6)
                                                 .addGap(18, 18, 18)
-                                                .addComponent(BookingRomNumField, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addComponent(BookingRoomNumField, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
                                             .addGroup(layout.createSequentialGroup()
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                 .addComponent(BookingPhoneNumField3, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -377,7 +668,7 @@ public class Booking extends javax.swing.JFrame {
                     .addComponent(jLabel4)
                     .addComponent(BookingNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6)
-                    .addComponent(BookingRomNumField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(BookingRoomNumField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
@@ -425,7 +716,7 @@ public class Booking extends javax.swing.JFrame {
                 + BookingExitDateCB2.getSelectedItem().toString() + "-"
                 + BookingExitDateCB3.getSelectedItem().toString();
         String customerName = BookingNameField.getText();                                   // 고객 이름
-        String roomNumber = BookingRomNumField.getText();                                   // 객실 번호
+        String roomNumber = BookingRoomNumField.getText();                                   // 객실 번호
         String totalNum = BookingMemberCB.getSelectedItem().toString();                     // 인원수
         String phoneNum = BookingPhoneNumField1.getText() + "-"                             // 연락처
                 + BookingPhoneNumField2.getText() + "-"
@@ -537,9 +828,16 @@ public class Booking extends javax.swing.JFrame {
         if (row < 0) {
             JOptionPane.showMessageDialog(null, "선택된 주소가 없습니다.");
         } else {
-            AddressLabel1.setText(addressData.getValueAt(row, 0).toString());
-            AddressLabel2.setText(addressData.getValueAt(row, 1).toString());
-            AddressLabel3.setText(addressData.getValueAt(row, 2).toString());
+            if (ModifyBookingDlg.isVisible()) {
+                ModifyAddressLabel.setText(String.format("%s %s %s", 
+                        addressData.getValueAt(row, 0).toString(), 
+                        addressData.getValueAt(row, 1).toString(), 
+                        addressData.getValueAt(row, 2).toString()));
+            } else {
+                AddressLabel1.setText(addressData.getValueAt(row, 0).toString());
+                AddressLabel2.setText(addressData.getValueAt(row, 1).toString());
+                AddressLabel3.setText(addressData.getValueAt(row, 2).toString());
+            }
             SearchAddressDlg.setVisible(false);
         }
     }//GEN-LAST:event_SearchAddressOkBtnActionPerformed
@@ -548,6 +846,69 @@ public class Booking extends javax.swing.JFrame {
         // TODO add your handling code here:
         SearchAddressDlg.dispose();
     }//GEN-LAST:event_SearchAddressCancelBtnActionPerformed
+
+    private void BookingModifyBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BookingModifyBtnActionPerformed
+        // TODO add your handling code here:
+        ModifyBookingDlg.setVisible(true);
+        ModifyBookingDlg.setLocationRelativeTo(this);
+        ModifyBookingDlg.setSize(550, 800);
+        DefaultTableModel model = (DefaultTableModel) ModifyBookingTable.getModel();
+        model.setRowCount(0);
+        loadBookingData();
+    }//GEN-LAST:event_BookingModifyBtnActionPerformed
+
+    private void ModifySearchIdxBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModifySearchIdxBtnActionPerformed
+        // TODO add your handling code here:
+        String idx = ModifyBookingSearchIdxField.getText();
+        if (!(idx.equals("") || (Integer.parseInt(idx) > ModifyBookingTable.getComponentCount()))) {
+            for (int i = 0; i <= ModifyBookingTable.getComponentCount(); i++) {
+                if (idx.equals(ModifyBookingTable.getValueAt(i, 0))) {
+                    ModifyBookingTable.requestFocus();
+                    ModifyBookingTable.changeSelection(i, 0, false, false);
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "유효한 고유번호를 입력하세요.");
+        }
+    }//GEN-LAST:event_ModifySearchIdxBtnActionPerformed
+
+    private void ModifyLoadBookingListBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModifyLoadBookingListBtnActionPerformed
+        // TODO add your handling code here:
+        TableModel bookingData = ModifyBookingTable.getModel();
+        int row = ModifyBookingTable.getSelectedRow();
+        ModifyIdxLabel.setText(bookingData.getValueAt(row, 0).toString());
+        ModifyNameField.setText(bookingData.getValueAt(row, 1).toString());
+        ModifyEntranceDateField.setText(bookingData.getValueAt(row, 2).toString());
+        ModifyExitDateField.setText(bookingData.getValueAt(row, 3).toString());
+        ModifyRoomNumField.setText(bookingData.getValueAt(row, 4).toString());
+        ModifyMemberField.setText(bookingData.getValueAt(row, 5).toString());
+        ModifyPhoneField.setText(bookingData.getValueAt(row, 6).toString());
+        ModifyAddressLabel.setText(bookingData.getValueAt(row, 8).toString());
+        ModifyRateLabel.setText(bookingData.getValueAt(row, 9).toString());
+    }//GEN-LAST:event_ModifyLoadBookingListBtnActionPerformed
+
+    private void ModifyCancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModifyCancelBtnActionPerformed
+        // TODO add your handling code here:
+        ModifyBookingDlg.dispose();
+    }//GEN-LAST:event_ModifyCancelBtnActionPerformed
+
+    private void ModifyBookingCancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModifyBookingCancelBtnActionPerformed
+        // TODO add your handling code here:
+        DefaultTableModel model = (DefaultTableModel) ModifyBookingTable.getModel();
+        model.removeRow(ModifyBookingTable.getSelectedRow());
+    }//GEN-LAST:event_ModifyBookingCancelBtnActionPerformed
+
+    private void ModifyOKBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModifyOKBtnActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_ModifyOKBtnActionPerformed
+
+    private void ModifyAddressBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModifyAddressBtnActionPerformed
+        // TODO add your handling code here:
+        SearchAddressDlg.setVisible(true);
+        SearchAddressDlg.setLocationRelativeTo(this);
+        SearchAddressDlg.setSize(550, 500);
+    }//GEN-LAST:event_ModifyAddressBtnActionPerformed
     // 입력한 tag 정보
     String getTagValue(String tag, Element eElement) {
         NodeList nlList = eElement.getElementsByTagName(tag).item(0).getChildNodes();
@@ -556,6 +917,35 @@ public class Booking extends javax.swing.JFrame {
             return null;
         return nValue.getNodeValue();
     }
+    
+    private void loadBookingData() {
+        ArrayList<BookingInfo> bookingInfo = new ArrayList<>();
+        DefaultTableModel model = (DefaultTableModel) ModifyBookingTable.getModel();
+        try {
+            FileMgmt fileMgmt = new FileMgmt();
+            fileMgmt.readBookingFileData("C:\\DB\\BookingList.txt");
+            fileMgmt.splitBookingFileData();
+            bookingInfo = fileMgmt.returnBookingInfo();
+            
+            for (int i = 0; i < bookingInfo.size(); i++) {
+                model.addRow(new Object[]{
+                    bookingInfo.get(i).getIndex(),
+                    bookingInfo.get(i).getName(),
+                    bookingInfo.get(i).getEntrance(),
+                    bookingInfo.get(i).getExit(),
+                    bookingInfo.get(i).getRoom(),
+                    bookingInfo.get(i).getPersonnel(),
+                    bookingInfo.get(i).getPhonenumber(),
+                    bookingInfo.get(i).getStatus(),
+                    bookingInfo.get(i).getAddress(),
+                    bookingInfo.get(i).getMoney()
+                });
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(Booking.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -610,21 +1000,51 @@ public class Booking extends javax.swing.JFrame {
     private javax.swing.JTextField BookingPhoneNumField1;
     private javax.swing.JTextField BookingPhoneNumField2;
     private javax.swing.JTextField BookingPhoneNumField3;
-    private javax.swing.JTextField BookingRomNumField;
+    private javax.swing.JTextField BookingRoomNumField;
     private javax.swing.JLabel BookingRoomRateLabel;
     private javax.swing.JButton BookingSearchAddressBtn;
     private javax.swing.JTextField BookingSearchAddressField;
+    private javax.swing.JButton ModifyAddressBtn;
+    private javax.swing.JLabel ModifyAddressLabel;
+    private javax.swing.JButton ModifyBookingCancelBtn;
     private javax.swing.JDialog ModifyBookingDlg;
+    private javax.swing.JTextField ModifyBookingSearchIdxField;
+    private javax.swing.JTable ModifyBookingTable;
+    private javax.swing.JButton ModifyCancelBtn;
+    private javax.swing.JTextField ModifyEntranceDateField;
+    private javax.swing.JTextField ModifyExitDateField;
+    private javax.swing.JLabel ModifyIdxLabel;
+    private javax.swing.JButton ModifyLoadBookingListBtn;
+    private javax.swing.JTextField ModifyMemberField;
+    private javax.swing.JTextField ModifyNameField;
+    private javax.swing.JButton ModifyOKBtn;
+    private javax.swing.JTextField ModifyPhoneField;
+    private javax.swing.JLabel ModifyRateLabel;
+    private javax.swing.JTextField ModifyRoomNumField;
+    private javax.swing.JButton ModifySearchIdxBtn;
     private javax.swing.JButton SearchAddressBtn;
     private javax.swing.JButton SearchAddressCancelBtn;
     private javax.swing.JDialog SearchAddressDlg;
     private javax.swing.JButton SearchAddressOkBtn;
     private javax.swing.JTable SearchAddressTable;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -633,5 +1053,6 @@ public class Booking extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
 }

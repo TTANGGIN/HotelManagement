@@ -13,7 +13,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.function.Function;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -198,15 +197,12 @@ public class CheckIn extends javax.swing.JFrame {
 
     private void CheckInSearchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckInSearchBtnActionPerformed
         // TODO add your handling code here:
-        try {
-            String str = CheckInNameField.getText() + CheckInIndexField.getText();
-            for (int i = 0; i < CheckInBookingTable.getColumnCount(); i++) {
-                if (str.equals(CheckInBookingTable.getValueAt(i, 0)) || str.equals(CheckInBookingTable.getValueAt(i, 1))) {
-                    CheckInBookingTable.requestFocus();
-                    CheckInBookingTable.changeSelection(i, 0, false, false);
-                }
+        String str = CheckInNameField.getText() + CheckInIndexField.getText();
+        for (int i = 0; i <= CheckInBookingTable.getComponentCount(); i++) {
+            if (str.equals(CheckInBookingTable.getValueAt(i, 0)) || str.equals(CheckInBookingTable.getValueAt(i, 1))) {
+                CheckInBookingTable.requestFocus();
+                CheckInBookingTable.changeSelection(i, 0, false, false);
             }
-        } catch (Exception e) {
         }
     }//GEN-LAST:event_CheckInSearchBtnActionPerformed
 
