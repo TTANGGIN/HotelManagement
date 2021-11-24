@@ -6,16 +6,14 @@
 package deu.cse.team.booking;
 
 import deu.cse.team.source.Api;
-import deu.cse.team.source.BookingInfo;
 import deu.cse.team.source.DefaultRoomRate;
 import deu.cse.team.source.FileMgmt;
-import java.io.FileNotFoundException;
+import deu.cse.team.source.LoadBookingData;
+import deu.cse.team.source.ModifyBookingData;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.io.StringReader;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -279,11 +277,7 @@ public class Booking extends javax.swing.JFrame {
 
         jLabel16.setText("퇴실날짜:");
 
-        ModifyExitDateField.setText("jTextField2");
-
         jLabel17.setText("이름:");
-
-        ModifyNameField.setText("jTextField3");
 
         jLabel18.setText("호실:");
 
@@ -291,15 +285,7 @@ public class Booking extends javax.swing.JFrame {
 
         jLabel20.setText("연락처:");
 
-        ModifyRoomNumField.setText("jTextField4");
-
-        ModifyMemberField.setText("jTextField5");
-
-        ModifyPhoneField.setText("jTextField6");
-
         jLabel21.setText("고유번호:");
-
-        ModifyIdxLabel.setText("jLabel22");
 
         jLabel23.setText("주소:");
 
@@ -310,15 +296,16 @@ public class Booking extends javax.swing.JFrame {
             }
         });
 
-        ModifyAddressLabel.setText("jLabel24");
-
         jLabel25.setText("예상금액 :");
-
-        ModifyRateLabel.setText("jLabel26");
 
         jLabel27.setText("원");
 
         jButton2.setText("예상금액 확인");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         ModifyBookingCancelBtn.setText("예약 취소");
         ModifyBookingCancelBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -804,23 +791,7 @@ public class Booking extends javax.swing.JFrame {
 
     private void BookingCheckChargeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BookingCheckChargeBtnActionPerformed
         // TODO add your handling code here: 예상 금액 확인 버튼
-        long lengthOfStay = 0;
-        String entranceDate = BookingEntranceDateCB1.getSelectedItem().toString()             // 입실 날짜
-                + BookingEntranceDateCB2.getSelectedItem().toString()
-                + BookingEntranceDateCB3.getSelectedItem().toString();
-        String exitDate = BookingExitDateCB1.getSelectedItem().toString()       // 퇴실 날짜
-                + BookingExitDateCB2.getSelectedItem().toString()
-                + BookingExitDateCB3.getSelectedItem().toString();
-        SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
-        try {
-            lengthOfStay = format.parse(exitDate).getTime() - format.parse(entranceDate).getTime();
-        } catch (ParseException ex) {
-            Logger.getLogger(Booking.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        lengthOfStay /= (24 * 60 * 60 * 1000);
-        lengthOfStay = Math.abs(lengthOfStay);
-        DefaultRoomRate defaultRoomRate = new DefaultRoomRate();
-        BookingRoomRateLabel.setText(defaultRoomRate.DefaultRoomRate((int)lengthOfStay));
+        getEstimatedCharge();
     }//GEN-LAST:event_BookingCheckChargeBtnActionPerformed
 
     private void SearchAddressOkBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchAddressOkBtnActionPerformed
@@ -856,7 +827,8 @@ public class Booking extends javax.swing.JFrame {
         ModifyBookingDlg.setSize(550, 800);
         DefaultTableModel model = (DefaultTableModel) ModifyBookingTable.getModel();
         model.setRowCount(0);
-        loadBookingData();
+        LoadBookingData loadBookingData = new LoadBookingData();
+        loadBookingData.loadData(model);
     }//GEN-LAST:event_BookingModifyBtnActionPerformed
 
     private void ModifySearchIdxBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModifySearchIdxBtnActionPerformed
@@ -876,17 +848,22 @@ public class Booking extends javax.swing.JFrame {
 
     private void ModifyLoadBookingListBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModifyLoadBookingListBtnActionPerformed
         // TODO add your handling code here:
-        TableModel bookingData = ModifyBookingTable.getModel();
-        int row = ModifyBookingTable.getSelectedRow();
-        ModifyIdxLabel.setText(bookingData.getValueAt(row, 0).toString());
-        ModifyNameField.setText(bookingData.getValueAt(row, 1).toString());
-        ModifyEntranceDateField.setText(bookingData.getValueAt(row, 2).toString());
-        ModifyExitDateField.setText(bookingData.getValueAt(row, 3).toString());
-        ModifyRoomNumField.setText(bookingData.getValueAt(row, 4).toString());
-        ModifyMemberField.setText(bookingData.getValueAt(row, 5).toString());
-        ModifyPhoneField.setText(bookingData.getValueAt(row, 6).toString());
-        ModifyAddressLabel.setText(bookingData.getValueAt(row, 8).toString());
-        ModifyRateLabel.setText(bookingData.getValueAt(row, 9).toString());
+        try {
+            TableModel bookingData = ModifyBookingTable.getModel();
+            int row = ModifyBookingTable.getSelectedRow();
+            ModifyIdxLabel.setText(bookingData.getValueAt(row, 0).toString());
+            ModifyNameField.setText(bookingData.getValueAt(row, 1).toString());
+            ModifyEntranceDateField.setText(bookingData.getValueAt(row, 2).toString());
+            ModifyExitDateField.setText(bookingData.getValueAt(row, 3).toString());
+            ModifyRoomNumField.setText(bookingData.getValueAt(row, 4).toString());
+            ModifyMemberField.setText(bookingData.getValueAt(row, 5).toString());
+            ModifyPhoneField.setText(bookingData.getValueAt(row, 6).toString());
+            ModifyAddressLabel.setText(bookingData.getValueAt(row, 8).toString());
+            ModifyRateLabel.setText(bookingData.getValueAt(row, 9).toString());
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "불러올 데이터를 선택하세요.");
+        }
+        
     }//GEN-LAST:event_ModifyLoadBookingListBtnActionPerformed
 
     private void ModifyCancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModifyCancelBtnActionPerformed
@@ -906,25 +883,31 @@ public class Booking extends javax.swing.JFrame {
             data[7] = "C";
             model.removeRow(row);
             model.insertRow(row, data);
+            ModifyBookingData modifyBookingData = new ModifyBookingData();
+            modifyBookingData.modifyData(model);
+            ModifyBookingDlg.dispose();
         }
     }//GEN-LAST:event_ModifyBookingCancelBtnActionPerformed
 
     private void ModifyOKBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModifyOKBtnActionPerformed
         // TODO add your handling code here:
         DefaultTableModel model = (DefaultTableModel) ModifyBookingTable.getModel();
-        PrintWriter writer;
-        try {
-            writer = new PrintWriter("C:\\DB\\category.txt");
-            for (int row = 0; row < model.getRowCount(); row++) {
-                for (int col = 0; col < model.getColumnCount(); col++) {
-                    writer.print(model.getColumnName(col));
-                    writer.print("\t");
-                    writer.println(model.getValueAt(row, col));
-                }
-            }
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(Booking.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        int row = Integer.parseInt(ModifyIdxLabel.getText());
+        model.removeRow(row);
+        model.insertRow(row, new Object[]{
+            row, 
+            ModifyNameField.getText(),
+            ModifyEntranceDateField.getText(),
+            ModifyExitDateField.getText(),
+            ModifyRoomNumField.getText(),
+            ModifyMemberField.getText(),
+            ModifyPhoneField.getText(),
+            "N",
+            ModifyAddressLabel.getText(),
+            ModifyRateLabel.getText()
+        });
+        ModifyBookingData modifyBookingData = new ModifyBookingData();
+        modifyBookingData.modifyData(model);
         JOptionPane.showMessageDialog(null, "수정완료.");
     }//GEN-LAST:event_ModifyOKBtnActionPerformed
 
@@ -934,6 +917,11 @@ public class Booking extends javax.swing.JFrame {
         SearchAddressDlg.setLocationRelativeTo(this);
         SearchAddressDlg.setSize(550, 500);
     }//GEN-LAST:event_ModifyAddressBtnActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        getEstimatedCharge();
+    }//GEN-LAST:event_jButton2ActionPerformed
     // 입력한 tag 정보
     private String getTagValue(String tag, Element eElement) {
         NodeList nlList = eElement.getElementsByTagName(tag).item(0).getChildNodes();
@@ -943,34 +931,40 @@ public class Booking extends javax.swing.JFrame {
         return nValue.getNodeValue();
     }
     
-    private void loadBookingData() {
-        ArrayList<BookingInfo> bookingInfo = new ArrayList<>();
-        DefaultTableModel model = (DefaultTableModel) ModifyBookingTable.getModel();
+    // 예상 금액 확인
+    private void getEstimatedCharge() {
+        long lengthOfStay = 0;
+        boolean isModify = ModifyBookingDlg.isVisible();
+        String entranceDate;
+        String exitDate;
+        SimpleDateFormat format;
+        if (isModify) {
+            entranceDate = ModifyEntranceDateField.getText();
+            exitDate = ModifyExitDateField.getText();
+            format = new SimpleDateFormat("yyyy-MM-dd");
+        } else {
+            entranceDate = BookingEntranceDateCB1.getSelectedItem().toString()             // 입실 날짜
+                + BookingEntranceDateCB2.getSelectedItem().toString()
+                + BookingEntranceDateCB3.getSelectedItem().toString();
+            exitDate = BookingExitDateCB1.getSelectedItem().toString()       // 퇴실 날짜
+                + BookingExitDateCB2.getSelectedItem().toString()
+                + BookingExitDateCB3.getSelectedItem().toString();
+            format = new SimpleDateFormat("yyyyMMdd");
+        }
         try {
-            FileMgmt fileMgmt = new FileMgmt();
-            fileMgmt.readBookingFileData("C:\\DB\\BookingList.txt");
-            fileMgmt.splitBookingFileData();
-            bookingInfo = fileMgmt.returnBookingInfo();
-            
-            for (int i = 0; i < bookingInfo.size(); i++) {
-                model.addRow(new Object[]{
-                    bookingInfo.get(i).getIndex(),
-                    bookingInfo.get(i).getName(),
-                    bookingInfo.get(i).getEntrance(),
-                    bookingInfo.get(i).getExit(),
-                    bookingInfo.get(i).getRoom(),
-                    bookingInfo.get(i).getPersonnel(),
-                    bookingInfo.get(i).getPhonenumber(),
-                    bookingInfo.get(i).getStatus(),
-                    bookingInfo.get(i).getAddress(),
-                    bookingInfo.get(i).getMoney()
-                });
-            }
-        } catch (IOException ex) {
+            lengthOfStay = format.parse(exitDate).getTime() - format.parse(entranceDate).getTime();
+        } catch (ParseException ex) {
             Logger.getLogger(Booking.class.getName()).log(Level.SEVERE, null, ex);
         }
+        lengthOfStay /= (24 * 60 * 60 * 1000);
+        lengthOfStay = Math.abs(lengthOfStay);
+        DefaultRoomRate defaultRoomRate = new DefaultRoomRate();
+        if (ModifyBookingDlg.isVisible()) {
+            ModifyRateLabel.setText(defaultRoomRate.DefaultRoomRate((int)lengthOfStay));
+        } else {
+            BookingRoomRateLabel.setText(defaultRoomRate.DefaultRoomRate((int)lengthOfStay));
+        }
     }
-    
     /**
      * @param args the command line arguments
      */

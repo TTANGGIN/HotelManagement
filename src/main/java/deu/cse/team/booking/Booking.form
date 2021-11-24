@@ -443,9 +443,6 @@
         <Component class="javax.swing.JTextField" name="ModifyEntranceDateField">
         </Component>
         <Component class="javax.swing.JTextField" name="ModifyExitDateField">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="jTextField2"/>
-          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel17">
           <Properties>
@@ -453,9 +450,6 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="ModifyNameField">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="jTextField3"/>
-          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel18">
           <Properties>
@@ -473,19 +467,10 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="ModifyRoomNumField">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="jTextField4"/>
-          </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="ModifyMemberField">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="jTextField5"/>
-          </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="ModifyPhoneField">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="jTextField6"/>
-          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel21">
           <Properties>
@@ -493,9 +478,6 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="ModifyIdxLabel">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="jLabel22"/>
-          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel23">
           <Properties>
@@ -511,9 +493,6 @@
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="ModifyAddressLabel">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="jLabel24"/>
-          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel25">
           <Properties>
@@ -521,9 +500,6 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="ModifyRateLabel">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="jLabel26"/>
-          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel27">
           <Properties>
@@ -534,6 +510,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="&#xc608;&#xc0c1;&#xae08;&#xc561; &#xd655;&#xc778;"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="ModifyBookingCancelBtn">
           <Properties>
