@@ -17,7 +17,7 @@ import java.io.IOException;
  */
 public class Api {
     public String Api(String address) throws IOException {
-        String size = "30";
+        String size = "100";
         String page = "1";
         String format = "xml";
         String key = "2E7FAFA0-660C-33D8-845B-206BB87641E2";
