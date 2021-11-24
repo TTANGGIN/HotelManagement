@@ -9,7 +9,9 @@ import deu.cse.team.source.Api;
 import deu.cse.team.source.BookingInfo;
 import deu.cse.team.source.DefaultRoomRate;
 import deu.cse.team.source.FileMgmt;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.io.StringReader;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -894,13 +896,36 @@ public class Booking extends javax.swing.JFrame {
 
     private void ModifyBookingCancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModifyBookingCancelBtnActionPerformed
         // TODO add your handling code here:
-        DefaultTableModel model = (DefaultTableModel) ModifyBookingTable.getModel();
-        model.removeRow(ModifyBookingTable.getSelectedRow());
+        if (JOptionPane.showConfirmDialog(this, "예약을 취소하시겠습니까?", "", JOptionPane.YES_NO_OPTION) == 0) {
+            DefaultTableModel model = (DefaultTableModel) ModifyBookingTable.getModel();
+            int row = ModifyBookingTable.getSelectedRow();
+            String[] data = new String[10];
+            for (int i = 0; i < 10; i++) {
+                data[i] = model.getValueAt(row, i).toString();
+            }
+            data[7] = "C";
+            model.removeRow(row);
+            model.insertRow(row, data);
+        }
     }//GEN-LAST:event_ModifyBookingCancelBtnActionPerformed
 
     private void ModifyOKBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModifyOKBtnActionPerformed
         // TODO add your handling code here:
-        
+        DefaultTableModel model = (DefaultTableModel) ModifyBookingTable.getModel();
+        PrintWriter writer;
+        try {
+            writer = new PrintWriter("C:\\DB\\category.txt");
+            for (int row = 0; row < model.getRowCount(); row++) {
+                for (int col = 0; col < model.getColumnCount(); col++) {
+                    writer.print(model.getColumnName(col));
+                    writer.print("\t");
+                    writer.println(model.getValueAt(row, col));
+                }
+            }
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Booking.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        JOptionPane.showMessageDialog(null, "수정완료.");
     }//GEN-LAST:event_ModifyOKBtnActionPerformed
 
     private void ModifyAddressBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModifyAddressBtnActionPerformed
@@ -910,7 +935,7 @@ public class Booking extends javax.swing.JFrame {
         SearchAddressDlg.setSize(550, 500);
     }//GEN-LAST:event_ModifyAddressBtnActionPerformed
     // 입력한 tag 정보
-    String getTagValue(String tag, Element eElement) {
+    private String getTagValue(String tag, Element eElement) {
         NodeList nlList = eElement.getElementsByTagName(tag).item(0).getChildNodes();
         Node nValue = (Node) nlList.item(0);
         if (nValue == null)
