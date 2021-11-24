@@ -153,7 +153,7 @@ public class Management extends javax.swing.JFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
-        Manage5 manage5 = new Manage5();
+        MgmtUser manage5 = new MgmtUser();
         manage5.setVisible(true);
     }//GEN-LAST:event_jButton5ActionPerformed
 
