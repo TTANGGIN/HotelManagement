@@ -12,13 +12,15 @@ package deu.cse.team.source;
 public class ServiceOrderListInfo {
 
     private String index; //고유번호
+    private String service;
     private String room;
     private String time; //주문시간
     private String productname; //상품명
     private String money; //상품금액
     
-    public ServiceOrderListInfo(String index, String room, String time, String productname, String money) {
+    public ServiceOrderListInfo(String index, String service, String room, String time, String productname, String money) {
         this.index = index;
+        this.service = service;
         this.room = room;
         this.time = time;
         this.productname = productname;
@@ -27,6 +29,10 @@ public class ServiceOrderListInfo {
 
     public String getIndex() {
         return index;
+    }
+    
+    public String getService() {
+        return service;
     }
 
     public String getRoom() {
@@ -47,6 +53,10 @@ public class ServiceOrderListInfo {
 
     public void setIndex(String index) {
         this.index = index;
+    }
+    
+    public void setService(String service) {
+        this.service = service;
     }
     
     public void setRoom(String room) {

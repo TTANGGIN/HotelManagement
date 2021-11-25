@@ -208,7 +208,7 @@ public class FileMgmt implements FileInterface {
         for (int i = 0; i < readServiceListInfo.size(); i++) {
             line = readServiceListInfo.get(i);
             String[] str = line.split("\t");
-            serviceListInfo.add(new ServiceListInfo(str[0],str[1]));
+            serviceListInfo.add(new ServiceListInfo(str[0],str[1],str[2]));
         }
     }
     public void splitServiceOrderListFileData() {
@@ -217,7 +217,7 @@ public class FileMgmt implements FileInterface {
         for (int i = 0; i < readServiceOrderListInfo.size(); i++) {
             line = readServiceOrderListInfo.get(i);
             String[] str = line.split("\t");
-            serviceOrderListInfo.add(new ServiceOrderListInfo(str[0],str[1],str[2],str[3],str[4]));
+            serviceOrderListInfo.add(new ServiceOrderListInfo(str[0],str[1],str[2],str[3],str[4],str[5]));
         }
     }
     

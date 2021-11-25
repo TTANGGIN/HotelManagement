@@ -10,12 +10,19 @@ package deu.cse.team.source;
  * @author 915-34
  */
 public class ServiceListInfo {
+
+    private String service;
     private String productname;
     private String price;
-    
-    public ServiceListInfo (String productname, String price) {
+
+    public ServiceListInfo(String service, String productname, String price) {
+        this.service = service;
         this.productname = productname;
         this.price = price;
+    }
+
+    public String getService() {
+        return service;
     }
 
     public String getProductname() {
@@ -26,10 +33,14 @@ public class ServiceListInfo {
         return price;
     }
 
+    public void setService(String service) {
+        this.service = service;
+    }
+
     public void setProductname(String productname) {
         this.productname = productname;
     }
-    
+
     public void setPrice(String price) {
         this.price = price;
     }
