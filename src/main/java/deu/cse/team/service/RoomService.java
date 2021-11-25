@@ -12,7 +12,9 @@ import deu.cse.team.source.ServiceListInfo;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -29,7 +31,7 @@ public class RoomService extends javax.swing.JFrame {
      */
     public RoomService() {
         initComponents();
-        
+
         jTextField1.setEditable(false);
         jTextField2.setEditable(false);
         try (FileReader r = new FileReader("C:\\DB\\CheckInList.txt")) {
@@ -42,7 +44,7 @@ public class RoomService extends javax.swing.JFrame {
             }
         } catch (IOException e) {
         }
-        
+
         loadServiceList();
     }
 
@@ -68,6 +70,7 @@ public class RoomService extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
+        jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -136,28 +139,17 @@ public class RoomService extends javax.swing.JFrame {
 
         jLabel3.setText("호실:");
 
+        jButton4.setText("주문 확정");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton1)
-                .addGap(57, 57, 57)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTextField2))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(110, 110, 110))
             .addGroup(layout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -168,6 +160,29 @@ public class RoomService extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton1)
+                        .addGap(57, 57, 57)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(18, 18, 18)
+                                .addComponent(jTextField2))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(18, 18, 18)
+                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(110, 110, 110))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jButton4)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -198,7 +213,9 @@ public class RoomService extends javax.swing.JFrame {
                         .addComponent(jButton2)
                         .addGap(18, 18, 18)
                         .addComponent(jButton3)))
-                .addContainerGap(52, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jButton4)
+                .addContainerGap(11, Short.MAX_VALUE))
         );
 
         pack();
@@ -212,7 +229,7 @@ public class RoomService extends javax.swing.JFrame {
             String[] Arr;
             while ((array = reader.readLine()) != null) {
                 Arr = array.split("\t");
-                
+
                 jTextField1.setText(Arr[3]);
                 jTextField2.setText(Arr[0]);
             }
@@ -222,16 +239,15 @@ public class RoomService extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         String str = jTextField2.getText();
-        if(str.equals("")){
+        if (str.equals("")) {
             JOptionPane.showMessageDialog(null, "호실을 선택해주세요.");
-        }
-        else{
+        } else {
             int row = jTable1.getSelectedRow();
-        DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
-        model.addRow(new Object[]{
-                    String.valueOf(jTable1.getValueAt(row, 0)), 
-                    String.valueOf(jTable1.getValueAt(row, 1))
-                });
+            DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
+            model.addRow(new Object[]{
+                String.valueOf(jTable1.getValueAt(row, 0)),
+                String.valueOf(jTable1.getValueAt(row, 1))
+            });
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -241,6 +257,32 @@ public class RoomService extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
         model.removeRow(row);
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        FileMgmt fileMgmt = new FileMgmt();
+        String index = jTextField2.getText();
+        String time = currentTime();
+        String productname = null;
+        String money = null;
+        for (int i = 0; i < jTable2.getRowCount(); i++) {
+            if (i == 0) {
+                productname = String.valueOf(jTable2.getValueAt(i, 0));
+                money = String.valueOf(jTable2.getValueAt(i, 1));
+            } else {
+                productname = productname.concat("/" + String.valueOf(jTable2.getValueAt(i, 0)));
+                money = money.concat("/" + String.valueOf(jTable2.getValueAt(i, 1)));
+            }
+        }
+        
+        String str = index + "\t" + time + "\t" + productname + "\t" + money;
+        try {
+            fileMgmt.writeServiceOrderListFileData("C:\\DB\\ServiceOrderList.txt", str);
+        } catch (IOException ex) {
+            Logger.getLogger(RoomService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        JOptionPane.showMessageDialog(null, str);
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -286,10 +328,10 @@ public class RoomService extends javax.swing.JFrame {
             fileMgmt.readServiceListFileData("C:\\DB\\ServiceList.txt");
             fileMgmt.splitServiceListFileData();
             serviceListInfo = fileMgmt.returnServiceListInfo();
-            
+
             for (int i = 0; i < serviceListInfo.size(); i++) {
                 model.addRow(new Object[]{
-                    serviceListInfo.get(i).getProductname(), 
+                    serviceListInfo.get(i).getProductname(),
                     serviceListInfo.get(i).getPrice()
                 });
             }
@@ -298,10 +340,18 @@ public class RoomService extends javax.swing.JFrame {
         }
     }
 
+    private String currentTime() { // 현재시간 반환 함수
+        long time = System.currentTimeMillis();
+        SimpleDateFormat dayTime = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
+        String str = dayTime.format(new Date(time));
+        return str;
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
