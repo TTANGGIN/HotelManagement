@@ -25,11 +25,13 @@ public class FileMgmt implements FileInterface {
     ArrayList<String> readBookingInfo = new ArrayList();
     ArrayList<String> readCheckInInfo = new ArrayList();
     ArrayList<String> readServiceListInfo = new ArrayList();
+    ArrayList<String> readServiceOrderListInfo = new ArrayList();
     ArrayList<UserInfo> userInfo = new ArrayList<>();
     ArrayList<AdminInfo> adminInfo = new ArrayList<>();
     ArrayList<BookingInfo> bookingInfo = new ArrayList<>();
     ArrayList<CheckInInfo> checkInInfo = new ArrayList<>();
     ArrayList<ServiceListInfo> serviceListInfo = new ArrayList<>();
+    ArrayList<ServiceOrderListInfo> serviceOrderListInfo = new ArrayList<>();
     
     @Override
     public void readFileData(String path) {
@@ -102,6 +104,20 @@ public class FileMgmt implements FileInterface {
             e.printStackTrace();
         }
     }
+    public void readServiceOrderListFileData(String path) {
+        try {
+            BufferedReader bfReader = new BufferedReader(new FileReader(new File(path)));
+            String line = "";
+            while ((line = bfReader.readLine()) != null) {
+                readServiceOrderListInfo.add(line);
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            System.out.println("파일이 존재하지않습니다. 경로를 확인해주세요");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     
     @Override
     public void writeFileData(String path, String data) throws IOException {
@@ -137,6 +153,12 @@ public class FileMgmt implements FileInterface {
         pw.close();
     }
     public void writeServiceListFileData(String path, String data) throws IOException {
+        PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(path,true)),true);
+        pw.write(data+"\n");
+        pw.flush();
+        pw.close();
+    }
+    public void writeServiceOrderListFileData(String path, String data) throws IOException {
         PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(path,true)),true);
         pw.write(data+"\n");
         pw.flush();
@@ -189,6 +211,15 @@ public class FileMgmt implements FileInterface {
             serviceListInfo.add(new ServiceListInfo(str[0],str[1]));
         }
     }
+    public void splitServiceOrderListFileData() {
+        String line;
+
+        for (int i = 0; i < readServiceOrderListInfo.size(); i++) {
+            line = readServiceOrderListInfo.get(i);
+            String[] str = line.split("\t");
+            serviceOrderListInfo.add(new ServiceOrderListInfo(str[0],str[1],str[2],str[3]));
+        }
+    }
     
     public ArrayList<UserInfo> returnUserInfo() throws IOException {
         return userInfo;
@@ -207,5 +238,8 @@ public class FileMgmt implements FileInterface {
     }
     public ArrayList<ServiceListInfo> returnServiceListInfo() throws IOException {
         return serviceListInfo;
+    }
+    public ArrayList<ServiceOrderListInfo> returnServiceOrderListInfo() throws IOException {
+        return serviceOrderListInfo;
     }
 }
