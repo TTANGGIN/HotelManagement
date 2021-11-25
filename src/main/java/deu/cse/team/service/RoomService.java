@@ -223,6 +223,7 @@ public class RoomService extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        loadServiceList();
         try (FileReader r = new FileReader("C:\\DB\\CheckInList.txt")) {
             BufferedReader reader = new BufferedReader(r);
             String array;
@@ -320,8 +321,12 @@ public class RoomService extends javax.swing.JFrame {
     }
 
     private void loadServiceList() {
-
-        ArrayList<ServiceListInfo> serviceListInfo = new ArrayList<>();
+        DefaultTableModel modela = (DefaultTableModel)jTable1.getModel(); // jTable 초기화
+        DefaultTableModel modelb= (DefaultTableModel)jTable2.getModel();
+        modela.setNumRows(0);
+        modelb.setNumRows(0);
+        
+        ArrayList<ServiceListInfo> serviceListInfo = new ArrayList<>(); //리스트 작성
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         try {
             FileMgmt fileMgmt = new FileMgmt();
@@ -342,7 +347,7 @@ public class RoomService extends javax.swing.JFrame {
 
     private String currentTime() { // 현재시간 반환 함수
         long time = System.currentTimeMillis();
-        SimpleDateFormat dayTime = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
+        SimpleDateFormat dayTime = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         String str = dayTime.format(new Date(time));
         return str;
     }
