@@ -263,6 +263,7 @@ public class RoomService extends javax.swing.JFrame {
         // TODO add your handling code here:
         FileMgmt fileMgmt = new FileMgmt();
         String index = jTextField2.getText();
+        String room = jComboBox1.getSelectedItem().toString();
         String time = currentTime();
         String productname = null;
         String money = null;
@@ -276,13 +277,14 @@ public class RoomService extends javax.swing.JFrame {
             }
         }
         
-        String str = index + "\t" + time + "\t" + productname + "\t" + money;
+        String str = index + "\t" + room + "\t" + time + "\t" + productname + "\t" + money;
         try {
             fileMgmt.writeServiceOrderListFileData("C:\\DB\\ServiceOrderList.txt", str);
         } catch (IOException ex) {
             Logger.getLogger(RoomService.class.getName()).log(Level.SEVERE, null, ex);
         }
         JOptionPane.showMessageDialog(null, str);
+        loadServiceList();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
@@ -347,7 +349,7 @@ public class RoomService extends javax.swing.JFrame {
 
     private String currentTime() { // 현재시간 반환 함수
         long time = System.currentTimeMillis();
-        SimpleDateFormat dayTime = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        SimpleDateFormat dayTime = new SimpleDateFormat("yyyy-MM-dd/HH:mm:ss");
         String str = dayTime.format(new Date(time));
         return str;
     }
