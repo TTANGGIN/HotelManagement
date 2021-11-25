@@ -228,11 +228,13 @@ public class RoomService extends javax.swing.JFrame {
             BufferedReader reader = new BufferedReader(r);
             String array;
             String[] Arr;
+            String str = jComboBox1.getSelectedItem().toString();
             while ((array = reader.readLine()) != null) {
                 Arr = array.split("\t");
-
-                jTextField1.setText(Arr[3]);
-                jTextField2.setText(Arr[0]);
+                if(str.equals(Arr[4])){
+                    jTextField1.setText(Arr[3]);
+                    jTextField2.setText(Arr[0]);
+                }
             }
         } catch (IOException e) {
         }
