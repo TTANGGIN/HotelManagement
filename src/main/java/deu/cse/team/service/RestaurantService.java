@@ -318,8 +318,10 @@ public class RestaurantService extends javax.swing.JFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
-        for(int i=0;i<jTable2.getRowCount(); i++){
-            jTable2.setValueAt(0, i, 1);
+        try{
+            int row = jTable2.getSelectedRow();
+            jTable2.setValueAt(0, row, 1);
+        }catch (Exception e){         
         }
     }//GEN-LAST:event_jButton5ActionPerformed
 
