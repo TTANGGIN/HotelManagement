@@ -198,7 +198,7 @@ public class CheckIn extends javax.swing.JFrame {
     private void CheckInSearchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckInSearchBtnActionPerformed
         // TODO add your handling code here:
         String str = CheckInNameField.getText() + CheckInIndexField.getText();
-        for (int i = 0; i <= CheckInBookingTable.getComponentCount(); i++) {
+        for (int i = 0; i <= CheckInBookingTable.getRowCount(); i++) {
             if (str.equals(CheckInBookingTable.getValueAt(i, 0)) || str.equals(CheckInBookingTable.getValueAt(i, 1))) {
                 CheckInBookingTable.requestFocus();
                 CheckInBookingTable.changeSelection(i, 0, false, false);
