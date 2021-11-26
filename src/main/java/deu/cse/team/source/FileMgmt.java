@@ -27,6 +27,7 @@ public class FileMgmt implements FileInterface {
     ArrayList<String> readServiceListInfo = new ArrayList();
     ArrayList<String> readServiceOrderListInfo = new ArrayList();
     ArrayList<String> readCheckOutInfo = new ArrayList();
+    ArrayList<String> readRoomInfo = new ArrayList();
     ArrayList<UserInfo> userInfo = new ArrayList<>();
     ArrayList<AdminInfo> adminInfo = new ArrayList<>();
     ArrayList<BookingInfo> bookingInfo = new ArrayList<>();
@@ -34,6 +35,7 @@ public class FileMgmt implements FileInterface {
     ArrayList<ServiceListInfo> serviceListInfo = new ArrayList<>();
     ArrayList<ServiceOrderListInfo> serviceOrderListInfo = new ArrayList<>();
     ArrayList<CheckOutInfo> checkOutInfo = new ArrayList<>();
+    ArrayList<RoomInfo> roomInfo = new ArrayList<>();
     
     @Override
     public void readFileData(String path) {
@@ -112,6 +114,21 @@ public class FileMgmt implements FileInterface {
             String line = "";
             while ((line = bfReader.readLine()) != null) {
                 readServiceOrderListInfo.add(line);
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            System.out.println("파일이 존재하지않습니다. 경로를 확인해주세요");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public void readRoomFileData(String path) {
+        try {
+            BufferedReader bfReader = new BufferedReader(new FileReader(new File(path)));
+            String line = "";
+            while ((line = bfReader.readLine()) != null) {
+                readRoomInfo.add(line);
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -238,6 +255,16 @@ public class FileMgmt implements FileInterface {
         }
     }
     
+    public void splitRoomListFileData() {
+        String line;
+
+        for (int i = 0; i < readRoomInfo.size(); i++) {
+            line = readRoomInfo.get(i);
+            String[] str = line.split("\t");
+            roomInfo.add(new RoomInfo(str[0],str[1],str[2]));
+        }
+    }
+    
     public ArrayList<UserInfo> returnUserInfo() throws IOException {
         return userInfo;
     }
@@ -261,5 +288,8 @@ public class FileMgmt implements FileInterface {
     }
     public ArrayList<CheckOutInfo> returnCheckOutInfo() throws IOException {
         return checkOutInfo;
+    }
+    public ArrayList<RoomInfo> returnRoomInfo() throws IOException {
+        return roomInfo;
     }
 }
