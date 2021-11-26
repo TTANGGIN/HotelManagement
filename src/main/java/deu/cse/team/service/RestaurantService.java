@@ -39,7 +39,9 @@ public class RestaurantService extends javax.swing.JFrame {
             String[] Arr;
             while ((array = reader.readLine()) != null) {
                 Arr = array.split("\t");
-                jComboBox1.addItem(Arr[4]);
+                if (Arr[9].equals("N")) {
+                    jComboBox1.addItem(Arr[4]);
+                }
             }
         } catch (IOException e) {
         }
@@ -307,7 +309,7 @@ public class RestaurantService extends javax.swing.JFrame {
             String str = jComboBox1.getSelectedItem().toString();
             while ((array = reader.readLine()) != null) {
                 Arr = array.split("\t");
-                if(str.equals(Arr[4])){
+                if (str.equals(Arr[4])) {
                     jTextField1.setText(Arr[3]);
                     jTextField2.setText(Arr[0]);
                 }
@@ -318,10 +320,10 @@ public class RestaurantService extends javax.swing.JFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
-        try{
+        try {
             int row = jTable2.getSelectedRow();
             jTable2.setValueAt(0, row, 1);
-        }catch (Exception e){         
+        } catch (Exception e) {
         }
     }//GEN-LAST:event_jButton5ActionPerformed
 
@@ -331,11 +333,11 @@ public class RestaurantService extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void loadServiceList() {
-        DefaultTableModel modela = (DefaultTableModel)jTable1.getModel(); // jTable 초기화
-        DefaultTableModel modelb= (DefaultTableModel)jTable2.getModel();
+        DefaultTableModel modela = (DefaultTableModel) jTable1.getModel(); // jTable 초기화
+        DefaultTableModel modelb = (DefaultTableModel) jTable2.getModel();
         modela.setNumRows(0);
         modelb.setNumRows(0);
-        
+
         ArrayList<ServiceListInfo> serviceListInfo = new ArrayList<>(); //리스트 작성
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         try {
@@ -344,11 +346,10 @@ public class RestaurantService extends javax.swing.JFrame {
             fileMgmt.splitServiceListFileData();
             serviceListInfo = fileMgmt.returnServiceListInfo();
             for (int i = 0; i < serviceListInfo.size(); i++) {
-                if(serviceListInfo.get(i).getService().equals("레스토랑서비스")){
-                   model.addRow(new Object[]{
-                    serviceListInfo.get(i).getProductname(),
-                    serviceListInfo.get(i).getPrice(),
-                }); 
+                if (serviceListInfo.get(i).getService().equals("레스토랑서비스")) {
+                    model.addRow(new Object[]{
+                        serviceListInfo.get(i).getProductname(),
+                        serviceListInfo.get(i).getPrice(),});
                 }
             }
         } catch (IOException ex) {
@@ -362,7 +363,7 @@ public class RestaurantService extends javax.swing.JFrame {
         String str = dayTime.format(new Date(time));
         return str;
     }
-    
+
     /**
      * @param args the command line arguments
      */
@@ -397,7 +398,7 @@ public class RestaurantService extends javax.swing.JFrame {
             }
         });
     }
-    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

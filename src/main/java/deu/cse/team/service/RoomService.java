@@ -33,14 +33,16 @@ public class RoomService extends javax.swing.JFrame {
 
         jTextField1.setEditable(false);
         jTextField2.setEditable(false);
-        
+
         try (FileReader r = new FileReader("C:\\DB\\CheckInList.txt")) {
             BufferedReader reader = new BufferedReader(r);
             String array;
             String[] Arr;
             while ((array = reader.readLine()) != null) {
                 Arr = array.split("\t");
-                jComboBox1.addItem(Arr[4]);
+                if (Arr[9].equals("N")) {
+                    jComboBox1.addItem(Arr[4]);
+                }
             }
         } catch (IOException e) {
         }
@@ -258,7 +260,7 @@ public class RoomService extends javax.swing.JFrame {
             String str = jComboBox1.getSelectedItem().toString();
             while ((array = reader.readLine()) != null) {
                 Arr = array.split("\t");
-                if(str.equals(Arr[4])){
+                if (str.equals(Arr[4])) {
                     jTextField1.setText(Arr[3]);
                     jTextField2.setText(Arr[0]);
                 }
@@ -306,7 +308,7 @@ public class RoomService extends javax.swing.JFrame {
                 money = money.concat("/" + String.valueOf(jTable2.getValueAt(i, 1)));
             }
         }
-        
+
         String str = index + "\t" + service + "\t" + room + "\t" + time + "\t" + productname + "\t" + money;
         try {
             fileMgmt.writeServiceOrderListFileData("C:\\DB\\ServiceOrderList.txt", str);
@@ -319,10 +321,10 @@ public class RoomService extends javax.swing.JFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
-        try{
+        try {
             int row = jTable2.getSelectedRow();
             jTable2.setValueAt(0, row, 1);
-        }catch (Exception e){         
+        } catch (Exception e) {
         }
     }//GEN-LAST:event_jButton5ActionPerformed
 
@@ -367,11 +369,11 @@ public class RoomService extends javax.swing.JFrame {
     }
 
     private void loadServiceList() {
-        DefaultTableModel modela = (DefaultTableModel)jTable1.getModel(); // jTable 초기화
-        DefaultTableModel modelb= (DefaultTableModel)jTable2.getModel();
+        DefaultTableModel modela = (DefaultTableModel) jTable1.getModel(); // jTable 초기화
+        DefaultTableModel modelb = (DefaultTableModel) jTable2.getModel();
         modela.setNumRows(0);
         modelb.setNumRows(0);
-        
+
         ArrayList<ServiceListInfo> serviceListInfo = new ArrayList<>(); //리스트 작성
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         try {
@@ -380,11 +382,10 @@ public class RoomService extends javax.swing.JFrame {
             fileMgmt.splitServiceListFileData();
             serviceListInfo = fileMgmt.returnServiceListInfo();
             for (int i = 0; i < serviceListInfo.size(); i++) {
-                if(serviceListInfo.get(i).getService().equals("룸서비스")){
-                   model.addRow(new Object[]{
-                    serviceListInfo.get(i).getProductname(),
-                    serviceListInfo.get(i).getPrice(),
-                }); 
+                if (serviceListInfo.get(i).getService().equals("룸서비스")) {
+                    model.addRow(new Object[]{
+                        serviceListInfo.get(i).getProductname(),
+                        serviceListInfo.get(i).getPrice(),});
                 }
             }
         } catch (IOException ex) {
