@@ -32,6 +32,7 @@ public class CheckOut extends javax.swing.JFrame {
      */
     public CheckOut() {
         initComponents();
+        setLocationRelativeTo(this);
         loadRoom();
     }
 
@@ -46,23 +47,23 @@ public class CheckOut extends javax.swing.JFrame {
 
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        CheckOutRoomCB = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
+        CheckOutEnterField = new javax.swing.JTextField();
+        CheckOutExitField = new javax.swing.JTextField();
+        CheckOutExtraDateField = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        CheckOutServicePriceField = new javax.swing.JTextField();
+        CheckOutExtraPriceField = new javax.swing.JTextField();
+        CheckOutOkBtn = new javax.swing.JButton();
+        CheckOutCancelBtn = new javax.swing.JButton();
+        CheckOutSearchBtn = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        CheckOutRoomPriceField = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
+        CheckOutTotalPriceField = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -70,9 +71,9 @@ public class CheckOut extends javax.swing.JFrame {
 
         jLabel3.setText("입실일자");
 
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        CheckOutRoomCB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                CheckOutRoomCBActionPerformed(evt);
             }
         });
 
@@ -80,48 +81,53 @@ public class CheckOut extends javax.swing.JFrame {
 
         jLabel5.setText("추가일자");
 
-        jTextField2.setEditable(false);
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        CheckOutEnterField.setEditable(false);
+        CheckOutEnterField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                CheckOutEnterFieldActionPerformed(evt);
             }
         });
 
-        jTextField3.setEditable(false);
+        CheckOutExitField.setEditable(false);
 
-        jTextField4.setEditable(false);
+        CheckOutExtraDateField.setEditable(false);
 
         jLabel6.setText("서비스 이용 금액");
 
         jLabel7.setText("추가 금액");
 
-        jTextField5.setEditable(false);
+        CheckOutServicePriceField.setEditable(false);
 
-        jTextField6.setEditable(false);
+        CheckOutExtraPriceField.setEditable(false);
 
-        jButton1.setText("체크아웃");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        CheckOutOkBtn.setText("체크아웃");
+        CheckOutOkBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                CheckOutOkBtnActionPerformed(evt);
             }
         });
 
-        jButton2.setText("이전으로");
-
-        jButton3.setText("검색");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        CheckOutCancelBtn.setText("이전으로");
+        CheckOutCancelBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                CheckOutCancelBtnActionPerformed(evt);
+            }
+        });
+
+        CheckOutSearchBtn.setText("검색");
+        CheckOutSearchBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CheckOutSearchBtnActionPerformed(evt);
             }
         });
 
         jLabel8.setText("객실 금액");
 
-        jTextField1.setEditable(false);
+        CheckOutRoomPriceField.setEditable(false);
 
         jLabel9.setText("총 금액");
 
-        jTextField7.setEditable(false);
+        CheckOutTotalPriceField.setEditable(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -129,31 +135,31 @@ public class CheckOut extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(270, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(CheckOutOkBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(CheckOutCancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37))
             .addGroup(layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(CheckOutRoomCB, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton3)
+                .addComponent(CheckOutSearchBtn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField4))
+                        .addComponent(CheckOutExtraDateField))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(CheckOutEnterField, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(CheckOutExitField, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(24, 24, 24))
             .addGroup(layout.createSequentialGroup()
                 .addGap(44, 44, 44)
@@ -166,11 +172,11 @@ public class CheckOut extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jTextField5)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(CheckOutServicePriceField)
+                        .addComponent(CheckOutRoomPriceField, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jTextField7)
-                        .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(CheckOutTotalPriceField)
+                        .addComponent(CheckOutExtraPriceField, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -179,57 +185,57 @@ public class CheckOut extends javax.swing.JFrame {
                 .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(CheckOutEnterField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CheckOutExitField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(CheckOutRoomCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CheckOutSearchBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(CheckOutExtraDateField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(CheckOutRoomPriceField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(CheckOutServicePriceField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(CheckOutExtraPriceField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(CheckOutTotalPriceField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(CheckOutOkBtn)
+                    .addComponent(CheckOutCancelBtn))
                 .addGap(25, 25, 25))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void CheckOutRoomCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckOutRoomCBActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    }//GEN-LAST:event_CheckOutRoomCBActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void CheckOutEnterFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckOutEnterFieldActionPerformed
         // TODO add your handling code here:
 
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_CheckOutEnterFieldActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void CheckOutSearchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckOutSearchBtnActionPerformed
         // TODO add your handling code here:
         
-        String str = jComboBox1.getSelectedItem().toString();
+        String str = CheckOutRoomCB.getSelectedItem().toString();
         if(!str.equals("선택")){
             try {
             String value;
@@ -238,8 +244,8 @@ public class CheckOut extends javax.swing.JFrame {
             while ((value = is.readLine()) != null) {
                 Arr = value.split("\t");
                 if (str.equals(Arr[4])) {
-                    jTextField2.setText("" + Arr[1]);
-                    jTextField3.setText("" + Arr[2]);
+                    CheckOutEnterField.setText("" + Arr[1]);
+                    CheckOutExitField.setText("" + Arr[2]);
                 }
             }
             is.close();
@@ -253,19 +259,19 @@ public class CheckOut extends javax.swing.JFrame {
         
         roomPrice(); //객실 금액
         
-        int totalPrice = Integer.parseInt(jTextField1.getText())+Integer.parseInt(jTextField5.getText())+Integer.parseInt(jTextField6.getText());
-        jTextField7.setText(Integer.toString(totalPrice));
+        int totalPrice = Integer.parseInt(CheckOutRoomPriceField.getText())+Integer.parseInt(CheckOutServicePriceField.getText())+Integer.parseInt(CheckOutExtraPriceField.getText());
+        CheckOutTotalPriceField.setText(Integer.toString(totalPrice));
         }
         else {
             JOptionPane.showMessageDialog(null, "호실을 선택해주세요.");
         }
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_CheckOutSearchBtnActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void CheckOutOkBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckOutOkBtnActionPerformed
         // TODO add your handling code here:
         FileMgmt fileMgmt = new FileMgmt();
         //int row = CheckInBookingTable.getSelectedRow();
-        String str = jComboBox1.getSelectedItem().toString();
+        String str = CheckOutRoomCB.getSelectedItem().toString();
         try (FileReader r = new FileReader("C:\\DB\\CheckInList.txt")) {
             BufferedReader reader = new BufferedReader(r);
             String array;
@@ -318,11 +324,18 @@ public class CheckOut extends javax.swing.JFrame {
             }
         } catch (Exception e) {
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+        
+        
+    }//GEN-LAST:event_CheckOutOkBtnActionPerformed
+
+    private void CheckOutCancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckOutCancelBtnActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_CheckOutCancelBtnActionPerformed
     
     private void loadRoom(){
-        jComboBox1.removeAllItems();
-        jComboBox1.addItem("선택");
+        CheckOutRoomCB.removeAllItems();
+        CheckOutRoomCB.addItem("선택");
         try (FileReader r = new FileReader("C:\\DB\\CheckInList.txt")) {
             BufferedReader reader = new BufferedReader(r);
             String value;
@@ -331,7 +344,7 @@ public class CheckOut extends javax.swing.JFrame {
             while ((value = reader.readLine()) != null) {
                 Arr = value.split("\t");
                 if(Arr[9].equals("N")){
-                    jComboBox1.addItem(Arr[4]);
+                    CheckOutRoomCB.addItem(Arr[4]);
                 }
             }
             r.close();
@@ -339,7 +352,7 @@ public class CheckOut extends javax.swing.JFrame {
         }
     }
     private void roomPrice(){ //객실 금액
-        String room = jComboBox1.getSelectedItem().toString();
+        String room = CheckOutRoomCB.getSelectedItem().toString();
         try {
             String value;
             String[] Arr;
@@ -348,7 +361,7 @@ public class CheckOut extends javax.swing.JFrame {
                 Arr = value.split("\t");
                 if (room.equals(Arr[4])) {
                     
-                    jTextField1.setText(Arr[8]);
+                    CheckOutRoomPriceField.setText(Arr[8]);
                 }
             }
             is.close();
@@ -356,7 +369,7 @@ public class CheckOut extends javax.swing.JFrame {
         }
     }
     private void servicePrice(){
-        String room = jComboBox1.getSelectedItem().toString();
+        String room = CheckOutRoomCB.getSelectedItem().toString();
         int money = 0;
         try {
             String value;
@@ -375,7 +388,7 @@ public class CheckOut extends javax.swing.JFrame {
             is.close();
         } catch (IOException e) {
         }
-        jTextField5.setText(Integer.toString(money));
+        CheckOutServicePriceField.setText(Integer.toString(money));
     }
     
     private void currentDate() { //현재 날짜, 추가금액
@@ -387,7 +400,7 @@ public class CheckOut extends javax.swing.JFrame {
         String date = dayTime.format(new Date(time));
         
         String currentdate = date;
-        String exitdate = jTextField3.getText();
+        String exitdate = CheckOutExitField.getText();
 
         try {
             format = new SimpleDateFormat("yyyy-MM-dd");
@@ -395,13 +408,13 @@ public class CheckOut extends javax.swing.JFrame {
         } catch (ParseException ex) {
             Logger.getLogger(CheckOut.class.getName()).log(Level.SEVERE, null, ex);
         }
-        jTextField4.setText(currentdate);
+        CheckOutExtraDateField.setText(currentdate);
 
         diffDays /= (24 * 60 * 60 * 1000);
         
         //추가금액
         DefaultRoomRate defaultRoomRate = new DefaultRoomRate();
-        jTextField6.setText(defaultRoomRate.DefaultRoomRate((int) diffDays));
+        CheckOutExtraPriceField.setText(defaultRoomRate.DefaultRoomRate((int) diffDays));
     }
 
     /**
@@ -440,10 +453,17 @@ public class CheckOut extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JButton CheckOutCancelBtn;
+    private javax.swing.JTextField CheckOutEnterField;
+    private javax.swing.JTextField CheckOutExitField;
+    private javax.swing.JTextField CheckOutExtraDateField;
+    private javax.swing.JTextField CheckOutExtraPriceField;
+    private javax.swing.JButton CheckOutOkBtn;
+    private javax.swing.JComboBox<String> CheckOutRoomCB;
+    private javax.swing.JTextField CheckOutRoomPriceField;
+    private javax.swing.JButton CheckOutSearchBtn;
+    private javax.swing.JTextField CheckOutServicePriceField;
+    private javax.swing.JTextField CheckOutTotalPriceField;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -452,12 +472,5 @@ public class CheckOut extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
     // End of variables declaration//GEN-END:variables
 }
