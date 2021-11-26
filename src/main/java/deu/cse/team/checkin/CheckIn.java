@@ -235,7 +235,7 @@ public class CheckIn extends javax.swing.JFrame {
                 if (str.equals(Arr[0]) && state.equals(Arr[9])) { // 고유번호가 str과 같으면 info에 정보 저장
                     String info = Arr[0] + "\t" + Arr[1] + "\t" + Arr[2] + "\t"
                             + Arr[3] + "\t" + Arr[4] + "\t" + Arr[5] + "\t"
-                            + Arr[6] + "\t" + Arr[7] + "\t" + Arr[8];
+                            + Arr[6] + "\t" + Arr[7] + "\t" + Arr[8] + "\t" + "N";
                     try {
                         fileMgmt.writeCheckInFileData("C:\\DB\\CheckInList.txt", info);
                     } catch (IOException ex) {
