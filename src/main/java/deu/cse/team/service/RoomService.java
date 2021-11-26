@@ -5,16 +5,16 @@
  */
 package deu.cse.team.service;
 
+import deu.cse.team.source.CurrentTime;
 import deu.cse.team.source.FileMgmt;
-import deu.cse.team.source.ServiceListInfo;
+import deu.cse.team.source.InitRoomComboBox;
+import deu.cse.team.source.LoadServiceList;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -30,24 +30,8 @@ public class RoomService extends javax.swing.JFrame {
     public RoomService() {
         initComponents();
         setLocationRelativeTo(this);
-
-        jTextField1.setEditable(false);
-        jTextField2.setEditable(false);
-
-        try (FileReader r = new FileReader("C:\\DB\\CheckInList.txt")) {
-            BufferedReader reader = new BufferedReader(r);
-            String array;
-            String[] Arr;
-            while ((array = reader.readLine()) != null) {
-                Arr = array.split("\t");
-                if (Arr[9].equals("N")) {
-                    jComboBox1.addItem(Arr[4]);
-                }
-            }
-        } catch (IOException e) {
-        }
-
-        loadServiceList();
+        new InitRoomComboBox((DefaultComboBoxModel) jComboBox1.getModel());
+        initServiceList();
     }
 
     /**
@@ -252,7 +236,7 @@ public class RoomService extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        loadServiceList();
+        initServiceList();
         try (FileReader r = new FileReader("C:\\DB\\CheckInList.txt")) {
             BufferedReader reader = new BufferedReader(r);
             String array;
@@ -296,7 +280,7 @@ public class RoomService extends javax.swing.JFrame {
         String index = jTextField2.getText();
         String service = "룸서비스";
         String room = jComboBox1.getSelectedItem().toString();
-        String time = currentTime();
+        String time = new CurrentTime().getCurrentTime();
         String productname = null;
         String money = null;
         for (int i = 0; i < jTable2.getRowCount(); i++) {
@@ -316,7 +300,7 @@ public class RoomService extends javax.swing.JFrame {
             Logger.getLogger(RoomService.class.getName()).log(Level.SEVERE, null, ex);
         }
         JOptionPane.showMessageDialog(null, "주문이 완료되었습니다.");
-        loadServiceList();
+        initServiceList();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -333,6 +317,13 @@ public class RoomService extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jButton6ActionPerformed
 
+    private void initServiceList() {
+        DefaultTableModel modelA = (DefaultTableModel)jTable1.getModel(); // jTable 초기화
+        DefaultTableModel modelB = (DefaultTableModel)jTable2.getModel();
+        modelA.setNumRows(0);
+        modelB.setNumRows(0);
+        new LoadServiceList(modelA, "룸서비스");
+    }
     /**
      * @param args the command line arguments
      */
@@ -367,39 +358,7 @@ public class RoomService extends javax.swing.JFrame {
             }
         });
     }
-
-    private void loadServiceList() {
-        DefaultTableModel modela = (DefaultTableModel) jTable1.getModel(); // jTable 초기화
-        DefaultTableModel modelb = (DefaultTableModel) jTable2.getModel();
-        modela.setNumRows(0);
-        modelb.setNumRows(0);
-
-        ArrayList<ServiceListInfo> serviceListInfo = new ArrayList<>(); //리스트 작성
-        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-        try {
-            FileMgmt fileMgmt = new FileMgmt();
-            fileMgmt.readServiceListFileData("C:\\DB\\ServiceList.txt");
-            fileMgmt.splitServiceListFileData();
-            serviceListInfo = fileMgmt.returnServiceListInfo();
-            for (int i = 0; i < serviceListInfo.size(); i++) {
-                if (serviceListInfo.get(i).getService().equals("룸서비스")) {
-                    model.addRow(new Object[]{
-                        serviceListInfo.get(i).getProductname(),
-                        serviceListInfo.get(i).getPrice(),});
-                }
-            }
-        } catch (IOException ex) {
-            Logger.getLogger(RoomService.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    private String currentTime() { // 현재시간 반환 함수
-        long time = System.currentTimeMillis();
-        SimpleDateFormat dayTime = new SimpleDateFormat("yyyy-MM-dd/HH:mm:ss");
-        String str = dayTime.format(new Date(time));
-        return str;
-    }
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;

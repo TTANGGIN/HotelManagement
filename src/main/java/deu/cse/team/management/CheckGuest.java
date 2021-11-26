@@ -194,8 +194,7 @@ public class CheckGuest extends javax.swing.JFrame {
                 + ExitDateCB2.getSelectedItem().toString()
                 + ExitDateCB3.getSelectedItem().toString();
         if (Integer.parseInt(entranceDate) <= Integer.parseInt(exitDate)) {
-            LoadBookingData loadBookingData = new LoadBookingData();
-            loadBookingData.loadData(model, Integer.parseInt(entranceDate), Integer.parseInt(exitDate));
+            new LoadBookingData(model, Integer.parseInt(entranceDate), Integer.parseInt(exitDate));
         } else {
             JOptionPane.showMessageDialog(null, "날짜가 유효하지 않습니다.");
         }

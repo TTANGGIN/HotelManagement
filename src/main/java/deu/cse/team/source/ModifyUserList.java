@@ -16,10 +16,8 @@ import javax.swing.table.DefaultTableModel;
  * @author CHANG
  */
 public class ModifyUserList {
-    public void modifyData(DefaultTableModel model) {
-        PrintWriter pw = null;
-        try {
-            pw = new PrintWriter("C:\\DB\\UserList.txt");
+    public ModifyUserList(DefaultTableModel model) {
+        try (PrintWriter pw = new PrintWriter("C:\\DB\\UserList.txt")) {
             for (int i = 0; i < model.getRowCount(); i++) {
                 String data = String.format("%s\t%s\t%s", 
                         model.getValueAt(i, 0), 
@@ -29,8 +27,6 @@ public class ModifyUserList {
             }
         } catch (IOException ex) {
             Logger.getLogger(ModifyUserList.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            pw.close();
         }
     }
 }

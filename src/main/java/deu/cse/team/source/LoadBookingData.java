@@ -5,7 +5,6 @@
  */
 package deu.cse.team.source;
 
-import deu.cse.team.booking.Booking;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -18,7 +17,7 @@ import javax.swing.table.DefaultTableModel;
  * @author CHANG
  */
 public class LoadBookingData {
-    public void loadData(DefaultTableModel model) {
+    public LoadBookingData(DefaultTableModel model) {
         ArrayList<BookingInfo> bookingInfo = new ArrayList<>();
         try {
             FileMgmt fileMgmt = new FileMgmt();
@@ -41,11 +40,11 @@ public class LoadBookingData {
                 });
             }
         } catch (IOException ex) {
-            Logger.getLogger(Booking.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(LoadBookingData.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
-    public void loadData(DefaultTableModel model, int entrance, int exit) {
+    public LoadBookingData(DefaultTableModel model, int entrance, int exit) {
         ArrayList<BookingInfo> bookingInfo = new ArrayList<>();
         try {
             FileMgmt fileMgmt = new FileMgmt();
@@ -71,7 +70,7 @@ public class LoadBookingData {
                 }
             }
         } catch (IOException ex) {
-            Logger.getLogger(Booking.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(LoadBookingData.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

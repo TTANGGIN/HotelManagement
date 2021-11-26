@@ -5,6 +5,7 @@
  */
 package deu.cse.team.checkout;
 
+import deu.cse.team.source.CurrentTime;
 import deu.cse.team.source.DefaultRoomRate;
 import deu.cse.team.source.FileMgmt;
 import java.io.BufferedReader;
@@ -13,7 +14,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
@@ -394,27 +394,21 @@ public class CheckOut extends javax.swing.JFrame {
     private void currentDate() { //현재 날짜, 추가금액
         long diffDays = 0;
         SimpleDateFormat format;
-
-        long time = System.currentTimeMillis();
-        SimpleDateFormat dayTime = new SimpleDateFormat("yyyy-MM-dd");
-        String date = dayTime.format(new Date(time));
-        
-        String currentdate = date;
-        String exitdate = CheckOutExitField.getText();
+        String currentDate = new CurrentTime().getCurrentTime();
+        String exitDate = CheckOutExitField.getText();
 
         try {
             format = new SimpleDateFormat("yyyy-MM-dd");
-            diffDays = format.parse(currentdate).getTime() - format.parse(exitdate).getTime();
+            diffDays = format.parse(currentDate).getTime() - format.parse(exitDate).getTime();
         } catch (ParseException ex) {
             Logger.getLogger(CheckOut.class.getName()).log(Level.SEVERE, null, ex);
         }
-        CheckOutExtraDateField.setText(currentdate);
+        CheckOutExtraDateField.setText(currentDate);
 
         diffDays /= (24 * 60 * 60 * 1000);
         
         //추가금액
-        DefaultRoomRate defaultRoomRate = new DefaultRoomRate();
-        CheckOutExtraPriceField.setText(defaultRoomRate.DefaultRoomRate((int) diffDays));
+        CheckOutExtraPriceField.setText(new DefaultRoomRate().DefaultRoomRate((int) diffDays));
     }
 
     /**

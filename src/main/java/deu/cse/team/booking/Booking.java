@@ -827,8 +827,7 @@ public class Booking extends javax.swing.JFrame {
         ModifyBookingDlg.setSize(550, 800);
         DefaultTableModel model = (DefaultTableModel) ModifyBookingTable.getModel();
         model.setRowCount(0);
-        LoadBookingData loadBookingData = new LoadBookingData();
-        loadBookingData.loadData(model);
+        new LoadBookingData(model);
     }//GEN-LAST:event_BookingModifyBtnActionPerformed
 
     private void ModifySearchIdxBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModifySearchIdxBtnActionPerformed
@@ -883,8 +882,7 @@ public class Booking extends javax.swing.JFrame {
             data[7] = "C";
             model.removeRow(row);
             model.insertRow(row, data);
-            ModifyBookingData modifyBookingData = new ModifyBookingData();
-            modifyBookingData.modifyData(model);
+            new ModifyBookingData(model);
             ModifyBookingDlg.dispose();
         }
     }//GEN-LAST:event_ModifyBookingCancelBtnActionPerformed
@@ -906,8 +904,7 @@ public class Booking extends javax.swing.JFrame {
             ModifyAddressLabel.getText(),
             ModifyRateLabel.getText()
         });
-        ModifyBookingData modifyBookingData = new ModifyBookingData();
-        modifyBookingData.modifyData(model);
+        new ModifyBookingData(model);
         JOptionPane.showMessageDialog(null, "수정완료.");
     }//GEN-LAST:event_ModifyOKBtnActionPerformed
 

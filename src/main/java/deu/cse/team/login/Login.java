@@ -7,12 +7,11 @@ package deu.cse.team.login;
 
 import deu.cse.team.mainmenu.MainMenu;
 import deu.cse.team.source.AdminInfo;
+import deu.cse.team.source.CurrentTime;
 import deu.cse.team.source.FileMgmt;
 import deu.cse.team.source.UserInfo;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -160,8 +159,7 @@ public class Login extends javax.swing.JFrame {
         }
         
         // 접속 로그 기록을 위한 시간 기록
-        SimpleDateFormat format1 = new SimpleDateFormat ( "yyyy-MM-dd HH:mm:ss");
-        String time = format1.format(new Date());
+        String time = new CurrentTime().getCurrentTime();
         
         if (isAdmin) {
             for (int i = 0 ; i < adminInfo.size() ; i++){

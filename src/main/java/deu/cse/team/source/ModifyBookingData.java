@@ -16,10 +16,8 @@ import javax.swing.table.DefaultTableModel;
  * @author CHANG
  */
 public class ModifyBookingData {
-    public void modifyData(DefaultTableModel model) {
-        PrintWriter pw = null;
-        try {
-            pw = new PrintWriter("C:\\DB\\BookingList.txt");
+    public ModifyBookingData(DefaultTableModel model) {
+        try (PrintWriter pw = new PrintWriter("C:\\DB\\BookingList.txt");) {  
             for (int i = 0; i < model.getRowCount(); i++) {
                 String data = String.format("%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s", 
                         model.getValueAt(i, 0), model.getValueAt(i, 2),
@@ -31,8 +29,6 @@ public class ModifyBookingData {
             }
         } catch (IOException ex) {
             Logger.getLogger(ModifyBookingData.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            pw.close();
         }
     }
 }
