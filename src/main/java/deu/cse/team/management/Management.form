@@ -106,7 +106,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="jButton4">
       <Properties>
-        <Property name="text" type="java.lang.String" value="&#xac1d;&#xc2e4; / &#xc694;&#xae08; / &#xba54;&#xb274; / &#xac00;&#xaca9; &#xc815;&#xbcf4; &#xd655;&#xc778;"/>
+        <Property name="text" type="java.lang.String" value="&#xac1d;&#xc2e4; / &#xc0c1;&#xd488; &#xad00;&#xb9ac;"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton4ActionPerformed"/>

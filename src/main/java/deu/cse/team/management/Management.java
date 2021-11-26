@@ -16,6 +16,8 @@ public class Management extends javax.swing.JFrame {
      */
     public Management() {
         initComponents();
+        setLocationRelativeTo(this);
+        setTitle("Management");
     }
 
     /**
@@ -61,7 +63,7 @@ public class Management extends javax.swing.JFrame {
             }
         });
 
-        jButton4.setText("객실 / 요금 / 메뉴 / 가격 정보 확인");
+        jButton4.setText("객실 / 상품 관리");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
@@ -125,10 +127,7 @@ public class Management extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        CheckGuest manage1 = new CheckGuest();
-        manage1.setVisible(true);
-
-
+        new CheckGuest().setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -147,14 +146,12 @@ public class Management extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        Manage4 manage4 = new Manage4();
-        manage4.setVisible(true);
+        new SelectManageMenu().setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
-        MgmtUser manage5 = new MgmtUser();
-        manage5.setVisible(true);
+        new MgmtUser().setVisible(true);
     }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
