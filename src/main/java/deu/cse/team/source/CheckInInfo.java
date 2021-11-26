@@ -20,8 +20,9 @@ public class CheckInInfo {
     String phonenumber;
     String adress;
     String money;
+    String state;
 
-    public CheckInInfo(String index, String entrance, String exit, String name, String room, String personnel, String phonenumber, String adress, String money) {
+    public CheckInInfo(String index, String entrance, String exit, String name, String room, String personnel, String phonenumber, String adress, String money, String state) {
         this.entrance = entrance; // 입실
         this.exit = exit; // 퇴실
         this.name = name; // 이름
@@ -30,7 +31,7 @@ public class CheckInInfo {
         this.phonenumber = phonenumber; // 전화번호
         this.adress = adress; // 주소
         this.money = money; // 금액
-
+        this.state = state;
     }
 
     public String getIndex() {
@@ -68,6 +69,10 @@ public class CheckInInfo {
     public String getMoney() {
         return money;
     }
+    
+    public String getState() {
+        return state;
+    }
 
     public void setIndex(String index) {
         this.index = index;
@@ -103,5 +108,9 @@ public class CheckInInfo {
 
     public void setMoney(String money) {
         this.money = money;
+    }
+    
+    public void setState(String state) {
+        this.state = state;
     }
 }
