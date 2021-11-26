@@ -294,8 +294,7 @@ public class MgmtUser extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (JOptionPane.showConfirmDialog(this, "변경사항을 저장하시겠습니까?", "", JOptionPane.YES_NO_OPTION) == 0) {
             DefaultTableModel model = (DefaultTableModel) UserTable.getModel();
-            ModifyUserList modifyUserList = new ModifyUserList();
-            modifyUserList.modifyData(model);
+            new ModifyUserList(model);
             dispose();
         }
     }//GEN-LAST:event_MgmtUserModifyOkBtnActionPerformed
