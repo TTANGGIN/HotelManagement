@@ -23,18 +23,14 @@ public class FileMgmt implements FileInterface {
     ArrayList<String> readUserInfo = new ArrayList();
     ArrayList<String> readAdminInfo = new ArrayList();
     ArrayList<String> readBookingInfo = new ArrayList();
-    ArrayList<String> readCheckInInfo = new ArrayList();
     ArrayList<String> readServiceListInfo = new ArrayList();
     ArrayList<String> readServiceOrderListInfo = new ArrayList();
-    ArrayList<String> readCheckOutInfo = new ArrayList();
     ArrayList<String> readRoomInfo = new ArrayList();
     ArrayList<UserInfo> userInfo = new ArrayList<>();
     ArrayList<AdminInfo> adminInfo = new ArrayList<>();
     ArrayList<BookingInfo> bookingInfo = new ArrayList<>();
-    ArrayList<CheckInInfo> checkInInfo = new ArrayList<>();
     ArrayList<ServiceListInfo> serviceListInfo = new ArrayList<>();
     ArrayList<ServiceOrderListInfo> serviceOrderListInfo = new ArrayList<>();
-    ArrayList<CheckOutInfo> checkOutInfo = new ArrayList<>();
     ArrayList<RoomInfo> roomInfo = new ArrayList<>();
     
     @Override
@@ -165,12 +161,6 @@ public class FileMgmt implements FileInterface {
         pw.flush();
         pw.close();
     }
-    public void writeCheckInFileData(String path, String data) throws IOException {
-        PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(path,true)),true);
-        pw.write(data+"\n");
-        pw.flush();
-        pw.close();
-    }
     public void writeServiceListFileData(String path, String data) throws IOException {
         PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(path,true)),true);
         pw.write(data+"\n");
@@ -178,12 +168,6 @@ public class FileMgmt implements FileInterface {
         pw.close();
     }
     public void writeServiceOrderListFileData(String path, String data) throws IOException {
-        PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(path,true)),true);
-        pw.write(data+"\n");
-        pw.flush();
-        pw.close();
-    }
-    public void writeCheckOutFileData(String path, String data) throws IOException {
         PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(path,true)),true);
         pw.write(data+"\n");
         pw.flush();
@@ -218,15 +202,6 @@ public class FileMgmt implements FileInterface {
             bookingInfo.add(new BookingInfo(str[0],str[1],str[2],str[3],str[4],str[5],str[6],str[7],str[8],str[9]));
         }
     }
-    public void splitCheckInFileData() {
-        String line;
-
-        for (int i = 0; i < readCheckInInfo.size(); i++) {
-            line = readCheckInInfo.get(i);
-            String[] str = line.split("\t");
-            checkInInfo.add(new CheckInInfo(str[0],str[1],str[2],str[3],str[4],str[5],str[6],str[7],str[8],str[9]));
-        }
-    }
     public void splitServiceListFileData() {
         String line;
 
@@ -243,15 +218,6 @@ public class FileMgmt implements FileInterface {
             line = readServiceOrderListInfo.get(i);
             String[] str = line.split("\t");
             serviceOrderListInfo.add(new ServiceOrderListInfo(str[0],str[1],str[2],str[3],str[4],str[5]));
-        }
-    }
-    public void splitCheckOutFileData() {
-        String line;
-
-        for (int i = 0; i < readCheckOutInfo.size(); i++) {
-            line = readCheckOutInfo.get(i);
-            String[] str = line.split("\t");
-            checkOutInfo.add(new CheckOutInfo(str[0],str[1],str[2],str[3],str[4],str[5],str[6],str[7],str[8]));
         }
     }
     
@@ -277,17 +243,11 @@ public class FileMgmt implements FileInterface {
     public ArrayList<BookingInfo> returnBookingInfo() throws IOException {
         return bookingInfo;
     }
-    public ArrayList<CheckInInfo> returnCheckInInfo() throws IOException {
-        return checkInInfo;
-    }
     public ArrayList<ServiceListInfo> returnServiceListInfo() throws IOException {
         return serviceListInfo;
     }
     public ArrayList<ServiceOrderListInfo> returnServiceOrderListInfo() throws IOException {
         return serviceOrderListInfo;
-    }
-    public ArrayList<CheckOutInfo> returnCheckOutInfo() throws IOException {
-        return checkOutInfo;
     }
     public ArrayList<RoomInfo> returnRoomInfo() throws IOException {
         return roomInfo;

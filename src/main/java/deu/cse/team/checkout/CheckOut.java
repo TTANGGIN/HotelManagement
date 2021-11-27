@@ -5,20 +5,19 @@
  */
 package deu.cse.team.checkout;
 
+import deu.cse.team.source.BookingInfo;
 import deu.cse.team.source.CurrentTime;
 import deu.cse.team.source.DefaultRoomRate;
 import deu.cse.team.source.FileMgmt;
-import java.io.BufferedReader;
-import java.io.FileReader;
+import deu.cse.team.source.InitRoomComboBox;
+import deu.cse.team.source.ServiceOrderListInfo;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
 /**
@@ -33,7 +32,9 @@ public class CheckOut extends javax.swing.JFrame {
     public CheckOut() {
         initComponents();
         setLocationRelativeTo(this);
-        loadRoom();
+        DefaultComboBoxModel model = (DefaultComboBoxModel) CheckOutRoomCB.getModel();
+        model.addElement("선택");
+        new InitRoomComboBox(model);
     }
 
     /**
@@ -45,6 +46,28 @@ public class CheckOut extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        PaymentTypeDlg = new javax.swing.JDialog();
+        jLabel11 = new javax.swing.JLabel();
+        PaymentCashRB = new javax.swing.JRadioButton();
+        PaymentCreditRB = new javax.swing.JRadioButton();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        CreditCardNumField1 = new javax.swing.JTextField();
+        CreditCardNumField2 = new javax.swing.JTextField();
+        CreditCardNumField3 = new javax.swing.JTextField();
+        CreditCardNumField4 = new javax.swing.JTextField();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        CreditValidMonthField = new javax.swing.JTextField();
+        jLabel18 = new javax.swing.JLabel();
+        CreditValidYearField = new javax.swing.JTextField();
+        CreditCVCField = new javax.swing.JTextField();
+        PaymentTypeOkBtn = new javax.swing.JButton();
+        PaymentTypeCancelBtn = new javax.swing.JButton();
+        jLabel19 = new javax.swing.JLabel();
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         CheckOutRoomCB = new javax.swing.JComboBox<>();
@@ -64,6 +87,171 @@ public class CheckOut extends javax.swing.JFrame {
         CheckOutRoomPriceField = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         CheckOutTotalPriceField = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        CheckOutCurrentDateField = new javax.swing.JTextField();
+        PaymentTypeBtn = new javax.swing.JButton();
+        PaymentTypeLabel = new javax.swing.JLabel();
+
+        jLabel11.setFont(new java.awt.Font("맑은 고딕", 0, 14)); // NOI18N
+        jLabel11.setText("결제 수단 선택");
+
+        buttonGroup1.add(PaymentCashRB);
+        PaymentCashRB.setSelected(true);
+        PaymentCashRB.setText("현금");
+        PaymentCashRB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PaymentCashRBActionPerformed(evt);
+            }
+        });
+
+        buttonGroup1.add(PaymentCreditRB);
+        PaymentCreditRB.setText("신용카드");
+        PaymentCreditRB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PaymentCreditRBActionPerformed(evt);
+            }
+        });
+
+        jLabel12.setText("카드번호 :");
+
+        jLabel13.setText("유효기간 :");
+
+        jLabel14.setText("CVC :");
+
+        CreditCardNumField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        CreditCardNumField1.setEnabled(false);
+
+        CreditCardNumField2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        CreditCardNumField2.setEnabled(false);
+
+        CreditCardNumField3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        CreditCardNumField3.setEnabled(false);
+
+        CreditCardNumField4.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        CreditCardNumField4.setEnabled(false);
+
+        jLabel15.setText("-");
+
+        jLabel16.setText("-");
+
+        jLabel17.setText("-");
+
+        CreditValidMonthField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        CreditValidMonthField.setEnabled(false);
+
+        jLabel18.setText("/");
+
+        CreditValidYearField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        CreditValidYearField.setEnabled(false);
+
+        CreditCVCField.setEnabled(false);
+
+        PaymentTypeOkBtn.setText("등록");
+        PaymentTypeOkBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PaymentTypeOkBtnActionPerformed(evt);
+            }
+        });
+
+        PaymentTypeCancelBtn.setText("취소");
+        PaymentTypeCancelBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PaymentTypeCancelBtnActionPerformed(evt);
+            }
+        });
+
+        jLabel19.setText("(MM/YYYY)");
+
+        javax.swing.GroupLayout PaymentTypeDlgLayout = new javax.swing.GroupLayout(PaymentTypeDlg.getContentPane());
+        PaymentTypeDlg.getContentPane().setLayout(PaymentTypeDlgLayout);
+        PaymentTypeDlgLayout.setHorizontalGroup(
+            PaymentTypeDlgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PaymentTypeDlgLayout.createSequentialGroup()
+                .addGroup(PaymentTypeDlgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PaymentTypeDlgLayout.createSequentialGroup()
+                        .addGap(48, 48, 48)
+                        .addGroup(PaymentTypeDlgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(PaymentTypeDlgLayout.createSequentialGroup()
+                                .addGroup(PaymentTypeDlgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel14)
+                                    .addComponent(jLabel13))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(PaymentTypeDlgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(PaymentTypeDlgLayout.createSequentialGroup()
+                                        .addComponent(CreditValidMonthField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel18)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(CreditValidYearField, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel19))
+                                    .addComponent(CreditCVCField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(PaymentTypeDlgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(PaymentCreditRB, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(PaymentCashRB, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(PaymentTypeDlgLayout.createSequentialGroup()
+                                .addComponent(jLabel12)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(CreditCardNumField1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(PaymentTypeDlgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel11)
+                                    .addGroup(PaymentTypeDlgLayout.createSequentialGroup()
+                                        .addComponent(jLabel15)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(CreditCardNumField2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel16)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(CreditCardNumField3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel17)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(CreditCardNumField4, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                    .addGroup(PaymentTypeDlgLayout.createSequentialGroup()
+                        .addGap(227, 227, 227)
+                        .addComponent(PaymentTypeOkBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(PaymentTypeCancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(42, Short.MAX_VALUE))
+        );
+        PaymentTypeDlgLayout.setVerticalGroup(
+            PaymentTypeDlgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PaymentTypeDlgLayout.createSequentialGroup()
+                .addGap(43, 43, 43)
+                .addComponent(jLabel11)
+                .addGap(29, 29, 29)
+                .addComponent(PaymentCashRB)
+                .addGap(18, 18, 18)
+                .addComponent(PaymentCreditRB)
+                .addGap(29, 29, 29)
+                .addGroup(PaymentTypeDlgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel12)
+                    .addComponent(CreditCardNumField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel15)
+                    .addComponent(CreditCardNumField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel16)
+                    .addComponent(CreditCardNumField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel17)
+                    .addComponent(CreditCardNumField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(PaymentTypeDlgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel13)
+                    .addGroup(PaymentTypeDlgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(CreditValidMonthField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel18)
+                        .addComponent(CreditValidYearField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel19)))
+                .addGap(18, 18, 18)
+                .addGroup(PaymentTypeDlgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel14)
+                    .addComponent(CreditCVCField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(37, 37, 37)
+                .addGroup(PaymentTypeDlgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(PaymentTypeOkBtn)
+                    .addComponent(PaymentTypeCancelBtn))
+                .addGap(26, 26, 26))
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -107,7 +295,7 @@ public class CheckOut extends javax.swing.JFrame {
             }
         });
 
-        CheckOutCancelBtn.setText("이전으로");
+        CheckOutCancelBtn.setText("이전");
         CheckOutCancelBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CheckOutCancelBtnActionPerformed(evt);
@@ -129,15 +317,28 @@ public class CheckOut extends javax.swing.JFrame {
 
         CheckOutTotalPriceField.setEditable(false);
 
+        jLabel10.setText("현재날짜");
+
+        CheckOutCurrentDateField.setEditable(false);
+
+        PaymentTypeBtn.setText("결제 수단");
+        PaymentTypeBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PaymentTypeBtnActionPerformed(evt);
+            }
+        });
+
+        PaymentTypeLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(270, Short.MAX_VALUE)
-                .addComponent(CheckOutOkBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(264, Short.MAX_VALUE)
+                .addComponent(CheckOutOkBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(CheckOutCancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(CheckOutCancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37))
             .addGroup(layout.createSequentialGroup()
                 .addGap(25, 25, 25)
@@ -146,21 +347,7 @@ public class CheckOut extends javax.swing.JFrame {
                 .addComponent(CheckOutRoomCB, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(CheckOutSearchBtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(CheckOutExtraDateField))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(CheckOutEnterField, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(CheckOutExitField, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(24, 24, 24))
+                .addGap(24, 273, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(44, 44, 44)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -170,46 +357,85 @@ public class CheckOut extends javax.swing.JFrame {
                     .addComponent(jLabel8)
                     .addComponent(jLabel9))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(CheckOutServicePriceField)
-                        .addComponent(CheckOutRoomPriceField, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(CheckOutTotalPriceField)
-                        .addComponent(CheckOutExtraPriceField, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel10)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(CheckOutCurrentDateField, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(CheckOutServicePriceField)
+                                .addComponent(CheckOutRoomPriceField, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(CheckOutTotalPriceField)
+                                .addComponent(CheckOutExtraPriceField, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel5)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(CheckOutExtraDateField))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel3)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(CheckOutEnterField, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel4)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(CheckOutExitField, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(PaymentTypeBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(PaymentTypeLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE))
+                                .addGap(38, 38, 38)))))
+                .addGap(21, 21, 21))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(CheckOutEnterField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(CheckOutExitField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2)
-                    .addComponent(CheckOutRoomCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(CheckOutSearchBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(CheckOutExtraDateField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(CheckOutRoomPriceField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(62, 62, 62)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(CheckOutRoomCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(CheckOutSearchBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(CheckOutRoomPriceField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel10)
+                            .addComponent(CheckOutCurrentDateField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(CheckOutEnterField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(CheckOutExitField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(CheckOutExtraDateField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(CheckOutServicePriceField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(CheckOutServicePriceField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(PaymentTypeBtn))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(CheckOutExtraPriceField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(34, 34, 34)
+                    .addComponent(CheckOutExtraPriceField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(PaymentTypeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
                     .addComponent(CheckOutTotalPriceField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -234,167 +460,134 @@ public class CheckOut extends javax.swing.JFrame {
 
     private void CheckOutSearchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckOutSearchBtnActionPerformed
         // TODO add your handling code here:
-        
         String str = CheckOutRoomCB.getSelectedItem().toString();
         if(!str.equals("선택")){
-            try {
-            String value;
-            String[] Arr;
-            BufferedReader is = new BufferedReader(new FileReader("C:\\DB\\CheckInList.txt"));
-            while ((value = is.readLine()) != null) {
-                Arr = value.split("\t");
-                if (str.equals(Arr[4])) {
-                    CheckOutEnterField.setText("" + Arr[1]);
-                    CheckOutExitField.setText("" + Arr[2]);
-                }
-            }
-            is.close();
-
-        } catch (IOException e) {
-        }
-        
-        currentDate(); //현재 날짜, 추가금액
-
-        servicePrice(); //서비스 이용 금액
-        
-        roomPrice(); //객실 금액
-        
-        int totalPrice = Integer.parseInt(CheckOutRoomPriceField.getText())+Integer.parseInt(CheckOutServicePriceField.getText())+Integer.parseInt(CheckOutExtraPriceField.getText());
-        CheckOutTotalPriceField.setText(Integer.toString(totalPrice));
-        }
-        else {
+            returnGueseData(); //객실/서비스 이용 금액
+            currentDate(); //현재 날짜, 추가금액
+            int totalPrice = Integer.parseInt(CheckOutRoomPriceField.getText())
+                    + Integer.parseInt(CheckOutServicePriceField.getText())
+                    + Integer.parseInt(CheckOutExtraPriceField.getText());
+            CheckOutTotalPriceField.setText(Integer.toString(totalPrice));
+        } else {
             JOptionPane.showMessageDialog(null, "호실을 선택해주세요.");
         }
     }//GEN-LAST:event_CheckOutSearchBtnActionPerformed
 
     private void CheckOutOkBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckOutOkBtnActionPerformed
         // TODO add your handling code here:
-        FileMgmt fileMgmt = new FileMgmt();
-        //int row = CheckInBookingTable.getSelectedRow();
-        String str = CheckOutRoomCB.getSelectedItem().toString();
-        try (FileReader r = new FileReader("C:\\DB\\CheckInList.txt")) {
-            BufferedReader reader = new BufferedReader(r);
-            String array;
-            String[] Arr;
-            while ((array = reader.readLine()) != null) {
-                Arr = array.split("\t");
-                if (str.equals(Arr[4])) { // 고유번호가 str과 같으면 info에 정보 저장
-                    String info = Arr[0] + "\t" + Arr[1] + "\t" + Arr[2] + "\t"
-                            + Arr[3] + "\t" + Arr[4] + "\t" + Arr[5] + "\t"
-                            + Arr[6] + "\t" + Arr[7] + "\t" + Arr[8];
-                    try {
-                        fileMgmt.writeCheckInFileData("C:\\DB\\CheckOutList.txt", info);
-                    } catch (IOException ex) {
-                    }
-
-                    // 체크아웃 시 상태 Y로 변경
-                    ArrayList<String> tempArray = new ArrayList<>();
-                    try (FileReader fr = new FileReader("C:\\DB\\CheckInList.txt")) {
-                        Scanner scanner = new Scanner(fr);
-                        String line = null;
-                        String[] Array;
-
-                        while ((line = scanner.nextLine()) != null) {
-                            Array = line.split("\t");
-                            if (Array[4].equals(str)) {
-                                tempArray.add(
-                                        Array[0] + "\t" + Array[1] + "\t" + Array[2] + "\t"
-                                        + Array[3] + "\t" + Array[4] + "\t" + Array[5] + "\t"
-                                        + Array[6] + "\t" + Array[7] + "\t" + Array[8] + "\t" + "Y");
-                            } else {
-                                tempArray.add(line);
-                            }
-                        }
-                        fr.close();
-                    } catch (Exception e) {
-                    }
-
-                    try (PrintWriter pr = new PrintWriter("C:\\DB\\CheckInList.txt")) {
-                        for (String temp : tempArray) {
-                            pr.println(temp);
-                        }
-                        pr.close();
-                    } catch (Exception e) {
-                    }
-
-                    JOptionPane.showMessageDialog(null, "" + Arr[4] + "호실을 체크아웃 하였습니다.");
-                    
-                    loadRoom();
+        ArrayList<BookingInfo> bookingInfo = new ArrayList<>();
+        String selectedRoom = CheckOutRoomCB.getSelectedItem().toString();
+        String data;
+        try {
+            FileMgmt fileMgmt = new FileMgmt();
+            fileMgmt.readBookingFileData("C:\\DB\\BookingList.txt");
+            fileMgmt.splitBookingFileData();
+            bookingInfo = fileMgmt.returnBookingInfo();            
+            for (int i = 0; i < bookingInfo.size(); i++) {
+                if (bookingInfo.get(i).getRoom().equals(selectedRoom)) {
+                    bookingInfo.get(i).setStatus("E");
                 }
+                data = String.format("%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s",
+                    bookingInfo.get(i).getIndex(),
+                    bookingInfo.get(i).getEntrance(),
+                    bookingInfo.get(i).getExit(),
+                    bookingInfo.get(i).getName(),
+                    bookingInfo.get(i).getRoom(),
+                    bookingInfo.get(i).getPersonnel(),
+                    bookingInfo.get(i).getPhonenumber(),
+                    bookingInfo.get(i).getAddress(),
+                    bookingInfo.get(i).getMoney(),
+                    bookingInfo.get(i).getStatus()
+                );
+                fileMgmt.writeBookingFileData("C:\\DB\\BookingList.txt", data);
             }
-        } catch (Exception e) {
-        }
-        
-        
+        } catch (IOException e) {
+        }  
     }//GEN-LAST:event_CheckOutOkBtnActionPerformed
 
     private void CheckOutCancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckOutCancelBtnActionPerformed
         // TODO add your handling code here:
         dispose();
     }//GEN-LAST:event_CheckOutCancelBtnActionPerformed
-    
-    private void loadRoom(){
-        CheckOutRoomCB.removeAllItems();
-        CheckOutRoomCB.addItem("선택");
-        try (FileReader r = new FileReader("C:\\DB\\CheckInList.txt")) {
-            BufferedReader reader = new BufferedReader(r);
-            String value;
-            String[] Arr;
 
-            while ((value = reader.readLine()) != null) {
-                Arr = value.split("\t");
-                if(Arr[9].equals("N")){
-                    CheckOutRoomCB.addItem(Arr[4]);
-                }
-            }
-            r.close();
-        } catch (Exception e) {
-        }
-    }
-    private void roomPrice(){ //객실 금액
-        String room = CheckOutRoomCB.getSelectedItem().toString();
-        try {
-            String value;
-            String[] Arr;
-            BufferedReader is = new BufferedReader(new FileReader("C:\\DB\\CheckInList.txt"));
-            while ((value = is.readLine()) != null) {
-                Arr = value.split("\t");
-                if (room.equals(Arr[4])) {
-                    
-                    CheckOutRoomPriceField.setText(Arr[8]);
-                }
-            }
-            is.close();
-        } catch (IOException e) {
-        }
-    }
-    private void servicePrice(){
+    private void PaymentTypeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PaymentTypeBtnActionPerformed
+        // TODO add your handling code here:
+        PaymentTypeDlg.setVisible(true);
+        PaymentTypeDlg.setLocationRelativeTo(this);
+        PaymentTypeDlg.setSize(450, 450);
+    }//GEN-LAST:event_PaymentTypeBtnActionPerformed
+
+    private void PaymentCashRBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PaymentCashRBActionPerformed
+        // TODO add your handling code here:
+        CreditCardNumField1.setEnabled(false);
+        CreditCardNumField2.setEnabled(false);
+        CreditCardNumField3.setEnabled(false);
+        CreditCardNumField4.setEnabled(false);
+        CreditValidMonthField.setEnabled(false);
+        CreditValidYearField.setEnabled(false);
+        CreditCVCField.setEnabled(false);
+    }//GEN-LAST:event_PaymentCashRBActionPerformed
+
+    private void PaymentCreditRBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PaymentCreditRBActionPerformed
+        // TODO add your handling code here:
+        CreditCardNumField1.setEnabled(true);
+        CreditCardNumField2.setEnabled(true);
+        CreditCardNumField3.setEnabled(true);
+        CreditCardNumField4.setEnabled(true);
+        CreditValidMonthField.setEnabled(true);
+        CreditValidYearField.setEnabled(true);
+        CreditCVCField.setEnabled(true);
+    }//GEN-LAST:event_PaymentCreditRBActionPerformed
+
+    private void PaymentTypeOkBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PaymentTypeOkBtnActionPerformed
+        // TODO add your handling code here:
+        if (PaymentCreditRB.isSelected())
+            PaymentTypeLabel.setText("신용카드");
+        else
+            PaymentTypeLabel.setText("현금");
+        JOptionPane.showMessageDialog(null, "등록 완료");
+        PaymentTypeDlg.dispose();
+    }//GEN-LAST:event_PaymentTypeOkBtnActionPerformed
+
+    private void PaymentTypeCancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PaymentTypeCancelBtnActionPerformed
+        // TODO add your handling code here:
+        PaymentTypeDlg.dispose();
+    }//GEN-LAST:event_PaymentTypeCancelBtnActionPerformed
+
+    private void returnGueseData(){ //객실, 서비스 금액
+        ArrayList<BookingInfo> bookingInfo = new ArrayList<>();
+        ArrayList<ServiceOrderListInfo> serviceOrderListInfo = new ArrayList<>();
         String room = CheckOutRoomCB.getSelectedItem().toString();
         int money = 0;
+        String[] productPrice;
         try {
-            String value;
-            String[] Arr;
-            String[] productmoney;
-            BufferedReader is = new BufferedReader(new FileReader("C:\\DB\\ServiceOrderList.txt"));
-            while ((value = is.readLine()) != null) {
-                Arr = value.split("\t");
-                if (room.equals(Arr[2])) {
-                    productmoney = Arr[5].split("/");
-                    for (int i = 0; i < productmoney.length; i++) {
-                        money += Integer.parseInt(productmoney[i]);
+            FileMgmt fileMgmt = new FileMgmt();
+            fileMgmt.readBookingFileData("C:\\DB\\BookingList.txt");
+            fileMgmt.readServiceOrderListFileData("C:\\DB\\ServiceOrderList.txt");
+            fileMgmt.splitBookingFileData();
+            fileMgmt.splitServiceOrderListFileData();
+            bookingInfo = fileMgmt.returnBookingInfo(); 
+            serviceOrderListInfo = fileMgmt.returnServiceOrderListInfo();
+            for (int i = 0; i < bookingInfo.size(); i++) {
+                if (bookingInfo.get(i).getRoom().equals(room)) {
+                    CheckOutEnterField.setText(bookingInfo.get(i).getEntrance());
+                    CheckOutExitField.setText(bookingInfo.get(i).getExit());
+                    CheckOutRoomPriceField.setText(bookingInfo.get(i).getMoney());
+                    productPrice = serviceOrderListInfo.get(i).getMoney().split("/");
+                    for (int j = 0; j < productPrice.length; j++) {
+                        money += Integer.parseInt(productPrice[j]);
                     }
                 }
             }
-            is.close();
         } catch (IOException e) {
         }
         CheckOutServicePriceField.setText(Integer.toString(money));
     }
-    
+
     private void currentDate() { //현재 날짜, 추가금액
         long diffDays = 0;
         SimpleDateFormat format;
-        String currentDate = new CurrentTime().getCurrentTime();
+        String currentDate = new CurrentTime().getCurrentDate();
         String exitDate = CheckOutExitField.getText();
 
         try {
@@ -403,10 +596,10 @@ public class CheckOut extends javax.swing.JFrame {
         } catch (ParseException ex) {
             Logger.getLogger(CheckOut.class.getName()).log(Level.SEVERE, null, ex);
         }
-        CheckOutExtraDateField.setText(currentDate);
+        CheckOutCurrentDateField.setText(currentDate);
 
         diffDays /= (24 * 60 * 60 * 1000);
-        
+        CheckOutExtraDateField.setText(Long.toString(diffDays));
         //추가금액
         CheckOutExtraPriceField.setText(new DefaultRoomRate().DefaultRoomRate((int) diffDays));
     }
@@ -448,6 +641,7 @@ public class CheckOut extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton CheckOutCancelBtn;
+    private javax.swing.JTextField CheckOutCurrentDateField;
     private javax.swing.JTextField CheckOutEnterField;
     private javax.swing.JTextField CheckOutExitField;
     private javax.swing.JTextField CheckOutExtraDateField;
@@ -458,6 +652,31 @@ public class CheckOut extends javax.swing.JFrame {
     private javax.swing.JButton CheckOutSearchBtn;
     private javax.swing.JTextField CheckOutServicePriceField;
     private javax.swing.JTextField CheckOutTotalPriceField;
+    private javax.swing.JTextField CreditCVCField;
+    private javax.swing.JTextField CreditCardNumField1;
+    private javax.swing.JTextField CreditCardNumField2;
+    private javax.swing.JTextField CreditCardNumField3;
+    private javax.swing.JTextField CreditCardNumField4;
+    private javax.swing.JTextField CreditValidMonthField;
+    private javax.swing.JTextField CreditValidYearField;
+    private javax.swing.JRadioButton PaymentCashRB;
+    private javax.swing.JRadioButton PaymentCreditRB;
+    private javax.swing.JButton PaymentTypeBtn;
+    private javax.swing.JButton PaymentTypeCancelBtn;
+    private javax.swing.JDialog PaymentTypeDlg;
+    private javax.swing.JLabel PaymentTypeLabel;
+    private javax.swing.JButton PaymentTypeOkBtn;
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

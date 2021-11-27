@@ -5,6 +5,7 @@
  */
 package deu.cse.team.service;
 
+import deu.cse.team.source.BookingInfo;
 import deu.cse.team.source.CurrentTime;
 import deu.cse.team.source.FileMgmt;
 import deu.cse.team.source.InitRoomComboBox;
@@ -12,6 +13,7 @@ import deu.cse.team.source.LoadServiceList;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
@@ -30,7 +32,7 @@ public class RoomService extends javax.swing.JFrame {
     public RoomService() {
         initComponents();
         setLocationRelativeTo(this);
-        new InitRoomComboBox((DefaultComboBoxModel) jComboBox1.getModel());
+        new InitRoomComboBox((DefaultComboBoxModel) RoomNumCB.getModel());
         initServiceList();
     }
 
@@ -43,31 +45,31 @@ public class RoomService extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
+        RoomNumCB = new javax.swing.JComboBox<>();
+        SelectRoomBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        AddRoomServiceBtn = new javax.swing.JButton();
+        RemoveRoomServiceBtn = new javax.swing.JButton();
+        OrderNameField = new javax.swing.JTextField();
+        OrderIndexField = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        ConfirmRoomService = new javax.swing.JButton();
+        OnsitePaymentBtn = new javax.swing.JButton();
+        RoomServiceCancelBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "선택" }));
+        RoomNumCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "선택" }));
 
-        jButton1.setText("선택");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        SelectRoomBtn.setText("선택");
+        SelectRoomBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                SelectRoomBtnActionPerformed(evt);
             }
         });
 
@@ -111,40 +113,44 @@ public class RoomService extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(jTable2);
 
-        jButton2.setText(">");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        AddRoomServiceBtn.setText(">");
+        AddRoomServiceBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                AddRoomServiceBtnActionPerformed(evt);
             }
         });
 
-        jButton3.setText("<");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        RemoveRoomServiceBtn.setText("<");
+        RemoveRoomServiceBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                RemoveRoomServiceBtnActionPerformed(evt);
             }
         });
+
+        OrderNameField.setEditable(false);
+
+        OrderIndexField.setEditable(false);
 
         jLabel3.setText("호실:");
 
-        jButton4.setText("주문 확정");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        ConfirmRoomService.setText("주문 확정");
+        ConfirmRoomService.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                ConfirmRoomServiceActionPerformed(evt);
             }
         });
 
-        jButton5.setText("현장 결제");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        OnsitePaymentBtn.setText("현장 결제");
+        OnsitePaymentBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                OnsitePaymentBtnActionPerformed(evt);
             }
         });
 
-        jButton6.setText("이전");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        RoomServiceCancelBtn.setText("이전");
+        RoomServiceCancelBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                RoomServiceCancelBtnActionPerformed(evt);
             }
         });
 
@@ -159,13 +165,13 @@ public class RoomService extends javax.swing.JFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton2)
-                            .addComponent(jButton3))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                            .addComponent(AddRoomServiceBtn)
+                            .addComponent(RemoveRoomServiceBtn))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(RoomServiceCancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -173,24 +179,24 @@ public class RoomService extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(RoomNumCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1)
+                        .addComponent(SelectRoomBtn)
                         .addGap(57, 57, 57)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addGap(18, 18, 18)
-                                .addComponent(jTextField2))
+                                .addComponent(OrderIndexField))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel1)
                                 .addGap(18, 18, 18)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(OrderNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(110, 110, 110))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton5)
+                        .addComponent(OnsitePaymentBtn)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton4)
+                        .addComponent(ConfirmRoomService)
                         .addGap(188, 188, 188))))
         );
         layout.setVerticalGroup(
@@ -201,17 +207,17 @@ public class RoomService extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton1)
+                            .addComponent(RoomNumCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(SelectRoomBtn)
                             .addComponent(jLabel3)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel1)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(OrderNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(OrderIndexField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -219,42 +225,43 @@ public class RoomService extends javax.swing.JFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(66, 66, 66)
-                        .addComponent(jButton2)
+                        .addComponent(AddRoomServiceBtn)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton3)))
+                        .addComponent(RemoveRoomServiceBtn)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton4)
-                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(ConfirmRoomService)
+                    .addComponent(OnsitePaymentBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(9, 9, 9)
-                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(RoomServiceCancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void SelectRoomBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SelectRoomBtnActionPerformed
         // TODO add your handling code here:
         initServiceList();
-        try (FileReader r = new FileReader("C:\\DB\\CheckInList.txt")) {
-            BufferedReader reader = new BufferedReader(r);
-            String array;
-            String[] Arr;
-            String str = jComboBox1.getSelectedItem().toString();
-            while ((array = reader.readLine()) != null) {
-                Arr = array.split("\t");
-                if (str.equals(Arr[4])) {
-                    jTextField1.setText(Arr[3]);
-                    jTextField2.setText(Arr[0]);
+        ArrayList<BookingInfo> bookingInfo = new ArrayList<>();
+        String room = RoomNumCB.getSelectedItem().toString();
+        try {
+            FileMgmt fileMgmt = new FileMgmt();
+            fileMgmt.readBookingFileData("C:\\DB\\BookingList.txt");
+            fileMgmt.splitBookingFileData();
+            bookingInfo = fileMgmt.returnBookingInfo(); 
+            for (int i = 0; i < bookingInfo.size(); i++) {
+                if (bookingInfo.get(i).getRoom().equals(room)) {
+                    OrderNameField.setText(bookingInfo.get(i).getName());
+                    OrderIndexField.setText(bookingInfo.get(i).getIndex());
                 }
             }
         } catch (IOException e) {
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_SelectRoomBtnActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        String str = jTextField2.getText();
+    private void AddRoomServiceBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddRoomServiceBtnActionPerformed
+        String str = OrderIndexField.getText();
         if (str.equals("")) {
             JOptionPane.showMessageDialog(null, "호실을 선택해주세요.");
         } else {
@@ -265,21 +272,21 @@ public class RoomService extends javax.swing.JFrame {
                 String.valueOf(jTable1.getValueAt(row, 1))
             });
         }
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_AddRoomServiceBtnActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void RemoveRoomServiceBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RemoveRoomServiceBtnActionPerformed
         // TODO add your handling code here:
         int row = jTable2.getSelectedRow();
         DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
         model.removeRow(row);
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_RemoveRoomServiceBtnActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void ConfirmRoomServiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConfirmRoomServiceActionPerformed
         // TODO add your handling code here:
         FileMgmt fileMgmt = new FileMgmt();
-        String index = jTextField2.getText();
+        String index = OrderIndexField.getText();
         String service = "룸서비스";
-        String room = jComboBox1.getSelectedItem().toString();
+        String room = RoomNumCB.getSelectedItem().toString();
         String time = new CurrentTime().getCurrentTime();
         String productname = null;
         String money = null;
@@ -301,21 +308,21 @@ public class RoomService extends javax.swing.JFrame {
         }
         JOptionPane.showMessageDialog(null, "주문이 완료되었습니다.");
         initServiceList();
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_ConfirmRoomServiceActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void OnsitePaymentBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OnsitePaymentBtnActionPerformed
         // TODO add your handling code here:
         try {
             int row = jTable2.getSelectedRow();
             jTable2.setValueAt(0, row, 1);
         } catch (Exception e) {
         }
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_OnsitePaymentBtnActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    private void RoomServiceCancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RoomServiceCancelBtnActionPerformed
         // TODO add your handling code here:
         dispose();
-    }//GEN-LAST:event_jButton6ActionPerformed
+    }//GEN-LAST:event_RoomServiceCancelBtnActionPerformed
 
     private void initServiceList() {
         DefaultTableModel modelA = (DefaultTableModel)jTable1.getModel(); // jTable 초기화
@@ -360,13 +367,15 @@ public class RoomService extends javax.swing.JFrame {
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JButton AddRoomServiceBtn;
+    private javax.swing.JButton ConfirmRoomService;
+    private javax.swing.JButton OnsitePaymentBtn;
+    private javax.swing.JTextField OrderIndexField;
+    private javax.swing.JTextField OrderNameField;
+    private javax.swing.JButton RemoveRoomServiceBtn;
+    private javax.swing.JComboBox<String> RoomNumCB;
+    private javax.swing.JButton RoomServiceCancelBtn;
+    private javax.swing.JButton SelectRoomBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -374,7 +383,5 @@ public class RoomService extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
 }

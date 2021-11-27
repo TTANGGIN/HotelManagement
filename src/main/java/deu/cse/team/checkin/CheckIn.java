@@ -7,6 +7,7 @@ package deu.cse.team.checkin;
 
 import deu.cse.team.source.BookingInfo;
 import deu.cse.team.source.FileMgmt;
+import deu.cse.team.source.ModifyBookingData;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -51,8 +52,8 @@ public class CheckIn extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         CheckInBookingTable = new javax.swing.JTable();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        CheckInOkBtn = new javax.swing.JButton();
+        CheckInCancelBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -124,17 +125,17 @@ public class CheckIn extends javax.swing.JFrame {
             CheckInBookingTable.getColumnModel().getColumn(9).setMaxWidth(0);
         }
 
-        jButton2.setText("체크인");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        CheckInOkBtn.setText("체크인");
+        CheckInOkBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                CheckInOkBtnActionPerformed(evt);
             }
         });
 
-        jButton3.setText("이전");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        CheckInCancelBtn.setText("이전");
+        CheckInCancelBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                CheckInCancelBtnActionPerformed(evt);
             }
         });
 
@@ -143,31 +144,30 @@ public class CheckIn extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 579, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(9, 9, 9)))
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(CheckInNameRB)
-                    .addComponent(CheckInIndexRB))
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 570, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(151, 151, 151)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(CheckInNameRB)
+                            .addComponent(CheckInIndexRB))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(CheckInNameField)
+                            .addComponent(CheckInIndexField, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(41, 41, 41)
+                        .addComponent(CheckInSearchBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(382, 382, 382)
+                .addComponent(CheckInOkBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(CheckInNameField)
-                    .addComponent(CheckInIndexField, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(41, 41, 41)
-                .addComponent(CheckInSearchBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(139, 139, 139))
+                .addComponent(CheckInCancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -185,11 +185,11 @@ public class CheckIn extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
+                .addGap(48, 48, 48)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
-                .addContainerGap())
+                    .addComponent(CheckInOkBtn)
+                    .addComponent(CheckInCancelBtn))
+                .addGap(22, 22, 22))
         );
 
         pack();
@@ -220,71 +220,29 @@ public class CheckIn extends javax.swing.JFrame {
         CheckInNameField.setText("");
     }//GEN-LAST:event_CheckInIndexRBActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void CheckInOkBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckInOkBtnActionPerformed
         // TODO add your handling code here:
-        FileMgmt fileMgmt = new FileMgmt();
+        DefaultTableModel model = (DefaultTableModel) CheckInBookingTable.getModel();
         int row = CheckInBookingTable.getSelectedRow();
-        String str = String.valueOf(CheckInBookingTable.getValueAt(row, 0));
-        try (FileReader r = new FileReader("C:\\DB\\BookingList.txt")) {
-            BufferedReader reader = new BufferedReader(r);
-            String array;
-            String[] Arr;
-            String state = "N";
-            while ((array = reader.readLine()) != null) {
-                Arr = array.split("\t");
-                if (str.equals(Arr[0]) && state.equals(Arr[9])) { // 고유번호가 str과 같으면 info에 정보 저장
-                    String info = Arr[0] + "\t" + Arr[1] + "\t" + Arr[2] + "\t"
-                            + Arr[3] + "\t" + Arr[4] + "\t" + Arr[5] + "\t"
-                            + Arr[6] + "\t" + Arr[7] + "\t" + Arr[8] + "\t" + "N";
-                    try {
-                        fileMgmt.writeCheckInFileData("C:\\DB\\CheckInList.txt", info);
-                    } catch (IOException ex) {
-                    }
-
-                    // 체크인 시 상태 Y로 변경
-                    ArrayList<String> tempArray = new ArrayList<>();
-                    try (FileReader fr = new FileReader("C:\\DB\\BookingList.txt")) {
-                        Scanner scanner = new Scanner(fr);
-                        String line = null;
-                        String[] Array;
-
-                        while ((line = scanner.nextLine()) != null) {
-                            Array = line.split("\t");
-                            if (Array[0].equals(str)) {
-                                tempArray.add(
-                                        Array[0] + "\t" + Array[1] + "\t" + Array[2] + "\t"
-                                        + Array[3] + "\t" + Array[4] + "\t" + Array[5] + "\t"
-                                        + Array[6] + "\t" + Array[7] + "\t" + Array[8] + "\t" + "Y");
-                            } else {
-                                tempArray.add(line);
-                            }
-                        }
-                        fr.close();
-                    } catch (Exception e) {
-                    }
-
-                    try (PrintWriter pr = new PrintWriter("C:\\DB\\BookingList.txt")) {
-                        for (String temp : tempArray) {
-                            pr.println(temp);
-                        }
-                        pr.close();
-                    } catch (Exception e) {
-                    }
-
-                    JOptionPane.showMessageDialog(null, "" + Arr[4] + "호실을 체크인 하였습니다.");
-                    DefaultTableModel model = (DefaultTableModel) CheckInBookingTable.getModel();
-                    model.setNumRows(0);
-                    loadBookingData();
-                }
-            }
-        } catch (Exception e) {
+        String[] data = new String[10];
+        for (int i = 0; i < 10; i++) {
+            data[i] = model.getValueAt(row, i).toString();
         }
-    }//GEN-LAST:event_jButton2ActionPerformed
+        if (data[7].equals("N")) {
+            data[7] = "Y";
+            model.removeRow(row);
+            model.insertRow(row, data);
+            new ModifyBookingData(model, 0);
+            JOptionPane.showMessageDialog(null, data[2] + "호실을 체크인 하였습니다.");
+        } else {
+            JOptionPane.showMessageDialog(null, "유효하지 않은 고객입니다.");
+        }
+    }//GEN-LAST:event_CheckInOkBtnActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void CheckInCancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckInCancelBtnActionPerformed
         // TODO add your handling code here:
         dispose();
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_CheckInCancelBtnActionPerformed
 
     private void loadBookingData() {
         ArrayList<BookingInfo> bookingInfo = new ArrayList<>();
@@ -351,14 +309,14 @@ public class CheckIn extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable CheckInBookingTable;
+    private javax.swing.JButton CheckInCancelBtn;
     private javax.swing.JTextField CheckInIndexField;
     private javax.swing.JRadioButton CheckInIndexRB;
     private javax.swing.JTextField CheckInNameField;
     private javax.swing.JRadioButton CheckInNameRB;
+    private javax.swing.JButton CheckInOkBtn;
     private javax.swing.JButton CheckInSearchBtn;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables

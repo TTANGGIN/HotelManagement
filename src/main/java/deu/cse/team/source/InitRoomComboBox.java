@@ -8,6 +8,7 @@ package deu.cse.team.source;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 
 /**
@@ -16,13 +17,16 @@ import javax.swing.DefaultComboBoxModel;
  */
 public class InitRoomComboBox {
     public InitRoomComboBox(DefaultComboBoxModel model) {
-        try (FileReader r = new FileReader("C:\\DB\\CheckInList.txt")) {
-            BufferedReader reader = new BufferedReader(r);
-            String array;
-            String[] Arr;
-            while ((array = reader.readLine()) != null) {
-                Arr = array.split("\t");
-                model.addElement(Arr[4]);
+        ArrayList<BookingInfo> bookingInfo = new ArrayList<>();
+        try {
+            FileMgmt fileMgmt = new FileMgmt();
+            fileMgmt.readBookingFileData("C:\\DB\\BookingList.txt");
+            fileMgmt.splitBookingFileData();
+            bookingInfo = fileMgmt.returnBookingInfo();            
+            for (int i = 0; i < bookingInfo.size(); i++) {
+                if (bookingInfo.get(i).getStatus().equals("Y")) {
+                    model.addElement(bookingInfo.get(i).getRoom());
+                }
             }
         } catch (IOException e) {
         }

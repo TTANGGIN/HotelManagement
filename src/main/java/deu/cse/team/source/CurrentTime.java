@@ -16,4 +16,7 @@ public class CurrentTime {
     public String getCurrentTime() {
         return new SimpleDateFormat ( "yyyy-MM-dd/HH:mm:ss").format(new Date());
     }
+    public String getCurrentDate() {
+        return new SimpleDateFormat ( "yyyy-MM-dd").format(new Date());
+    }
 }
