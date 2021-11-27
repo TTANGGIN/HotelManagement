@@ -10,8 +10,12 @@ import deu.cse.team.source.CurrentTime;
 import deu.cse.team.source.DefaultRoomRate;
 import deu.cse.team.source.FileMgmt;
 import deu.cse.team.source.InitRoomComboBox;
+import deu.cse.team.source.ModifyBookingData;
 import deu.cse.team.source.ServiceOrderListInfo;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -461,7 +465,7 @@ public class CheckOut extends javax.swing.JFrame {
     private void CheckOutSearchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckOutSearchBtnActionPerformed
         // TODO add your handling code here:
         String str = CheckOutRoomCB.getSelectedItem().toString();
-        if(!str.equals("선택")){
+        if (!str.equals("선택")) {
             returnGueseData(); //객실/서비스 이용 금액
             currentDate(); //현재 날짜, 추가금액
             int totalPrice = Integer.parseInt(CheckOutRoomPriceField.getText())
@@ -477,32 +481,29 @@ public class CheckOut extends javax.swing.JFrame {
         // TODO add your handling code here:
         ArrayList<BookingInfo> bookingInfo = new ArrayList<>();
         String selectedRoom = CheckOutRoomCB.getSelectedItem().toString();
-        String data;
-        try {
-            FileMgmt fileMgmt = new FileMgmt();
-            fileMgmt.readBookingFileData("C:\\DB\\BookingList.txt");
-            fileMgmt.splitBookingFileData();
-            bookingInfo = fileMgmt.returnBookingInfo();            
+        FileMgmt fileMgmt = new FileMgmt();
+        fileMgmt.readBookingFileData("C:\\DB\\BookingList.txt");
+        fileMgmt.splitBookingFileData();
+        try (PrintWriter pw = new PrintWriter("C:\\DB\\BookingList.txt")) {
+            bookingInfo = fileMgmt.returnBookingInfo();
             for (int i = 0; i < bookingInfo.size(); i++) {
                 if (bookingInfo.get(i).getRoom().equals(selectedRoom)) {
                     bookingInfo.get(i).setStatus("E");
+
                 }
-                data = String.format("%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s",
-                    bookingInfo.get(i).getIndex(),
-                    bookingInfo.get(i).getEntrance(),
-                    bookingInfo.get(i).getExit(),
-                    bookingInfo.get(i).getName(),
-                    bookingInfo.get(i).getRoom(),
-                    bookingInfo.get(i).getPersonnel(),
-                    bookingInfo.get(i).getPhonenumber(),
-                    bookingInfo.get(i).getAddress(),
-                    bookingInfo.get(i).getMoney(),
-                    bookingInfo.get(i).getStatus()
-                );
-                fileMgmt.writeBookingFileData("C:\\DB\\BookingList.txt", data);
+                String data = String.format("%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s",
+                        bookingInfo.get(i).getIndex(), bookingInfo.get(i).getEntrance(),
+                        bookingInfo.get(i).getExit(), bookingInfo.get(i).getName(),
+                        bookingInfo.get(i).getRoom(), bookingInfo.get(i).getPersonnel(),
+                        bookingInfo.get(i).getPhonenumber(), bookingInfo.get(i).getAddress(),
+                        bookingInfo.get(i).getMoney(), bookingInfo.get(i).getStatus());
+                pw.println(data);
             }
-        } catch (IOException e) {
-        }  
+        } catch (IOException ex) {
+            Logger.getLogger(CheckOut.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+
     }//GEN-LAST:event_CheckOutOkBtnActionPerformed
 
     private void CheckOutCancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckOutCancelBtnActionPerformed
@@ -541,10 +542,11 @@ public class CheckOut extends javax.swing.JFrame {
 
     private void PaymentTypeOkBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PaymentTypeOkBtnActionPerformed
         // TODO add your handling code here:
-        if (PaymentCreditRB.isSelected())
+        if (PaymentCreditRB.isSelected()) {
             PaymentTypeLabel.setText("신용카드");
-        else
+        } else {
             PaymentTypeLabel.setText("현금");
+        }
         JOptionPane.showMessageDialog(null, "등록 완료");
         PaymentTypeDlg.dispose();
     }//GEN-LAST:event_PaymentTypeOkBtnActionPerformed
@@ -554,7 +556,7 @@ public class CheckOut extends javax.swing.JFrame {
         PaymentTypeDlg.dispose();
     }//GEN-LAST:event_PaymentTypeCancelBtnActionPerformed
 
-    private void returnGueseData(){ //객실, 서비스 금액
+    private void returnGueseData() { //객실, 서비스 금액
         ArrayList<BookingInfo> bookingInfo = new ArrayList<>();
         ArrayList<ServiceOrderListInfo> serviceOrderListInfo = new ArrayList<>();
         String room = CheckOutRoomCB.getSelectedItem().toString();
@@ -566,7 +568,7 @@ public class CheckOut extends javax.swing.JFrame {
             fileMgmt.readServiceOrderListFileData("C:\\DB\\ServiceOrderList.txt");
             fileMgmt.splitBookingFileData();
             fileMgmt.splitServiceOrderListFileData();
-            bookingInfo = fileMgmt.returnBookingInfo(); 
+            bookingInfo = fileMgmt.returnBookingInfo();
             serviceOrderListInfo = fileMgmt.returnServiceOrderListInfo();
             for (int i = 0; i < bookingInfo.size(); i++) {
                 if (bookingInfo.get(i).getRoom().equals(room)) {
