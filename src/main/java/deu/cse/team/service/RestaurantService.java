@@ -226,7 +226,7 @@ public class RestaurantService extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(RemoveRestaurantServiceBtn)))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(ConfirmRestaurantService)
                     .addComponent(OnsitePaymentBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -326,7 +326,7 @@ public class RestaurantService extends javax.swing.JFrame {
         DefaultTableModel modelB = (DefaultTableModel)jTable2.getModel();
         modelA.setNumRows(0);
         modelB.setNumRows(0);
-        new LoadServiceList(modelA, "레스토랑서비스");
+        new LoadServiceList(modelA, "레스토랑서비스",jTable1.getColumnCount());
     }
 
     /**

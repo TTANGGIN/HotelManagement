@@ -424,10 +424,10 @@ public class MgmtProductRate extends javax.swing.JFrame {
                 new LoadServiceList((DefaultTableModel) MgmtProductTable.getModel());
                 break;
             case 1:
-                new LoadServiceList((DefaultTableModel) MgmtProductTable.getModel(), "룸서비스");
+                new LoadServiceList((DefaultTableModel) MgmtProductTable.getModel(), "룸서비스", MgmtProductTable.getColumnCount());
                 break;
             case 2:
-                new LoadServiceList((DefaultTableModel) MgmtProductTable.getModel(), "레스토랑서비스");
+                new LoadServiceList((DefaultTableModel) MgmtProductTable.getModel(), "레스토랑서비스", MgmtProductTable.getColumnCount());
                 break;
             default:
                 break;

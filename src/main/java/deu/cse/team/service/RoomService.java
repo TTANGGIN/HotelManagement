@@ -329,7 +329,7 @@ public class RoomService extends javax.swing.JFrame {
         DefaultTableModel modelB = (DefaultTableModel)jTable2.getModel();
         modelA.setNumRows(0);
         modelB.setNumRows(0);
-        new LoadServiceList(modelA, "룸서비스");
+        new LoadServiceList(modelA, "룸서비스", jTable1.getColumnCount());
     }
     /**
      * @param args the command line arguments

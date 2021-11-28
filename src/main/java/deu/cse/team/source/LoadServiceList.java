@@ -35,7 +35,7 @@ public class LoadServiceList {
         }
     }
     
-    public LoadServiceList(DefaultTableModel model, String type) {
+    public LoadServiceList(DefaultTableModel model, String type, int tableColumnSize) {
         ArrayList<ServiceListInfo> serviceListInfo = new ArrayList<>(); //리스트 작성
         try {
             FileMgmt fileMgmt = new FileMgmt();
@@ -44,10 +44,19 @@ public class LoadServiceList {
             serviceListInfo = fileMgmt.returnServiceListInfo();
             for (int i = 0; i < serviceListInfo.size(); i++) {
                 if (serviceListInfo.get(i).getService().equals(type)) {
-                   model.addRow(new Object[]{
+                    if(tableColumnSize == 2){
+                        model.addRow(new Object[]{
                        serviceListInfo.get(i).getProductname(),
                        serviceListInfo.get(i).getPrice()
-                    }); 
+                    });
+                    }
+                    if(tableColumnSize == 3){
+                        model.addRow(new Object[]{
+                       serviceListInfo.get(i).getService(),
+                       serviceListInfo.get(i).getProductname(),
+                       serviceListInfo.get(i).getPrice()
+                    });
+                    }
                 }
             }
         } catch (IOException ex) {
