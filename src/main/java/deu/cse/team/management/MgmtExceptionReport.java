@@ -174,6 +174,13 @@ public class MgmtExceptionReport extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        String str = jTextField1.getText();
+        for (int i = 0; i < RevenueTable.getRowCount(); i++) {
+            if (str.equals(RevenueTable.getValueAt(i, 0))) {
+                RevenueTable.requestFocus();
+                RevenueTable.changeSelection(i, 0, false, false);
+            }
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
