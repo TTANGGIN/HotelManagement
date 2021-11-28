@@ -50,14 +50,13 @@
                       <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
                       <Component id="CheckInSearchBtn" min="-2" pref="85" max="-2" attributes="0"/>
                   </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="382" max="-2" attributes="0"/>
+                      <Component id="CheckInOkBtn" min="-2" pref="81" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="CheckInCancelBtn" min="-2" pref="81" max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
-          </Group>
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="382" max="-2" attributes="0"/>
-              <Component id="CheckInOkBtn" min="-2" pref="81" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="CheckInCancelBtn" min="-2" pref="81" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>

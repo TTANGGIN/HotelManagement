@@ -8,12 +8,8 @@ package deu.cse.team.checkin;
 import deu.cse.team.source.BookingInfo;
 import deu.cse.team.source.FileMgmt;
 import deu.cse.team.source.ModifyBookingData;
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Scanner;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
