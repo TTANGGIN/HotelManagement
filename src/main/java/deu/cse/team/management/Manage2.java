@@ -5,6 +5,18 @@
  */
 package deu.cse.team.management;
 
+import deu.cse.team.source.FileMgmt;
+import deu.cse.team.source.LoadBookingData;
+import deu.cse.team.source.RevenueInfo;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author KYG
@@ -76,10 +88,7 @@ public class Manage2 extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
                 "객실 수입", "식품 수입", "예상 점유율"
@@ -169,6 +178,42 @@ public class Manage2 extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.setNumRows(0);
+        
+        int from = Integer.parseInt(jComboBox1.getSelectedItem().toString() 
+                +jComboBox2.getSelectedItem().toString()
+                +jComboBox3.getSelectedItem().toString());
+        int to = Integer.parseInt(jComboBox4.getSelectedItem().toString() 
+                +jComboBox5.getSelectedItem().toString()
+                +jComboBox6.getSelectedItem().toString());
+        int estimatedIncome = 0; //예상수입
+        int roomRevenue = 0; //객실수입
+        int serviceIncome = 0; //서비스수입
+        ArrayList<RevenueInfo> revenueInfo = new ArrayList<>();
+        try {
+            FileMgmt fileMgmt = new FileMgmt();
+            fileMgmt.readRevenueFileData("C:\\DB\\RevenueList.txt");
+            fileMgmt.splitRevenueListFileData();
+            revenueInfo = fileMgmt.returnRevenueInfo();
+            String[] date;
+            String[] date2;
+            String str;
+            for (int i = 0; i < revenueInfo.size(); i++) {
+                date = revenueInfo.get(i).getStay().split("~");
+                date2 = date[1].split("-");
+                str = date2[0]+date2[1]+date2[2];
+                if(Integer.parseInt(str)>=from&&Integer.parseInt(str)<=to){
+                    roomRevenue += Integer.parseInt(revenueInfo.get(i).getBasicRate());
+                    serviceIncome += Integer.parseInt(revenueInfo.get(i).getServiceRate());
+                    estimatedIncome += roomRevenue + serviceIncome;
+                }
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(LoadBookingData.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        model.addRow(new Object[]{roomRevenue, serviceIncome, "zz"});
+        jTextField1.setText(Integer.toString(estimatedIncome));
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
