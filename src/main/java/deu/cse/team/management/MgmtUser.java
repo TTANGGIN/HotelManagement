@@ -27,6 +27,7 @@ public class MgmtUser extends javax.swing.JFrame {
     public MgmtUser() {
         initComponents();
         setLocationRelativeTo(this);
+        setTitle("Manage User");
         loadUserData();
     }
 

@@ -7,7 +7,10 @@ package deu.cse.team.mainmenu;
 
 import deu.cse.team.booking.Booking;
 import deu.cse.team.checkin.CheckIn;
+import deu.cse.team.checkout.CheckOut;
 import deu.cse.team.login.Login;
+import deu.cse.team.management.Management;
+import deu.cse.team.service.ServiceSelect;
 
 /**
  *
@@ -151,26 +154,27 @@ public class MainMenu extends javax.swing.JFrame {
 
     private void BookingButtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BookingButtActionPerformed
         // TODO add your handling code here:
-        Booking booking = new Booking();
-        booking.setVisible(true);
+        new Booking().setVisible(true);
     }//GEN-LAST:event_BookingButtActionPerformed
 
     private void CheckInButtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckInButtActionPerformed
         // TODO add your handling code here:
-        CheckIn checkIn = new CheckIn();
-        checkIn.setVisible(true);
+        new CheckIn().setVisible(true);
     }//GEN-LAST:event_CheckInButtActionPerformed
 
     private void CheckOutButtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckOutButtActionPerformed
         // TODO add your handling code here:
+        new CheckOut().setVisible(true);
     }//GEN-LAST:event_CheckOutButtActionPerformed
 
     private void ServiceButtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ServiceButtActionPerformed
         // TODO add your handling code here:
+        new ServiceSelect().setVisible(true);
     }//GEN-LAST:event_ServiceButtActionPerformed
 
     private void ManageButtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ManageButtActionPerformed
         // TODO add your handling code here:
+        new Management().setVisible(true);
     }//GEN-LAST:event_ManageButtActionPerformed
 
     private void SignOutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SignOutButtonActionPerformed

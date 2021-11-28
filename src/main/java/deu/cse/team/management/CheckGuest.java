@@ -20,6 +20,8 @@ public class CheckGuest extends javax.swing.JFrame {
      */
     public CheckGuest() {
         initComponents();
+        setLocationRelativeTo(this);
+        setTitle("Check Guest");
     }
 
     /**
