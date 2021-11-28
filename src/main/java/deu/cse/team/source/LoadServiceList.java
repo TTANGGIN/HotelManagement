@@ -45,7 +45,6 @@ public class LoadServiceList {
             for (int i = 0; i < serviceListInfo.size(); i++) {
                 if (serviceListInfo.get(i).getService().equals(type)) {
                    model.addRow(new Object[]{
-                       serviceListInfo.get(i).getService(),
                        serviceListInfo.get(i).getProductname(),
                        serviceListInfo.get(i).getPrice()
                     }); 
