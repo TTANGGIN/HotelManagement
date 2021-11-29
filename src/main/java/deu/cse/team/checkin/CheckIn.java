@@ -194,19 +194,29 @@ public class CheckIn extends javax.swing.JFrame {
 
     private void CheckInSearchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckInSearchBtnActionPerformed
         // TODO add your handling code here:
+        boolean checkIndex = false;
+        boolean checkName = false;
         for (int i = 0; i < CheckInBookingTable.getRowCount(); i++) {
             if(CheckInIndexRB.isSelected()==true){
                 if(CheckInIndexField.getText().equals(CheckInBookingTable.getValueAt(i, 0))){
                     CheckInBookingTable.requestFocus();
                     CheckInBookingTable.changeSelection(i, 0, false, false);
+                    checkIndex = true;
                 }
             }
             else if(CheckInNameRB.isSelected()==true){
                 if(CheckInNameField.getText().equals(CheckInBookingTable.getValueAt(i, 1))){
                     CheckInBookingTable.requestFocus();
                     CheckInBookingTable.changeSelection(i, 0, false, false);
+                    checkName = true;
                 }
             }
+        }
+        if(CheckInIndexRB.isSelected()==true&&checkIndex==false){
+            JOptionPane.showMessageDialog(null, "정보를 찾을 수 없습니다.");
+        }
+        if(CheckInNameRB.isSelected()==true&&checkName==false){
+            JOptionPane.showMessageDialog(null, "정보를 찾을 수 없습니다.");
         }
     }//GEN-LAST:event_CheckInSearchBtnActionPerformed
 
