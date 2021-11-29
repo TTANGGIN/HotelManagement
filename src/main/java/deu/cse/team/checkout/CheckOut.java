@@ -631,7 +631,7 @@ public class CheckOut extends javax.swing.JFrame {
         diffDays /= (24 * 60 * 60 * 1000);
         if (diffDays > 0) {
             CheckOutExtraDateField.setText(Long.toString(diffDays));
-            CheckOutExtraPriceField.setText(new DefaultRoomRate().DefaultRoomRate((int) diffDays)); //추가금액
+            CheckOutExtraPriceField.setText(new DefaultRoomRate().DefaultRoomRate(CheckOutRoomCB.getSelectedItem().toString(), (int) diffDays)); //추가금액
         } else {
             CheckOutExtraDateField.setText("0");
             CheckOutExtraPriceField.setText("0");
