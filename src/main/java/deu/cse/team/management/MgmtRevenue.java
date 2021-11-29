@@ -230,7 +230,7 @@ public class MgmtRevenue extends javax.swing.JFrame {
                 }
             }
         } catch (IOException ex) {
-            Logger.getLogger(LoadBookingData.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MgmtRevenue.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         ArrayList<BookingInfo> bookingInfo = new ArrayList<>();
@@ -252,7 +252,7 @@ public class MgmtRevenue extends javax.swing.JFrame {
             double estimatedShare = (guest/1000.0)*100.0;
             EstimatedShareLabel.setText(String.format("%.2f%%", estimatedShare));
         } catch (IOException ex) {
-            Logger.getLogger(LoadBookingData.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MgmtRevenue.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         jLabel4.setText(Integer.toString(estimatedIncome)+"원");
