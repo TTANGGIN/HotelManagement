@@ -10,10 +10,13 @@ import deu.cse.team.source.DefaultRoomRate;
 import deu.cse.team.source.FileMgmt;
 import deu.cse.team.source.LoadBookingData;
 import deu.cse.team.source.ModifyBookingData;
+import deu.cse.team.source.RoomInfo;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.io.StringReader;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -497,6 +500,12 @@ public class Booking extends javax.swing.JFrame {
 
         jLabel7.setText("전화번호");
 
+        BookingRoomNumField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                BookingRoomNumFieldKeyTyped(evt);
+            }
+        });
+
         BookingCheckChargeBtn.setText("예상 금액 확인");
         BookingCheckChargeBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -697,7 +706,10 @@ public class Booking extends javax.swing.JFrame {
 
     private void BookingOkBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BookingOkBtnActionPerformed
         // TODO add your handling code here: 예약 버튼
+        ArrayList<RoomInfo> roomInfo = new ArrayList<>();
         FileMgmt fileMgmt = new FileMgmt();
+        fileMgmt.readRoomFileData("C:\\DB\\RoomList.txt");
+        fileMgmt.splitRoomListFileData();
         String entranceDate = BookingEntranceDateCB1.getSelectedItem().toString() + "-"     // 입실 날짜
                 + BookingEntranceDateCB2.getSelectedItem().toString() + "-"
                 + BookingEntranceDateCB3.getSelectedItem().toString();
@@ -715,15 +727,36 @@ public class Booking extends javax.swing.JFrame {
                 + AddressLabel3.getText();
         String roomRate = BookingRoomRateLabel.getText();                                   // 객실 요금
         String isCheckIn = "N";
-        String str = entranceDate + "\t" + exitDate + "\t" + customerName + "\t" 
-                + roomNumber + "\t" + totalNum + "\t" + phoneNum + "\t" 
-                + address + "\t" + roomRate + "\t" + isCheckIn;
-        try {
+        String str = String.format("%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s"
+                , entranceDate, exitDate, customerName
+                , roomNumber, totalNum, phoneNum
+                , address, roomRate, isCheckIn);       
+        try (PrintWriter pw = new PrintWriter("C:\\DB\\RoomList.txt")) {
+            String data;
+            roomInfo = fileMgmt.returnRoomInfo();
+            for (int i = 0; i < roomInfo.size(); i++) {
+                if (roomInfo.get(i).getRoomNum().equals(roomNumber)) {
+                    if (roomInfo.get(i).getRoomStatus().equals("N")) {
+                        JOptionPane.showMessageDialog(null, "사용할 수 없는 호실입니다.");
+                        throw new Exception();
+                    }
+                    else
+                        roomInfo.get(i).setRoomStatus("N");
+                }
+                data = String.format("%s\t%s\t%s"
+                        , roomInfo.get(i).getRoomNum()
+                        , roomInfo.get(i).getRoomRate()
+                        , roomInfo.get(i).getRoomStatus());
+                pw.println(data);
+            }
             fileMgmt.writeBookingFileData("C:\\DB\\BookingList.txt", str);
+            pw.close();
+            JOptionPane.showMessageDialog(null, "예약 완료");
         } catch (IOException ex) {
             Logger.getLogger(Booking.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(Booking.class.getName()).log(Level.SEVERE, null, ex);
         }
-        JOptionPane.showMessageDialog(null, str);
     }//GEN-LAST:event_BookingOkBtnActionPerformed
 
     private void BookingCancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BookingCancelBtnActionPerformed
@@ -919,6 +952,14 @@ public class Booking extends javax.swing.JFrame {
         // TODO add your handling code here:
         getEstimatedCharge();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void BookingRoomNumFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BookingRoomNumFieldKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if (!Character.isDigit(c) || BookingRoomNumField.getText().length() > 2) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_BookingRoomNumFieldKeyTyped
     // 입력한 tag 정보
     private String getTagValue(String tag, Element eElement) {
         NodeList nlList = eElement.getElementsByTagName(tag).item(0).getChildNodes();

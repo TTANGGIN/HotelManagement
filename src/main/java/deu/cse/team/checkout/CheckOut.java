@@ -10,6 +10,7 @@ import deu.cse.team.source.CurrentTime;
 import deu.cse.team.source.DefaultRoomRate;
 import deu.cse.team.source.FileMgmt;
 import deu.cse.team.source.InitRoomComboBox;
+import deu.cse.team.source.RoomInfo;
 import deu.cse.team.source.ServiceOrderListInfo;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -263,22 +264,11 @@ public class CheckOut extends javax.swing.JFrame {
 
         jLabel3.setText("입실일자");
 
-        CheckOutRoomCB.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CheckOutRoomCBActionPerformed(evt);
-            }
-        });
-
         jLabel4.setText("퇴실일자");
 
         jLabel5.setText("추가일자");
 
         CheckOutEnterField.setEditable(false);
-        CheckOutEnterField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CheckOutEnterFieldActionPerformed(evt);
-            }
-        });
 
         CheckOutExitField.setEditable(false);
 
@@ -467,20 +457,11 @@ public class CheckOut extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void CheckOutRoomCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckOutRoomCBActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CheckOutRoomCBActionPerformed
-
-    private void CheckOutEnterFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckOutEnterFieldActionPerformed
-        // TODO add your handling code here:
-
-    }//GEN-LAST:event_CheckOutEnterFieldActionPerformed
-
     private void CheckOutSearchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckOutSearchBtnActionPerformed
         // TODO add your handling code here:
         String str = CheckOutRoomCB.getSelectedItem().toString();
         if (!str.equals("선택")) {
-            returnGueseData(); //객실/서비스 이용 금액
+            returnGuestData(); //객실/서비스 이용 금액
             currentDate(); //현재 날짜, 추가금액
             int totalPrice = Integer.parseInt(CheckOutRoomPriceField.getText())
                     + Integer.parseInt(CheckOutServicePriceField.getText())
@@ -494,10 +475,13 @@ public class CheckOut extends javax.swing.JFrame {
     private void CheckOutOkBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckOutOkBtnActionPerformed
         // TODO add your handling code here:
         ArrayList<BookingInfo> bookingInfo = new ArrayList<>();
+        ArrayList<RoomInfo> roomInfo = new ArrayList<>();
         String selectedRoom = CheckOutRoomCB.getSelectedItem().toString();
         FileMgmt fileMgmt = new FileMgmt();
         fileMgmt.readBookingFileData("C:\\DB\\BookingList.txt");
+        fileMgmt.readRoomFileData("C:\\DB\\RoomList.txt");
         fileMgmt.splitBookingFileData();
+        fileMgmt.splitRoomListFileData();
         String revenue = String.format("%s\t%s~%s\t%s\t%s\t%s\t%s", 
                 IndexLabel.getText(),
                 CheckOutEnterField.getText(),
@@ -506,21 +490,37 @@ public class CheckOut extends javax.swing.JFrame {
                 CheckOutRoomPriceField.getText(),
                 CheckOutServicePriceField.getText(),
                 CheckOutExtraPriceField.getText());
-        try (PrintWriter pw = new PrintWriter("C:\\DB\\BookingList.txt")) {
+        try {
+            PrintWriter bPw = new PrintWriter("C:\\DB\\BookingList.txt");
+            PrintWriter rPw = new PrintWriter("C:\\DB\\RoomList.txt");
             bookingInfo = fileMgmt.returnBookingInfo();
+            roomInfo = fileMgmt.returnRoomInfo();
+            String data;
             for (int i = 0; i < bookingInfo.size(); i++) {
                 if (bookingInfo.get(i).getRoom().equals(selectedRoom)) {
                     bookingInfo.get(i).setStatus("E");
 
                 }
-                String data = String.format("%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s",
+                data = String.format("%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s",
                         bookingInfo.get(i).getIndex(), bookingInfo.get(i).getEntrance(),
                         bookingInfo.get(i).getExit(), bookingInfo.get(i).getName(),
                         bookingInfo.get(i).getRoom(), bookingInfo.get(i).getPersonnel(),
                         bookingInfo.get(i).getPhonenumber(), bookingInfo.get(i).getAddress(),
                         bookingInfo.get(i).getMoney(), bookingInfo.get(i).getStatus());
-                pw.println(data);
+                bPw.println(data);
             }
+            for (int i = 0; i < roomInfo.size(); i++) {
+                if (roomInfo.get(i).getRoomNum().equals(selectedRoom)) {
+                    roomInfo.get(i).setRoomStatus("Y");
+                }
+                data = String.format("%s\t%s\t%s"
+                        , roomInfo.get(i).getRoomNum()
+                        , roomInfo.get(i).getRoomRate()
+                        , roomInfo.get(i).getRoomStatus());
+                rPw.println(data);
+            }
+            bPw.close();
+            rPw.close();
             fileMgmt.writeRevenueFileData("C:\\DB\\RevenueList.txt", revenue);
             JOptionPane.showMessageDialog(null, "체크아웃 완료");
         } catch (IOException ex) {
@@ -579,7 +579,7 @@ public class CheckOut extends javax.swing.JFrame {
         PaymentTypeDlg.dispose();
     }//GEN-LAST:event_PaymentTypeCancelBtnActionPerformed
 
-    private void returnGueseData() { //객실, 서비스 금액
+    private void returnGuestData() { //객실, 서비스 금액
         ArrayList<BookingInfo> bookingInfo = new ArrayList<>();
         ArrayList<ServiceOrderListInfo> serviceOrderListInfo = new ArrayList<>();
         String room = CheckOutRoomCB.getSelectedItem().toString();
@@ -594,11 +594,15 @@ public class CheckOut extends javax.swing.JFrame {
             bookingInfo = fileMgmt.returnBookingInfo();
             serviceOrderListInfo = fileMgmt.returnServiceOrderListInfo();
             for (int i = 0; i < bookingInfo.size(); i++) {
-                if (bookingInfo.get(i).getRoom().equals(room)) {
+                if (bookingInfo.get(i).getRoom().equals(room) && bookingInfo.get(i).getStatus().equals("Y")) {
                     IndexLabel.setText(bookingInfo.get(i).getIndex());
                     CheckOutEnterField.setText(bookingInfo.get(i).getEntrance());
                     CheckOutExitField.setText(bookingInfo.get(i).getExit());
                     CheckOutRoomPriceField.setText(bookingInfo.get(i).getMoney());
+                }
+            }
+            for (int i = 0; i < serviceOrderListInfo.size(); i++) {
+                if (serviceOrderListInfo.get(i).getIndex().equals(IndexLabel.getText())) {
                     productPrice = serviceOrderListInfo.get(i).getMoney().split("/");
                     for (int j = 0; j < productPrice.length; j++) {
                         money += Integer.parseInt(productPrice[j]);
@@ -625,9 +629,14 @@ public class CheckOut extends javax.swing.JFrame {
         CheckOutCurrentDateField.setText(currentDate);
 
         diffDays /= (24 * 60 * 60 * 1000);
-        CheckOutExtraDateField.setText(Long.toString(diffDays));
-        //추가금액
-        CheckOutExtraPriceField.setText(new DefaultRoomRate().DefaultRoomRate((int) diffDays));
+        if (diffDays > 0) {
+            CheckOutExtraDateField.setText(Long.toString(diffDays));
+            CheckOutExtraPriceField.setText(new DefaultRoomRate().DefaultRoomRate((int) diffDays)); //추가금액
+        } else {
+            CheckOutExtraDateField.setText("0");
+            CheckOutExtraPriceField.setText("0");
+        }
+        
     }
 
     /**
