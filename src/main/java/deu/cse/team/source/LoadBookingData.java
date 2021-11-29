@@ -58,7 +58,7 @@ public class LoadBookingData {
                 fileEntrance = Integer.parseInt(Arrays.toString(bookingInfo.get(i).getEntrance().split("-")).replaceAll("[^0-9]",""));
                 fileExit = Integer.parseInt(Arrays.toString(bookingInfo.get(i).getExit().split("-")).replaceAll("[^0-9]",""));
                 isCanceled = bookingInfo.get(i).getStatus();
-                if (!isCanceled.equals("C") && (entrance <= fileEntrance) && (exit >= fileExit)) {
+                if (!isCanceled.equals("C")&& !isCanceled.equals("N") && (entrance <= fileEntrance) && (exit >= fileExit)) {
                     model.addRow(new Object[]{
                         bookingInfo.get(i).getIndex(),
                         bookingInfo.get(i).getName(),
