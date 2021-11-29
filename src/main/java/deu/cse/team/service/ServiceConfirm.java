@@ -241,11 +241,19 @@ public class ServiceConfirm extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        String str = RoomNumField.getText() + IndexField.getText();
-        for (int i = 0; i <= OrderTable.getRowCount(); i++) {
-            if (str.equals(OrderTable.getValueAt(i, 0)) || str.equals(OrderTable.getValueAt(i, 1))) {
+        for (int i = 0; i < OrderTable.getRowCount(); i++) {           
+            if(IndexRB.isSelected()==true){
                 OrderTable.requestFocus();
-                OrderTable.changeSelection(i, 0, false, false);
+                if(IndexField.getText().equals(OrderTable.getValueAt(i, 0))){
+                    OrderTable.requestFocus();
+                    OrderTable.changeSelection(i, 0, true, false);
+                }
+            }
+            else if(RoomNumRB.isSelected()==true){
+                if(RoomNumField.getText().equals(OrderTable.getValueAt(i, 1))){
+                    OrderTable.requestFocus();
+                    OrderTable.changeSelection(i, 0, true, false);
+                }
             }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
