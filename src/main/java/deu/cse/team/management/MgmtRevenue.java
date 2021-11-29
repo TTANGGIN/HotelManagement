@@ -5,6 +5,7 @@
  */
 package deu.cse.team.management;
 
+import deu.cse.team.source.BookingInfo;
 import deu.cse.team.source.FileMgmt;
 import deu.cse.team.source.LoadBookingData;
 import deu.cse.team.source.RevenueInfo;
@@ -48,11 +49,12 @@ public class MgmtRevenue extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jButton2 = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -81,21 +83,25 @@ public class MgmtRevenue extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setText("예상 수익");
+        jLabel3.setText("예상 수익:");
 
-        jLabel4.setText("원");
+        jLabel4.setText("0원");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "객실 수입", "식품 수입", "예상 점유율"
+                "고유번호", "객실 수입", "식품 수입", "수입 발생 시간"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
 
         jButton2.setText("확인");
+
+        jLabel5.setText("예상 점유율 :");
+
+        jLabel6.setText("0%");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -111,14 +117,8 @@ public class MgmtRevenue extends javax.swing.JFrame {
                 .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel4))
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(17, 17, 17))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addGap(31, 31, 31)
@@ -134,11 +134,22 @@ public class MgmtRevenue extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(215, 215, 215))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(88, 88, 88))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(215, 215, 215))))
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(38, 38, 38))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(161, 161, 161)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(341, 341, 341))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jComboBox5, jComboBox6});
@@ -163,13 +174,14 @@ public class MgmtRevenue extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
                 .addComponent(jButton2)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         pack();
@@ -195,24 +207,50 @@ public class MgmtRevenue extends javax.swing.JFrame {
             fileMgmt.readRevenueFileData("C:\\DB\\RevenueList.txt");
             fileMgmt.splitRevenueListFileData();
             revenueInfo = fileMgmt.returnRevenueInfo();
-            String[] date;
-            String[] date2;
+            String[] splitWave;
+            String[] splitLine;
             String str;
-            for (int i = 0; i < revenueInfo.size(); i++) {
-                date = revenueInfo.get(i).getStay().split("~");
-                date2 = date[1].split("-");
-                str = date2[0]+date2[1]+date2[2];
+             for (int i = 0; i < revenueInfo.size(); i++) {
+                splitWave = revenueInfo.get(i).getStay().split("~");
+                splitLine = splitWave[1].split("-");
+                str = splitLine[0]+splitLine[1]+splitLine[2];
                 if(Integer.parseInt(str)>=from&&Integer.parseInt(str)<=to){
-                    roomRevenue += Integer.parseInt(revenueInfo.get(i).getBasicRate());
-                    serviceIncome += Integer.parseInt(revenueInfo.get(i).getServiceRate());
+                    roomRevenue = Integer.parseInt(revenueInfo.get(i).getBasicRate())+Integer.parseInt(revenueInfo.get(i).getAdditionalRate());
+                    serviceIncome = Integer.parseInt(revenueInfo.get(i).getServiceRate());
                     estimatedIncome += roomRevenue + serviceIncome;
+                    model.addRow(new Object[]{revenueInfo.get(i).getIndex(),
+                        roomRevenue,
+                        revenueInfo.get(i).getServiceRate(),
+                        splitWave[1]});
                 }
             }
         } catch (IOException ex) {
             Logger.getLogger(LoadBookingData.class.getName()).log(Level.SEVERE, null, ex);
         }
-        model.addRow(new Object[]{roomRevenue, serviceIncome, "zz"});
-        jTextField1.setText(Integer.toString(estimatedIncome));
+        
+        ArrayList<BookingInfo> bookingInfo = new ArrayList<>();
+        try {
+            FileMgmt fileMgmt = new FileMgmt();
+            fileMgmt.readBookingFileData("C:\\DB\\BookingList.txt");
+            fileMgmt.splitBookingFileData();
+            bookingInfo = fileMgmt.returnBookingInfo();
+            String[] splitLine;
+            String str;
+            int guest = 0;
+            for (int i = 0; i < bookingInfo.size(); i++) {
+                splitLine = bookingInfo.get(i).getExit().split("-");
+                str = splitLine[0]+splitLine[1]+splitLine[2];
+                if((Integer.parseInt(str)>=from&&Integer.parseInt(str)<=to)&&(!bookingInfo.get(i).getStatus().equals("C"))){
+                    guest++;
+                }
+            }
+            double ratio = (guest/1000.0)*100.0;
+            jLabel6.setText(String.format("%.2f%%", ratio));
+        } catch (IOException ex) {
+            Logger.getLogger(LoadBookingData.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        jLabel4.setText(Integer.toString(estimatedIncome)+"원");
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -264,8 +302,9 @@ public class MgmtRevenue extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }
