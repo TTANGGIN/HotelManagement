@@ -17,7 +17,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ModifyBookingData {
     public ModifyBookingData(DefaultTableModel model) {
-        try (PrintWriter pw = new PrintWriter("C:\\DB\\BookingList.txt");) {  
+        try (PrintWriter pw = new PrintWriter("C:\\DB\\BookingList.txt")) {  
             for (int i = 0; i < model.getRowCount(); i++) {
                 String data = String.format("%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s", 
                         model.getValueAt(i, 0), model.getValueAt(i, 2),
