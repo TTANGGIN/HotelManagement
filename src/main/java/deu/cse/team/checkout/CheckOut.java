@@ -33,6 +33,7 @@ public class CheckOut extends javax.swing.JFrame {
     public CheckOut() {
         initComponents();
         setLocationRelativeTo(this);
+        setTitle("Check-Out");
         DefaultComboBoxModel model = (DefaultComboBoxModel) CheckOutRoomCB.getModel();
         model.addElement("선택");
         new InitRoomComboBox(model);

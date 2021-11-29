@@ -10,8 +10,6 @@ import deu.cse.team.source.CurrentTime;
 import deu.cse.team.source.FileMgmt;
 import deu.cse.team.source.InitRoomComboBox;
 import deu.cse.team.source.LoadServiceList;
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -32,6 +30,7 @@ public class RoomService extends javax.swing.JFrame {
     public RoomService() {
         initComponents();
         setLocationRelativeTo(this);
+        setTitle("Room Service");
         new InitRoomComboBox((DefaultComboBoxModel) RoomNumCB.getModel());
         initServiceList();
     }

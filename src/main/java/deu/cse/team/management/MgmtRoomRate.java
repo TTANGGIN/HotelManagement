@@ -22,6 +22,7 @@ public class MgmtRoomRate extends javax.swing.JFrame {
     public MgmtRoomRate() {
         initComponents();
         setLocationRelativeTo(this);
+        setTitle("Manage Room");
         new LoadRoomData((DefaultTableModel) MgmtRoomRateTable.getModel());
     }
 

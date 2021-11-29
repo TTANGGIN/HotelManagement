@@ -17,6 +17,7 @@ public class ServiceSelect extends javax.swing.JFrame {
     public ServiceSelect() {
         initComponents();
         setLocationRelativeTo(this);
+        setTitle("Select Service");
     }
 
     /**
@@ -29,41 +30,41 @@ public class ServiceSelect extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
+        ServiceSelectCancelBtn = new javax.swing.JButton();
+        CheckServiceConfirmBtn = new javax.swing.JButton();
+        SelectRoomServiceBtn = new javax.swing.JButton();
+        SelectRestaurantBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("굴림체", 0, 24)); // NOI18N
         jLabel1.setText("호텔 서비스");
 
-        jButton5.setText("이전");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        ServiceSelectCancelBtn.setText("이전");
+        ServiceSelectCancelBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                ServiceSelectCancelBtnActionPerformed(evt);
             }
         });
 
-        jButton6.setText("주문확인");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        CheckServiceConfirmBtn.setText("주문확인");
+        CheckServiceConfirmBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                CheckServiceConfirmBtnActionPerformed(evt);
             }
         });
 
-        jButton7.setText("룸서비스");
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
+        SelectRoomServiceBtn.setText("룸서비스");
+        SelectRoomServiceBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
+                SelectRoomServiceBtnActionPerformed(evt);
             }
         });
 
-        jButton8.setText("레스토랑");
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
+        SelectRestaurantBtn.setText("레스토랑");
+        SelectRestaurantBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton8ActionPerformed(evt);
+                SelectRestaurantBtnActionPerformed(evt);
             }
         });
 
@@ -73,22 +74,22 @@ public class ServiceSelect extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(72, 72, 72)
-                .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(SelectRoomServiceBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, Short.MAX_VALUE)
-                .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(SelectRestaurantBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(73, 73, 73))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(ServiceSelectCancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(31, 31, 31))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(166, 166, 166))))
             .addGroup(layout.createSequentialGroup()
                 .addGap(179, 179, 179)
-                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(CheckServiceConfirmBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -98,40 +99,40 @@ public class ServiceSelect extends javax.swing.JFrame {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(46, 46, 46)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(SelectRoomServiceBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(SelectRestaurantBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27)
-                .addComponent(jButton6)
+                .addComponent(CheckServiceConfirmBtn)
                 .addGap(35, 35, 35)
-                .addComponent(jButton5)
+                .addComponent(ServiceSelectCancelBtn)
                 .addGap(23, 23, 23))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
+    private void ServiceSelectCancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ServiceSelectCancelBtnActionPerformed
+        // TODO add your handling code here: 
         dispose();
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_ServiceSelectCancelBtnActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    private void CheckServiceConfirmBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckServiceConfirmBtnActionPerformed
         // TODO add your handling code here:
         ServiceConfirm serviceConfirm = new ServiceConfirm();
         serviceConfirm.setVisible(true);
-    }//GEN-LAST:event_jButton6ActionPerformed
+    }//GEN-LAST:event_CheckServiceConfirmBtnActionPerformed
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+    private void SelectRoomServiceBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SelectRoomServiceBtnActionPerformed
         // TODO add your handling code here:
        RoomService roomService = new RoomService();
         roomService.setVisible(true);
-    }//GEN-LAST:event_jButton7ActionPerformed
+    }//GEN-LAST:event_SelectRoomServiceBtnActionPerformed
 
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+    private void SelectRestaurantBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SelectRestaurantBtnActionPerformed
         // TODO add your handling code here:
         RestaurantService restaurantService = new RestaurantService();
         restaurantService.setVisible(true);
-    }//GEN-LAST:event_jButton8ActionPerformed
+    }//GEN-LAST:event_SelectRestaurantBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -170,10 +171,10 @@ public class ServiceSelect extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
+    private javax.swing.JButton CheckServiceConfirmBtn;
+    private javax.swing.JButton SelectRestaurantBtn;
+    private javax.swing.JButton SelectRoomServiceBtn;
+    private javax.swing.JButton ServiceSelectCancelBtn;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

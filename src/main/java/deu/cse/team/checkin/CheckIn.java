@@ -25,6 +25,7 @@ public class CheckIn extends javax.swing.JFrame {
     public CheckIn() {
         initComponents();
         setLocationRelativeTo(this);
+        setTitle("Check-In");
         loadBookingData();
         CheckInNameRB.setSelected(true);
         CheckInIndexField.setEnabled(false);

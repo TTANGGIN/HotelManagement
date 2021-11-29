@@ -11,7 +11,6 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -26,8 +25,7 @@ public class ServiceConfirm extends javax.swing.JFrame {
     public ServiceConfirm() {
         initComponents();
         setLocationRelativeTo(this);
-        jRadioButton1.setSelected(true);
-        jTextField2.setEnabled(false);
+        setTitle("Service Confirm");
         loadServiceConfirmData();
     }
 
@@ -44,24 +42,24 @@ public class ServiceConfirm extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        OrderTable = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        ServiceConfirmCancelBtn = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jButton3 = new javax.swing.JButton();
+        RequestTable = new javax.swing.JTable();
+        RoomNumRB = new javax.swing.JRadioButton();
+        IndexRB = new javax.swing.JRadioButton();
+        RoomNumField = new javax.swing.JTextField();
+        IndexField = new javax.swing.JTextField();
+        CheckServiceBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("굴림", 0, 24)); // NOI18N
         jLabel1.setText("레스토랑/룸서비스 예약 확인");
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        OrderTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -77,14 +75,14 @@ public class ServiceConfirm extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable2);
-        if (jTable2.getColumnModel().getColumnCount() > 0) {
-            jTable2.getColumnModel().getColumn(0).setMinWidth(60);
-            jTable2.getColumnModel().getColumn(0).setMaxWidth(60);
-            jTable2.getColumnModel().getColumn(1).setMinWidth(50);
-            jTable2.getColumnModel().getColumn(1).setMaxWidth(50);
-            jTable2.getColumnModel().getColumn(2).setMinWidth(120);
-            jTable2.getColumnModel().getColumn(2).setMaxWidth(120);
+        jScrollPane1.setViewportView(OrderTable);
+        if (OrderTable.getColumnModel().getColumnCount() > 0) {
+            OrderTable.getColumnModel().getColumn(0).setMinWidth(60);
+            OrderTable.getColumnModel().getColumn(0).setMaxWidth(60);
+            OrderTable.getColumnModel().getColumn(1).setMinWidth(50);
+            OrderTable.getColumnModel().getColumn(1).setMaxWidth(50);
+            OrderTable.getColumnModel().getColumn(2).setMinWidth(120);
+            OrderTable.getColumnModel().getColumn(2).setMaxWidth(120);
         }
 
         jButton1.setText("검색");
@@ -94,16 +92,16 @@ public class ServiceConfirm extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("이전");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        ServiceConfirmCancelBtn.setText("이전");
+        ServiceConfirmCancelBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                ServiceConfirmCancelBtnActionPerformed(evt);
             }
         });
 
         jLabel2.setText("요구사항");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        RequestTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -119,28 +117,31 @@ public class ServiceConfirm extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(jTable1);
+        jScrollPane2.setViewportView(RequestTable);
 
-        buttonGroup1.add(jRadioButton1);
-        jRadioButton1.setText("호수");
-        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroup1.add(RoomNumRB);
+        RoomNumRB.setSelected(true);
+        RoomNumRB.setText("호수");
+        RoomNumRB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton1ActionPerformed(evt);
+                RoomNumRBActionPerformed(evt);
             }
         });
 
-        buttonGroup1.add(jRadioButton2);
-        jRadioButton2.setText("고유번호");
-        jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroup1.add(IndexRB);
+        IndexRB.setText("고유번호");
+        IndexRB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton2ActionPerformed(evt);
+                IndexRBActionPerformed(evt);
             }
         });
 
-        jButton3.setText("조회");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        IndexField.setEnabled(false);
+
+        CheckServiceBtn.setText("조회");
+        CheckServiceBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                CheckServiceBtnActionPerformed(evt);
             }
         });
 
@@ -154,12 +155,12 @@ public class ServiceConfirm extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(96, 96, 96)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jRadioButton2)
-                            .addComponent(jRadioButton1))
+                            .addComponent(IndexRB)
+                            .addComponent(RoomNumRB))
                         .addGap(8, 8, 8)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField1)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(RoomNumField)
+                            .addComponent(IndexField, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
@@ -172,7 +173,7 @@ public class ServiceConfirm extends javax.swing.JFrame {
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 384, Short.MAX_VALUE)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton3)
+                        .addComponent(CheckServiceBtn)
                         .addGap(0, 0, Short.MAX_VALUE))))
             .addGroup(layout.createSequentialGroup()
                 .addGap(79, 79, 79)
@@ -180,7 +181,7 @@ public class ServiceConfirm extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(ServiceConfirmCancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -191,7 +192,7 @@ public class ServiceConfirm extends javax.swing.JFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel4)
                         .addGap(114, 114, 114)
-                        .addComponent(jButton3)
+                        .addComponent(CheckServiceBtn)
                         .addGap(59, 59, 59)
                         .addComponent(jLabel2))
                     .addGroup(layout.createSequentialGroup()
@@ -199,61 +200,61 @@ public class ServiceConfirm extends javax.swing.JFrame {
                         .addComponent(jLabel1)
                         .addGap(30, 30, 30)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jRadioButton1)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(RoomNumRB)
+                            .addComponent(RoomNumField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButton1)
-                            .addComponent(jRadioButton2)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(IndexRB)
+                            .addComponent(IndexField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(33, 33, 33)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(14, 14, 14)
-                .addComponent(jButton2)
+                .addComponent(ServiceConfirmCancelBtn)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void ServiceConfirmCancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ServiceConfirmCancelBtnActionPerformed
         // TODO add your handling code here:
         dispose();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_ServiceConfirmCancelBtnActionPerformed
 
-    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+    private void RoomNumRBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RoomNumRBActionPerformed
         // TODO add your handling code here:
-        jTextField1.setEnabled(true);
-        jTextField2.setEnabled(false);
-        jTextField2.setText("");
-    }//GEN-LAST:event_jRadioButton1ActionPerformed
+        RoomNumField.setEnabled(true);
+        IndexField.setEnabled(false);
+        IndexField.setText("");
+    }//GEN-LAST:event_RoomNumRBActionPerformed
 
-    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
+    private void IndexRBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IndexRBActionPerformed
         // TODO add your handling code here:
-        jTextField1.setEnabled(false);
-        jTextField2.setEnabled(true);
-        jTextField1.setText("");
-    }//GEN-LAST:event_jRadioButton2ActionPerformed
+        RoomNumField.setEnabled(false);
+        IndexField.setEnabled(true);
+        RoomNumField.setText("");
+    }//GEN-LAST:event_IndexRBActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        String str = jTextField1.getText() + jTextField2.getText();
-        for (int i = 0; i <= jTable2.getRowCount(); i++) {
-            if (str.equals(jTable2.getValueAt(i, 0)) || str.equals(jTable2.getValueAt(i, 1))) {
-                jTable2.requestFocus();
-                jTable2.changeSelection(i, 0, false, false);
+        String str = RoomNumField.getText() + IndexField.getText();
+        for (int i = 0; i <= OrderTable.getRowCount(); i++) {
+            if (str.equals(OrderTable.getValueAt(i, 0)) || str.equals(OrderTable.getValueAt(i, 1))) {
+                OrderTable.requestFocus();
+                OrderTable.changeSelection(i, 0, false, false);
             }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void CheckServiceBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckServiceBtnActionPerformed
         // TODO add your handling code here:
-        int row = jTable2.getSelectedRow();
-        String str = String.valueOf(jTable2.getValueAt(row, 3));
-        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        int row = OrderTable.getSelectedRow();
+        String str = String.valueOf(OrderTable.getValueAt(row, 3));
+        DefaultTableModel model = (DefaultTableModel) RequestTable.getModel();
         model.setNumRows(0);
         try (FileReader r = new FileReader("C:\\DB\\ServiceOrderList.txt")) {
             BufferedReader reader = new BufferedReader(r);
@@ -277,11 +278,11 @@ public class ServiceConfirm extends javax.swing.JFrame {
         } catch (IOException e) {
         }
 
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_CheckServiceBtnActionPerformed
 
     private void loadServiceConfirmData() {
         ArrayList<ServiceOrderListInfo> serviceOrderListInfo = new ArrayList<>();
-        DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
+        DefaultTableModel model = (DefaultTableModel) OrderTable.getModel();
         try {
             FileMgmt fileMgmt = new FileMgmt();
             fileMgmt.readServiceOrderListFileData("C:\\DB\\ServiceOrderList.txt");
@@ -337,20 +338,20 @@ public class ServiceConfirm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton CheckServiceBtn;
+    private javax.swing.JTextField IndexField;
+    private javax.swing.JRadioButton IndexRB;
+    private javax.swing.JTable OrderTable;
+    private javax.swing.JTable RequestTable;
+    private javax.swing.JTextField RoomNumField;
+    private javax.swing.JRadioButton RoomNumRB;
+    private javax.swing.JButton ServiceConfirmCancelBtn;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
 }
