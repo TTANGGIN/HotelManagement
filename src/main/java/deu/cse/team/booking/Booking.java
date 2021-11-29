@@ -866,8 +866,8 @@ public class Booking extends javax.swing.JFrame {
     private void ModifySearchIdxBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModifySearchIdxBtnActionPerformed
         // TODO add your handling code here:
         String idx = ModifyBookingSearchIdxField.getText();
-        if (!(idx.equals("") || (Integer.parseInt(idx) > ModifyBookingTable.getComponentCount()))) {
-            for (int i = 0; i <= ModifyBookingTable.getComponentCount(); i++) {
+        if (!(idx.equals("") || (Integer.parseInt(idx) >= ModifyBookingTable.getRowCount()))) {
+            for (int i = 0; i < ModifyBookingTable.getRowCount(); i++) {
                 if (idx.equals(ModifyBookingTable.getValueAt(i, 0))) {
                     ModifyBookingTable.requestFocus();
                     ModifyBookingTable.changeSelection(i, 0, false, false);
