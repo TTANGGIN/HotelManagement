@@ -103,6 +103,11 @@ public class MgmtRevenue extends javax.swing.JFrame {
         jScrollPane1.setViewportView(MgmtRevenueTable);
 
         MgmtRevenueOkBtn.setText("확인");
+        MgmtRevenueOkBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MgmtRevenueOkBtnActionPerformed(evt);
+            }
+        });
 
         jLabel5.setText("예상 점유율 :");
 
@@ -261,6 +266,11 @@ public class MgmtRevenue extends javax.swing.JFrame {
     private void MgmtRevenueDateCB1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MgmtRevenueDateCB1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_MgmtRevenueDateCB1ActionPerformed
+
+    private void MgmtRevenueOkBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MgmtRevenueOkBtnActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_MgmtRevenueOkBtnActionPerformed
 
     /**
      * @param args the command line arguments
