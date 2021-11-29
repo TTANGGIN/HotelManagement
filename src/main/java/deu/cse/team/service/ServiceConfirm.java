@@ -11,6 +11,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -241,20 +242,29 @@ public class ServiceConfirm extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        for (int i = 0; i < OrderTable.getRowCount(); i++) {           
+        boolean checkIndex = false;
+        boolean checkRoom = false;
+        for (int i = 0; i < OrderTable.getRowCount(); i++) {    
             if(IndexRB.isSelected()==true){
-                OrderTable.requestFocus();
                 if(IndexField.getText().equals(OrderTable.getValueAt(i, 0))){
                     OrderTable.requestFocus();
                     OrderTable.changeSelection(i, 0, true, false);
+                    checkIndex = true;
                 }
             }
             else if(RoomNumRB.isSelected()==true){
                 if(RoomNumField.getText().equals(OrderTable.getValueAt(i, 1))){
                     OrderTable.requestFocus();
                     OrderTable.changeSelection(i, 0, true, false);
+                    checkRoom = true;
                 }
             }
+        }
+        if(IndexRB.isSelected()==true&&checkIndex==false){
+            JOptionPane.showMessageDialog(null, "정보를 찾을 수 없습니다.");
+        }
+        if(RoomNumRB.isSelected()==true&&checkRoom==false){
+            JOptionPane.showMessageDialog(null, "정보를 찾을 수 없습니다.");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
