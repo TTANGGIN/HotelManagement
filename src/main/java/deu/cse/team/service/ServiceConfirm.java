@@ -244,6 +244,7 @@ public class ServiceConfirm extends javax.swing.JFrame {
         // TODO add your handling code here:
         boolean checkIndex = false;
         boolean checkRoom = false;
+        OrderTable.clearSelection();
         for (int i = 0; i < OrderTable.getRowCount(); i++) {    
             if(IndexRB.isSelected()==true){
                 if(IndexField.getText().equals(OrderTable.getValueAt(i, 0))){

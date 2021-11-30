@@ -207,7 +207,7 @@ public class CheckIn extends javax.swing.JFrame {
             else if(CheckInNameRB.isSelected()==true){
                 if(CheckInNameField.getText().equals(CheckInBookingTable.getValueAt(i, 1))){
                     CheckInBookingTable.requestFocus();
-                    CheckInBookingTable.changeSelection(i, 0, false, false);
+                    CheckInBookingTable.changeSelection(i, 0, true, false);
                     checkName = true;
                 }
             }
