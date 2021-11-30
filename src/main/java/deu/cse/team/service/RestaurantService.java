@@ -60,6 +60,8 @@ public class RestaurantService extends javax.swing.JFrame {
         jTable2 = new javax.swing.JTable();
         OnsitePaymentBtn = new javax.swing.JButton();
         RestaurantServiceCancelBtn = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -153,6 +155,10 @@ public class RestaurantService extends javax.swing.JFrame {
             }
         });
 
+        jLabel4.setText("레스토랑 리스트 서비스");
+
+        jLabel5.setText("주문");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -181,13 +187,20 @@ public class RestaurantService extends javax.swing.JFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(RestaurantServiceCancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createSequentialGroup()
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(AddRestaurantServiceBtn)
-                                .addComponent(RemoveRestaurantServiceBtn))
-                            .addGap(18, 18, 18)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(AddRestaurantServiceBtn)
+                                        .addComponent(RemoveRestaurantServiceBtn))
+                                    .addGap(18, 18, 18))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel4)
+                                    .addGap(170, 170, 170)))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel5)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(157, 157, 157)
                         .addComponent(OnsitePaymentBtn)
@@ -214,7 +227,11 @@ public class RestaurantService extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(OrderIndexField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(26, 26, 26)
+                .addGap(6, 6, 6)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel5))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
@@ -282,8 +299,8 @@ public class RestaurantService extends javax.swing.JFrame {
         } catch (IOException ex) {
             Logger.getLogger(RoomService.class.getName()).log(Level.SEVERE, null, ex);
         }
-        JOptionPane.showMessageDialog(null, "주문이 완료되었습니다.");
         initServiceList();
+        JOptionPane.showMessageDialog(null, "주문이 완료되었습니다.");
     }//GEN-LAST:event_ConfirmRestaurantServiceActionPerformed
 
     private void SelectRoomBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SelectRoomBtnActionPerformed
@@ -295,7 +312,7 @@ public class RestaurantService extends javax.swing.JFrame {
             FileMgmt fileMgmt = new FileMgmt();
             fileMgmt.readBookingFileData("C:\\DB\\BookingList.txt");
             fileMgmt.splitBookingFileData();
-            bookingInfo = fileMgmt.returnBookingInfo(); 
+            bookingInfo = fileMgmt.returnBookingInfo();
             for (int i = 0; i < bookingInfo.size(); i++) {
                 if (bookingInfo.get(i).getRoom().equals(room)) {
                     OrderNameField.setText(bookingInfo.get(i).getName());
@@ -308,10 +325,14 @@ public class RestaurantService extends javax.swing.JFrame {
 
     private void OnsitePaymentBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OnsitePaymentBtnActionPerformed
         // TODO add your handling code here:
-        try {
-            int row = jTable2.getSelectedRow();
-            jTable2.setValueAt(0, row, 1);
-        } catch (Exception e) {
+        int row = jTable2.getSelectedRow();
+        if (row == -1) {
+            JOptionPane.showMessageDialog(null, "현장 결제할 상품을 선택해주세요.");
+        } else {
+            try {
+                jTable2.setValueAt(0, row, 1);
+            } catch (Exception e) {
+            }
         }
     }//GEN-LAST:event_OnsitePaymentBtnActionPerformed
 
@@ -321,11 +342,11 @@ public class RestaurantService extends javax.swing.JFrame {
     }//GEN-LAST:event_RestaurantServiceCancelBtnActionPerformed
 
     private void initServiceList() {
-        DefaultTableModel modelA = (DefaultTableModel)jTable1.getModel(); // jTable 초기화
-        DefaultTableModel modelB = (DefaultTableModel)jTable2.getModel();
+        DefaultTableModel modelA = (DefaultTableModel) jTable1.getModel(); // jTable 초기화
+        DefaultTableModel modelB = (DefaultTableModel) jTable2.getModel();
         modelA.setNumRows(0);
         modelB.setNumRows(0);
-        new LoadServiceList(modelA, "레스토랑서비스",jTable1.getColumnCount());
+        new LoadServiceList(modelA, "레스토랑서비스", jTable1.getColumnCount());
     }
 
     /**
@@ -377,6 +398,8 @@ public class RestaurantService extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
