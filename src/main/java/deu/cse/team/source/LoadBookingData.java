@@ -26,18 +26,19 @@ public class LoadBookingData {
             bookingInfo = fileMgmt.returnBookingInfo();
             
             for (int i = 0; i < bookingInfo.size(); i++) {
-                model.addRow(new Object[]{
-                    bookingInfo.get(i).getIndex(),
-                    bookingInfo.get(i).getName(),
-                    bookingInfo.get(i).getEntrance(),
-                    bookingInfo.get(i).getExit(),
-                    bookingInfo.get(i).getRoom(),
-                    bookingInfo.get(i).getPersonnel(),
-                    bookingInfo.get(i).getPhonenumber(),
-                    bookingInfo.get(i).getStatus(),
-                    bookingInfo.get(i).getAddress(),
-                    bookingInfo.get(i).getMoney()
-                });
+                if (bookingInfo.get(i).getStatus().equals("N")) {
+                    model.addRow(new Object[]{
+                        bookingInfo.get(i).getIndex(),
+                        bookingInfo.get(i).getName(),
+                        bookingInfo.get(i).getEntrance(),
+                        bookingInfo.get(i).getExit(),
+                        bookingInfo.get(i).getRoom(),
+                        bookingInfo.get(i).getPersonnel(),
+                        bookingInfo.get(i).getPhonenumber(),
+                        bookingInfo.get(i).getStatus(),
+                        bookingInfo.get(i).getAddress(),
+                        bookingInfo.get(i).getMoney()});
+                }
             }
         } catch (IOException ex) {
             Logger.getLogger(LoadBookingData.class.getName()).log(Level.SEVERE, null, ex);
