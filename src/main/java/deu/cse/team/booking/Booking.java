@@ -42,10 +42,12 @@ public class Booking extends javax.swing.JFrame {
     /**
      * Creates new form Booking
      */
+    private boolean isChecked = false;
+
     public Booking() {
         initComponents();
         setLocationRelativeTo(this);
-        setTitle("Booking");        
+        setTitle("Booking");
     }
 
     /**
@@ -477,16 +479,46 @@ public class Booking extends javax.swing.JFrame {
         jLabel2.setText("퇴실 날짜");
 
         BookingEntranceDateCB1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2020", "2021", "2022", "2023", "2024", "2025", "2026", "2027", "2028", "2029", "2030" }));
+        BookingEntranceDateCB1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BookingEntranceDateCB1ActionPerformed(evt);
+            }
+        });
 
         BookingEntranceDateCB2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12" }));
+        BookingEntranceDateCB2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BookingEntranceDateCB2ActionPerformed(evt);
+            }
+        });
 
         BookingEntranceDateCB3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
+        BookingEntranceDateCB3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BookingEntranceDateCB3ActionPerformed(evt);
+            }
+        });
 
         BookingExitDateCB1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2020", "2021", "2022", "2023", "2024", "2025", "2026", "2027", "2028", "2029", "2030" }));
+        BookingExitDateCB1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BookingExitDateCB1ActionPerformed(evt);
+            }
+        });
 
         BookingExitDateCB2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12" }));
+        BookingExitDateCB2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BookingExitDateCB2ActionPerformed(evt);
+            }
+        });
 
         BookingExitDateCB3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
+        BookingExitDateCB3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BookingExitDateCB3ActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("고객 정보");
 
@@ -706,57 +738,63 @@ public class Booking extends javax.swing.JFrame {
 
     private void BookingOkBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BookingOkBtnActionPerformed
         // TODO add your handling code here: 예약 버튼
-        ArrayList<RoomInfo> roomInfo = new ArrayList<>();
-        FileMgmt fileMgmt = new FileMgmt();
-        fileMgmt.readRoomFileData("C:\\DB\\RoomList.txt");
-        fileMgmt.splitRoomListFileData();
-        String entranceDate = BookingEntranceDateCB1.getSelectedItem().toString() + "-"     // 입실 날짜
-                + BookingEntranceDateCB2.getSelectedItem().toString() + "-"
-                + BookingEntranceDateCB3.getSelectedItem().toString();
-        String exitDate = BookingExitDateCB1.getSelectedItem().toString() + "-"             // 퇴실 날짜
-                + BookingExitDateCB2.getSelectedItem().toString() + "-"
-                + BookingExitDateCB3.getSelectedItem().toString();
-        String customerName = BookingNameField.getText();                                   // 고객 이름
-        String roomNumber = BookingRoomNumField.getText();                                   // 객실 번호
-        String totalNum = BookingMemberCB.getSelectedItem().toString();                     // 인원수
-        String phoneNum = BookingPhoneNumField1.getText() + "-"                             // 연락처
-                + BookingPhoneNumField2.getText() + "-"
-                + BookingPhoneNumField3.getText();
-        String address = AddressLabel1.getText() + " "                                      // 주소
-                + AddressLabel2.getText() + " "
-                + AddressLabel3.getText();
-        String roomRate = BookingRoomRateLabel.getText();                                   // 객실 요금
-        String isCheckIn = "N";
-        String str = String.format("%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s"
-                , entranceDate, exitDate, customerName
-                , roomNumber, totalNum, phoneNum
-                , address, roomRate, isCheckIn);       
-        try (PrintWriter pw = new PrintWriter("C:\\DB\\RoomList.txt")) {
-            String data;
-            roomInfo = fileMgmt.returnRoomInfo();
-            for (int i = 0; i < roomInfo.size(); i++) {
-                if (roomInfo.get(i).getRoomNum().equals(roomNumber)) {
-                    if (roomInfo.get(i).getRoomStatus().equals("N")) {
-                        JOptionPane.showMessageDialog(null, "사용할 수 없는 호실입니다.");
-                        throw new Exception();
+        if (isChecked) {
+            ArrayList<RoomInfo> roomInfo = new ArrayList<>();
+            FileMgmt fileMgmt = new FileMgmt();
+            fileMgmt.readRoomFileData("C:\\DB\\RoomList.txt");
+            fileMgmt.splitRoomListFileData();
+            String entranceDate = BookingEntranceDateCB1.getSelectedItem().toString() + "-" // 입실 날짜
+                    + BookingEntranceDateCB2.getSelectedItem().toString() + "-"
+                    + BookingEntranceDateCB3.getSelectedItem().toString();
+            String exitDate = BookingExitDateCB1.getSelectedItem().toString() + "-" // 퇴실 날짜
+                    + BookingExitDateCB2.getSelectedItem().toString() + "-"
+                    + BookingExitDateCB3.getSelectedItem().toString();
+            String customerName = BookingNameField.getText();                                   // 고객 이름
+            String roomNumber = BookingRoomNumField.getText();                                   // 객실 번호
+            String totalNum = BookingMemberCB.getSelectedItem().toString();                     // 인원수
+            String phoneNum = BookingPhoneNumField1.getText() + "-" // 연락처
+                    + BookingPhoneNumField2.getText() + "-"
+                    + BookingPhoneNumField3.getText();
+            String address = AddressLabel1.getText() + " " // 주소
+                    + AddressLabel2.getText() + " "
+                    + AddressLabel3.getText();
+            String roomRate = BookingRoomRateLabel.getText();                                   // 객실 요금
+            String isCheckIn = "N";
+            String str = String.format("%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s",
+                     entranceDate, exitDate, customerName,
+                     roomNumber, totalNum, phoneNum,
+                     address, roomRate, isCheckIn);
+            try (PrintWriter pw = new PrintWriter("C:\\DB\\RoomList.txt")) {
+                String data;
+                roomInfo = fileMgmt.returnRoomInfo();
+                for (int i = 0; i < roomInfo.size(); i++) {
+                    if (roomInfo.get(i).getRoomNum().equals(roomNumber)) {
+                        if (roomInfo.get(i).getRoomStatus().equals("N")) {
+                            JOptionPane.showMessageDialog(null, "사용할 수 없는 호실입니다.");
+                            throw new Exception();
+                        } else {
+                            roomInfo.get(i).setRoomStatus("N");
+                        }
                     }
-                    else
-                        roomInfo.get(i).setRoomStatus("N");
+                    data = String.format("%s\t%s\t%s",
+                             roomInfo.get(i).getRoomNum(),
+                             roomInfo.get(i).getRoomRate(),
+                             roomInfo.get(i).getRoomStatus());
+                    pw.println(data);
                 }
-                data = String.format("%s\t%s\t%s"
-                        , roomInfo.get(i).getRoomNum()
-                        , roomInfo.get(i).getRoomRate()
-                        , roomInfo.get(i).getRoomStatus());
-                pw.println(data);
+                fileMgmt.writeBookingFileData("C:\\DB\\BookingList.txt", str);
+                pw.close();
+                JOptionPane.showMessageDialog(null, "예약 완료");
+            } catch (IOException ex) {
+                Logger.getLogger(Booking.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (Exception ex) {
+                Logger.getLogger(Booking.class.getName()).log(Level.SEVERE, null, ex);
             }
-            fileMgmt.writeBookingFileData("C:\\DB\\BookingList.txt", str);
-            pw.close();
-            JOptionPane.showMessageDialog(null, "예약 완료");
-        } catch (IOException ex) {
-            Logger.getLogger(Booking.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (Exception ex) {
-            Logger.getLogger(Booking.class.getName()).log(Level.SEVERE, null, ex);
         }
+        else{
+            JOptionPane.showMessageDialog(null, "예상 금액을 다시 확인해주세요");
+        }
+
     }//GEN-LAST:event_BookingOkBtnActionPerformed
 
     private void BookingCancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BookingCancelBtnActionPerformed
@@ -794,7 +832,7 @@ public class Booking extends javax.swing.JFrame {
             String zipcode;         // 우편번호
             String bldnm;           // 건물명
             String road;            // 도로명주소
-            
+
             for (int temp = 0; temp < nList.getLength(); temp++) {
                 Node nNode = nList.item(temp);
                 if (nNode.getNodeType() == Node.ELEMENT_NODE) {
@@ -808,7 +846,7 @@ public class Booking extends javax.swing.JFrame {
                     zipcode = getTagValue("zipcode", eElement);
                     bldnm = getTagValue("bldnm", eElement);
                     road = getTagValue("road", eElement);
-                    
+
                     // 테이블에 파싱된 데이터 삽입
                     model.addRow(new Object[]{zipcode, bldnm, road});
                 }
@@ -824,6 +862,7 @@ public class Booking extends javax.swing.JFrame {
 
     private void BookingCheckChargeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BookingCheckChargeBtnActionPerformed
         // TODO add your handling code here: 예상 금액 확인 버튼
+        isChecked = true;
         getEstimatedCharge();
     }//GEN-LAST:event_BookingCheckChargeBtnActionPerformed
 
@@ -835,9 +874,9 @@ public class Booking extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "선택된 주소가 없습니다.");
         } else {
             if (ModifyBookingDlg.isVisible()) {
-                ModifyAddressLabel.setText(String.format("%s %s %s", 
-                        addressData.getValueAt(row, 0).toString(), 
-                        addressData.getValueAt(row, 1).toString(), 
+                ModifyAddressLabel.setText(String.format("%s %s %s",
+                        addressData.getValueAt(row, 0).toString(),
+                        addressData.getValueAt(row, 1).toString(),
                         addressData.getValueAt(row, 2).toString()));
             } else {
                 AddressLabel1.setText(addressData.getValueAt(row, 0).toString());
@@ -895,7 +934,7 @@ public class Booking extends javax.swing.JFrame {
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "불러올 데이터를 선택하세요.");
         }
-        
+
     }//GEN-LAST:event_ModifyLoadBookingListBtnActionPerformed
 
     private void ModifyCancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModifyCancelBtnActionPerformed
@@ -926,7 +965,7 @@ public class Booking extends javax.swing.JFrame {
         int row = Integer.parseInt(ModifyIdxLabel.getText());
         model.removeRow(row);
         model.insertRow(row, new Object[]{
-            row, 
+            row,
             ModifyNameField.getText(),
             ModifyEntranceDateField.getText(),
             ModifyExitDateField.getText(),
@@ -960,15 +999,46 @@ public class Booking extends javax.swing.JFrame {
             evt.consume();
         }
     }//GEN-LAST:event_BookingRoomNumFieldKeyTyped
+
+    private void BookingEntranceDateCB1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BookingEntranceDateCB1ActionPerformed
+        // TODO add your handling code here:
+        isChecked = false;
+    }//GEN-LAST:event_BookingEntranceDateCB1ActionPerformed
+
+    private void BookingEntranceDateCB2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BookingEntranceDateCB2ActionPerformed
+        // TODO add your handling code here:
+        isChecked = false;
+    }//GEN-LAST:event_BookingEntranceDateCB2ActionPerformed
+
+    private void BookingEntranceDateCB3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BookingEntranceDateCB3ActionPerformed
+        // TODO add your handling code here:
+        isChecked = false;
+    }//GEN-LAST:event_BookingEntranceDateCB3ActionPerformed
+
+    private void BookingExitDateCB1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BookingExitDateCB1ActionPerformed
+        // TODO add your handling code here:
+        isChecked = false;
+    }//GEN-LAST:event_BookingExitDateCB1ActionPerformed
+
+    private void BookingExitDateCB2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BookingExitDateCB2ActionPerformed
+        // TODO add your handling code here:
+        isChecked = false;
+    }//GEN-LAST:event_BookingExitDateCB2ActionPerformed
+
+    private void BookingExitDateCB3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BookingExitDateCB3ActionPerformed
+        // TODO add your handling code here:
+        isChecked = false;
+    }//GEN-LAST:event_BookingExitDateCB3ActionPerformed
     // 입력한 tag 정보
     private String getTagValue(String tag, Element eElement) {
         NodeList nlList = eElement.getElementsByTagName(tag).item(0).getChildNodes();
         Node nValue = (Node) nlList.item(0);
-        if (nValue == null)
+        if (nValue == null) {
             return null;
+        }
         return nValue.getNodeValue();
     }
-    
+
     // 예상 금액 확인
     private void getEstimatedCharge() {
         long lengthOfStay = 0;
@@ -981,12 +1051,12 @@ public class Booking extends javax.swing.JFrame {
             exitDate = ModifyExitDateField.getText();
             format = new SimpleDateFormat("yyyy-MM-dd");
         } else {
-            entranceDate = BookingEntranceDateCB1.getSelectedItem().toString()             // 입실 날짜
-                + BookingEntranceDateCB2.getSelectedItem().toString()
-                + BookingEntranceDateCB3.getSelectedItem().toString();
-            exitDate = BookingExitDateCB1.getSelectedItem().toString()       // 퇴실 날짜
-                + BookingExitDateCB2.getSelectedItem().toString()
-                + BookingExitDateCB3.getSelectedItem().toString();
+            entranceDate = BookingEntranceDateCB1.getSelectedItem().toString() // 입실 날짜
+                    + BookingEntranceDateCB2.getSelectedItem().toString()
+                    + BookingEntranceDateCB3.getSelectedItem().toString();
+            exitDate = BookingExitDateCB1.getSelectedItem().toString() // 퇴실 날짜
+                    + BookingExitDateCB2.getSelectedItem().toString()
+                    + BookingExitDateCB3.getSelectedItem().toString();
             format = new SimpleDateFormat("yyyyMMdd");
         }
         try {
@@ -998,11 +1068,12 @@ public class Booking extends javax.swing.JFrame {
         lengthOfStay = Math.abs(lengthOfStay);
         DefaultRoomRate defaultRoomRate = new DefaultRoomRate();
         if (ModifyBookingDlg.isVisible()) {
-            ModifyRateLabel.setText(defaultRoomRate.DefaultRoomRate(BookingRoomNumField.getText(), (int)lengthOfStay));
+            ModifyRateLabel.setText(defaultRoomRate.DefaultRoomRate(BookingRoomNumField.getText(), (int) lengthOfStay));
         } else {
-            BookingRoomRateLabel.setText(defaultRoomRate.DefaultRoomRate(BookingRoomNumField.getText(), (int)lengthOfStay));
+            BookingRoomRateLabel.setText(defaultRoomRate.DefaultRoomRate(BookingRoomNumField.getText(), (int) lengthOfStay));
         }
     }
+
     /**
      * @param args the command line arguments
      */
@@ -1037,7 +1108,7 @@ public class Booking extends javax.swing.JFrame {
             }
         });
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel AddressLabel1;
     private javax.swing.JLabel AddressLabel2;
