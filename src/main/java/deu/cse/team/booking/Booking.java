@@ -922,15 +922,19 @@ public class Booking extends javax.swing.JFrame {
         try {
             TableModel bookingData = ModifyBookingTable.getModel();
             int row = ModifyBookingTable.getSelectedRow();
-            ModifyIdxLabel.setText(bookingData.getValueAt(row, 0).toString());
-            ModifyNameField.setText(bookingData.getValueAt(row, 1).toString());
-            ModifyEntranceDateField.setText(bookingData.getValueAt(row, 2).toString());
-            ModifyExitDateField.setText(bookingData.getValueAt(row, 3).toString());
-            ModifyRoomNumField.setText(bookingData.getValueAt(row, 4).toString());
-            ModifyMemberField.setText(bookingData.getValueAt(row, 5).toString());
-            ModifyPhoneField.setText(bookingData.getValueAt(row, 6).toString());
-            ModifyAddressLabel.setText(bookingData.getValueAt(row, 8).toString());
-            ModifyRateLabel.setText(bookingData.getValueAt(row, 9).toString());
+            if (bookingData.getValueAt(row, 7).toString().equals("N")) {
+                ModifyIdxLabel.setText(bookingData.getValueAt(row, 0).toString());
+                ModifyNameField.setText(bookingData.getValueAt(row, 1).toString());
+                ModifyEntranceDateField.setText(bookingData.getValueAt(row, 2).toString());
+                ModifyExitDateField.setText(bookingData.getValueAt(row, 3).toString());
+                ModifyRoomNumField.setText(bookingData.getValueAt(row, 4).toString());
+                ModifyMemberField.setText(bookingData.getValueAt(row, 5).toString());
+                ModifyPhoneField.setText(bookingData.getValueAt(row, 6).toString());
+                ModifyAddressLabel.setText(bookingData.getValueAt(row, 8).toString());
+                ModifyRateLabel.setText(bookingData.getValueAt(row, 9).toString());
+            } else {
+                JOptionPane.showMessageDialog(null, "예약 중인 고객이 아닙니다.");
+            }
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "불러올 데이터를 선택하세요.");
         }
@@ -962,22 +966,25 @@ public class Booking extends javax.swing.JFrame {
     private void ModifyOKBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModifyOKBtnActionPerformed
         // TODO add your handling code here:
         DefaultTableModel model = (DefaultTableModel) ModifyBookingTable.getModel();
-        int row = Integer.parseInt(ModifyIdxLabel.getText());
-        model.removeRow(row);
-        model.insertRow(row, new Object[]{
-            row,
-            ModifyNameField.getText(),
-            ModifyEntranceDateField.getText(),
-            ModifyExitDateField.getText(),
-            ModifyRoomNumField.getText(),
-            ModifyMemberField.getText(),
-            ModifyPhoneField.getText(),
-            "N",
-            ModifyAddressLabel.getText(),
-            ModifyRateLabel.getText()
-        });
-        new ModifyBookingData(model);
-        JOptionPane.showMessageDialog(null, "수정완료.");
+        if (!ModifyIdxLabel.getText().equals("")) {
+            int row = Integer.parseInt(ModifyIdxLabel.getText());
+            model.removeRow(row);
+            model.insertRow(row, new Object[]{
+                row,
+                ModifyNameField.getText(),
+                ModifyEntranceDateField.getText(),
+                ModifyExitDateField.getText(),
+                ModifyRoomNumField.getText(),
+                ModifyMemberField.getText(),
+                ModifyPhoneField.getText(),
+                "N",
+                ModifyAddressLabel.getText(),
+                ModifyRateLabel.getText()});
+            new ModifyBookingData(model);
+            JOptionPane.showMessageDialog(null, "수정완료.");
+        } else {
+            JOptionPane.showMessageDialog(null, "변경사항이 없습니다.");
+        }
     }//GEN-LAST:event_ModifyOKBtnActionPerformed
 
     private void ModifyAddressBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModifyAddressBtnActionPerformed
