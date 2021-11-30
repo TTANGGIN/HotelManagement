@@ -1068,7 +1068,7 @@ public class Booking extends javax.swing.JFrame {
         lengthOfStay = Math.abs(lengthOfStay);
         DefaultRoomRate defaultRoomRate = new DefaultRoomRate();
         if (ModifyBookingDlg.isVisible()) {
-            ModifyRateLabel.setText(defaultRoomRate.DefaultRoomRate(BookingRoomNumField.getText(), (int) lengthOfStay));
+            ModifyRateLabel.setText(defaultRoomRate.DefaultRoomRate(ModifyRoomNumField.getText(), (int) lengthOfStay));
         } else {
             BookingRoomRateLabel.setText(defaultRoomRate.DefaultRoomRate(BookingRoomNumField.getText(), (int) lengthOfStay));
         }
