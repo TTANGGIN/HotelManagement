@@ -407,9 +407,10 @@ public class CheckOut extends javax.swing.JFrame {
                     .addComponent(jLabel21)
                     .addComponent(ReceiptCurruntDateLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(ReceiptDlgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(ReceiptDlgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel26)
-                    .addComponent(ReceiptEntranceDateLabel))
+                    .addGroup(ReceiptDlgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(ReceiptEntranceDateLabel)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(ReceiptDlgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel28)
@@ -435,9 +436,10 @@ public class CheckOut extends javax.swing.JFrame {
                 .addGap(25, 25, 25)
                 .addComponent(jLabel24)
                 .addGap(18, 18, 18)
-                .addGroup(ReceiptDlgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel23)
-                    .addComponent(ReceiptTotalRateLabel))
+                .addGroup(ReceiptDlgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(ReceiptTotalRateLabel)
+                    .addGroup(ReceiptDlgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel23)))
                 .addGap(19, 19, 19)
                 .addGroup(ReceiptDlgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel22)
@@ -665,62 +667,67 @@ public class CheckOut extends javax.swing.JFrame {
 
     private void CheckOutOkBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckOutOkBtnActionPerformed
         // TODO add your handling code here:
-        ArrayList<BookingInfo> bookingInfo = new ArrayList<>();
-        ArrayList<RoomInfo> roomInfo = new ArrayList<>();
-        String selectedRoom = CheckOutRoomCB.getSelectedItem().toString();
-        FileMgmt fileMgmt = new FileMgmt();
-        fileMgmt.readBookingFileData("C:\\DB\\BookingList.txt");
-        fileMgmt.readRoomFileData("C:\\DB\\RoomList.txt");
-        fileMgmt.splitBookingFileData();
-        fileMgmt.splitRoomListFileData();
-        String revenue = String.format("%s\t%s~%s\t%s\t%s\t%s\t%s", 
-                IndexLabel.getText(),
-                CheckOutEnterField.getText(),
-                CheckOutExitField.getText(),
-                CheckOutExtraDateField.getText(),
-                CheckOutRoomPriceField.getText(),
-                CheckOutServicePriceField.getText(),
-                CheckOutExtraPriceField.getText());
-        try {
-            PrintWriter bPw = new PrintWriter("C:\\DB\\BookingList.txt");
-            PrintWriter rPw = new PrintWriter("C:\\DB\\RoomList.txt");
-            bookingInfo = fileMgmt.returnBookingInfo();
-            roomInfo = fileMgmt.returnRoomInfo();
-            String data;
-            for (int i = 0; i < bookingInfo.size(); i++) {
-                if (bookingInfo.get(i).getRoom().equals(selectedRoom)) {
-                    bookingInfo.get(i).setStatus("E");
+        if (PaymentTypeLabel.getText() == "") {
+            JOptionPane.showMessageDialog(null, "결제 수단을 선택해주세요.");
+        } 
+        else {
+            ArrayList<BookingInfo> bookingInfo = new ArrayList<>();
+            ArrayList<RoomInfo> roomInfo = new ArrayList<>();
+            String selectedRoom = CheckOutRoomCB.getSelectedItem().toString();
+            FileMgmt fileMgmt = new FileMgmt();
+            fileMgmt.readBookingFileData("C:\\DB\\BookingList.txt");
+            fileMgmt.readRoomFileData("C:\\DB\\RoomList.txt");
+            fileMgmt.splitBookingFileData();
+            fileMgmt.splitRoomListFileData();
+            String revenue = String.format("%s\t%s~%s\t%s\t%s\t%s\t%s",
+                    IndexLabel.getText(),
+                    CheckOutEnterField.getText(),
+                    CheckOutExitField.getText(),
+                    CheckOutExtraDateField.getText(),
+                    CheckOutRoomPriceField.getText(),
+                    CheckOutServicePriceField.getText(),
+                    CheckOutExtraPriceField.getText());
+            try {
+                PrintWriter bPw = new PrintWriter("C:\\DB\\BookingList.txt");
+                PrintWriter rPw = new PrintWriter("C:\\DB\\RoomList.txt");
+                bookingInfo = fileMgmt.returnBookingInfo();
+                roomInfo = fileMgmt.returnRoomInfo();
+                String data;
+                for (int i = 0; i < bookingInfo.size(); i++) {
+                    if (bookingInfo.get(i).getRoom().equals(selectedRoom)) {
+                        bookingInfo.get(i).setStatus("E");
 
+                    }
+                    data = String.format("%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s",
+                            bookingInfo.get(i).getIndex(), bookingInfo.get(i).getEntrance(),
+                            bookingInfo.get(i).getExit(), bookingInfo.get(i).getName(),
+                            bookingInfo.get(i).getRoom(), bookingInfo.get(i).getPersonnel(),
+                            bookingInfo.get(i).getPhonenumber(), bookingInfo.get(i).getAddress(),
+                            bookingInfo.get(i).getMoney(), bookingInfo.get(i).getStatus());
+                    bPw.println(data);
                 }
-                data = String.format("%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s",
-                        bookingInfo.get(i).getIndex(), bookingInfo.get(i).getEntrance(),
-                        bookingInfo.get(i).getExit(), bookingInfo.get(i).getName(),
-                        bookingInfo.get(i).getRoom(), bookingInfo.get(i).getPersonnel(),
-                        bookingInfo.get(i).getPhonenumber(), bookingInfo.get(i).getAddress(),
-                        bookingInfo.get(i).getMoney(), bookingInfo.get(i).getStatus());
-                bPw.println(data);
-            }
-            for (int i = 0; i < roomInfo.size(); i++) {
-                if (roomInfo.get(i).getRoomNum().equals(selectedRoom)) {
-                    roomInfo.get(i).setRoomStatus("Y");
+                for (int i = 0; i < roomInfo.size(); i++) {
+                    if (roomInfo.get(i).getRoomNum().equals(selectedRoom)) {
+                        roomInfo.get(i).setRoomStatus("Y");
+                    }
+                    data = String.format("%s\t%s\t%s",
+                             roomInfo.get(i).getRoomNum(),
+                             roomInfo.get(i).getRoomRate(),
+                             roomInfo.get(i).getRoomStatus());
+                    rPw.println(data);
                 }
-                data = String.format("%s\t%s\t%s"
-                        , roomInfo.get(i).getRoomNum()
-                        , roomInfo.get(i).getRoomRate()
-                        , roomInfo.get(i).getRoomStatus());
-                rPw.println(data);
+                bPw.close();
+                rPw.close();
+                fileMgmt.writeRevenueFileData("C:\\DB\\RevenueList.txt", revenue);
+                JOptionPane.showMessageDialog(null, "체크아웃 완료");
+                createReceipt();
+                ReceiptDlg.setVisible(true);
+                ReceiptDlg.setLocationRelativeTo(this);
+                ReceiptDlg.setSize(350, 600);
+            } catch (IOException ex) {
+                Logger.getLogger(CheckOut.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(null, "체크아웃 실패");
             }
-            bPw.close();
-            rPw.close();
-            fileMgmt.writeRevenueFileData("C:\\DB\\RevenueList.txt", revenue);
-            JOptionPane.showMessageDialog(null, "체크아웃 완료");
-            createReceipt();
-            ReceiptDlg.setVisible(true);
-            ReceiptDlg.setLocationRelativeTo(this);
-            ReceiptDlg.setSize(350, 600);
-        } catch (IOException ex) {
-            Logger.getLogger(CheckOut.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(null, "체크아웃 실패");
         }
     }//GEN-LAST:event_CheckOutOkBtnActionPerformed
 
@@ -836,9 +843,9 @@ public class CheckOut extends javax.swing.JFrame {
             CheckOutExtraDateField.setText("0");
             CheckOutExtraPriceField.setText("0");
         }
-        
+
     }
-    
+
     private void createReceipt() {
         ReceiptCurruntDateLabel.setText(CheckOutCurrentDateField.getText());
         ReceiptEntranceDateLabel.setText(CheckOutEnterField.getText());
@@ -854,8 +861,7 @@ public class CheckOut extends javax.swing.JFrame {
         } else {
             ReceiptCardNumLabel.setText("");
         }
-            
-            
+
     }
 
     /**
