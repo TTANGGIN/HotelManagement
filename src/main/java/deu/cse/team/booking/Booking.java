@@ -282,6 +282,18 @@ public class Booking extends javax.swing.JFrame {
 
         jLabel16.setText("퇴실날짜:");
 
+        ModifyEntranceDateField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ModifyEntranceDateFieldMouseClicked(evt);
+            }
+        });
+
+        ModifyExitDateField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ModifyExitDateFieldMouseClicked(evt);
+            }
+        });
+
         jLabel17.setText("이름:");
 
         jLabel18.setText("호실:");
@@ -966,7 +978,7 @@ public class Booking extends javax.swing.JFrame {
     private void ModifyOKBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModifyOKBtnActionPerformed
         // TODO add your handling code here:
         DefaultTableModel model = (DefaultTableModel) ModifyBookingTable.getModel();
-        if (!ModifyIdxLabel.getText().equals("")) {
+        if (!ModifyIdxLabel.getText().equals("") && isChecked) {
             int row = Integer.parseInt(ModifyIdxLabel.getText());
             model.removeRow(row);
             model.insertRow(row, new Object[]{
@@ -982,6 +994,8 @@ public class Booking extends javax.swing.JFrame {
                 ModifyRateLabel.getText()});
             new ModifyBookingData(model);
             JOptionPane.showMessageDialog(null, "수정완료.");
+        } else if (!isChecked) {
+            JOptionPane.showMessageDialog(null, "예상 금액을 다시 확인해주세요");
         } else {
             JOptionPane.showMessageDialog(null, "변경사항이 없습니다.");
         }
@@ -997,6 +1011,7 @@ public class Booking extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         getEstimatedCharge();
+        isChecked = true;
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void BookingRoomNumFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BookingRoomNumFieldKeyTyped
@@ -1036,6 +1051,16 @@ public class Booking extends javax.swing.JFrame {
         // TODO add your handling code here:
         isChecked = false;
     }//GEN-LAST:event_BookingExitDateCB3ActionPerformed
+
+    private void ModifyEntranceDateFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ModifyEntranceDateFieldMouseClicked
+        // TODO add your handling code here:
+        isChecked = false;
+    }//GEN-LAST:event_ModifyEntranceDateFieldMouseClicked
+
+    private void ModifyExitDateFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ModifyExitDateFieldMouseClicked
+        // TODO add your handling code here:
+        isChecked = false;
+    }//GEN-LAST:event_ModifyExitDateFieldMouseClicked
     // 입력한 tag 정보
     private String getTagValue(String tag, Element eElement) {
         NodeList nlList = eElement.getElementsByTagName(tag).item(0).getChildNodes();
