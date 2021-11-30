@@ -157,13 +157,12 @@ public class CheckIn extends javax.swing.JFrame {
                             .addComponent(CheckInNameField)
                             .addComponent(CheckInIndexField, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(41, 41, 41)
-                        .addComponent(CheckInSearchBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(382, 382, 382)
-                .addComponent(CheckInOkBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(CheckInCancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(CheckInSearchBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(382, 382, 382)
+                        .addComponent(CheckInOkBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(CheckInCancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -236,7 +235,9 @@ public class CheckIn extends javax.swing.JFrame {
 
     private void CheckInOkBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckInOkBtnActionPerformed
         // TODO add your handling code here:
-        DefaultTableModel model = (DefaultTableModel) CheckInBookingTable.getModel();
+        int count[] = CheckInBookingTable.getSelectedRows();
+        if(count.length == 1){
+            DefaultTableModel model = (DefaultTableModel) CheckInBookingTable.getModel();
         int row = CheckInBookingTable.getSelectedRow();
         String[] data = new String[10];
         for (int i = 0; i < 10; i++) {
@@ -251,6 +252,11 @@ public class CheckIn extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(null, "유효하지 않은 고객입니다.");
         }
+        }
+        else{
+        JOptionPane.showMessageDialog(null, "하나의 데이터만 선택해주세요.");
+        }
+        
     }//GEN-LAST:event_CheckInOkBtnActionPerformed
 
     private void CheckInCancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckInCancelBtnActionPerformed
