@@ -71,6 +71,30 @@ public class CheckOut extends javax.swing.JFrame {
         PaymentTypeCancelBtn = new javax.swing.JButton();
         jLabel19 = new javax.swing.JLabel();
         buttonGroup1 = new javax.swing.ButtonGroup();
+        ReceiptDlg = new javax.swing.JDialog();
+        jLabel20 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
+        ReceiptCurruntDateLabel = new javax.swing.JLabel();
+        jLabel23 = new javax.swing.JLabel();
+        jLabel24 = new javax.swing.JLabel();
+        ReceiptTotalRateLabel = new javax.swing.JLabel();
+        jLabel26 = new javax.swing.JLabel();
+        ReceiptEntranceDateLabel = new javax.swing.JLabel();
+        jLabel28 = new javax.swing.JLabel();
+        jLabel29 = new javax.swing.JLabel();
+        jLabel30 = new javax.swing.JLabel();
+        jLabel31 = new javax.swing.JLabel();
+        jLabel32 = new javax.swing.JLabel();
+        jLabel33 = new javax.swing.JLabel();
+        ReceiptRoomRateLabel = new javax.swing.JLabel();
+        ReceiptServiceRateLabel = new javax.swing.JLabel();
+        ReceiptExtraDateLabel = new javax.swing.JLabel();
+        ReceiptExtraRateLabel = new javax.swing.JLabel();
+        ReceiptExitDateLabel = new javax.swing.JLabel();
+        ReceiptPrintBtn = new javax.swing.JButton();
+        jLabel22 = new javax.swing.JLabel();
+        ReceiptPaymentTypeLabel = new javax.swing.JLabel();
+        ReceiptCardNumLabel = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         CheckOutRoomCB = new javax.swing.JComboBox<>();
@@ -256,6 +280,173 @@ public class CheckOut extends javax.swing.JFrame {
                     .addComponent(PaymentTypeOkBtn)
                     .addComponent(PaymentTypeCancelBtn))
                 .addGap(26, 26, 26))
+        );
+
+        jLabel20.setFont(new java.awt.Font("맑은 고딕", 0, 18)); // NOI18N
+        jLabel20.setText("영수증");
+
+        jLabel21.setText("발행일 :");
+
+        ReceiptCurruntDateLabel.setText("jLabel22");
+
+        jLabel23.setFont(new java.awt.Font("맑은 고딕", 0, 14)); // NOI18N
+        jLabel23.setText("총 합계 :");
+
+        jLabel24.setText("-----------------------------------------------------------");
+
+        ReceiptTotalRateLabel.setText("jLabel25");
+
+        jLabel26.setText("체크인 :");
+
+        ReceiptEntranceDateLabel.setText("jLabel27");
+
+        jLabel28.setText("체크아웃 :");
+
+        jLabel29.setText("객실 금액 :");
+
+        jLabel30.setText("----------------------------내역-----------------------------");
+
+        jLabel31.setText("서비스 이용 금액 :");
+
+        jLabel32.setText("추가 일수 :");
+
+        jLabel33.setText("추가 일수 분 금액 :");
+
+        ReceiptRoomRateLabel.setText("jLabel34");
+
+        ReceiptServiceRateLabel.setText("jLabel35");
+
+        ReceiptExtraDateLabel.setText("jLabel36");
+
+        ReceiptExtraRateLabel.setText("jLabel37");
+
+        ReceiptExitDateLabel.setText("jLabel38");
+
+        ReceiptPrintBtn.setText("출력");
+        ReceiptPrintBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ReceiptPrintBtnActionPerformed(evt);
+            }
+        });
+
+        jLabel22.setText("결재 수단 :");
+
+        ReceiptPaymentTypeLabel.setText("jLabel25");
+
+        ReceiptCardNumLabel.setText("jLabel27");
+
+        javax.swing.GroupLayout ReceiptDlgLayout = new javax.swing.GroupLayout(ReceiptDlg.getContentPane());
+        ReceiptDlg.getContentPane().setLayout(ReceiptDlgLayout);
+        ReceiptDlgLayout.setHorizontalGroup(
+            ReceiptDlgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ReceiptDlgLayout.createSequentialGroup()
+                .addGroup(ReceiptDlgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(ReceiptDlgLayout.createSequentialGroup()
+                        .addGap(183, 183, 183)
+                        .addComponent(jLabel23)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ReceiptTotalRateLabel))
+                    .addGroup(ReceiptDlgLayout.createSequentialGroup()
+                        .addGap(156, 156, 156)
+                        .addComponent(jLabel20))
+                    .addGroup(ReceiptDlgLayout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addGroup(ReceiptDlgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(ReceiptDlgLayout.createSequentialGroup()
+                                .addComponent(jLabel26)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(ReceiptEntranceDateLabel))
+                            .addGroup(ReceiptDlgLayout.createSequentialGroup()
+                                .addComponent(jLabel21)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(ReceiptCurruntDateLabel))
+                            .addGroup(ReceiptDlgLayout.createSequentialGroup()
+                                .addComponent(jLabel28)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(ReceiptExitDateLabel))
+                            .addGroup(ReceiptDlgLayout.createSequentialGroup()
+                                .addComponent(jLabel22)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(ReceiptDlgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(ReceiptCardNumLabel)
+                                    .addComponent(ReceiptPaymentTypeLabel)))))
+                    .addGroup(ReceiptDlgLayout.createSequentialGroup()
+                        .addGap(41, 41, 41)
+                        .addGroup(ReceiptDlgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(ReceiptDlgLayout.createSequentialGroup()
+                                .addComponent(jLabel29)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(ReceiptRoomRateLabel))
+                            .addComponent(jLabel24)
+                            .addComponent(jLabel30)
+                            .addGroup(ReceiptDlgLayout.createSequentialGroup()
+                                .addComponent(jLabel31)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(ReceiptServiceRateLabel))
+                            .addGroup(ReceiptDlgLayout.createSequentialGroup()
+                                .addComponent(jLabel32)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(ReceiptExtraDateLabel))
+                            .addGroup(ReceiptDlgLayout.createSequentialGroup()
+                                .addComponent(jLabel33)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(ReceiptExtraRateLabel)))))
+                .addContainerGap(29, Short.MAX_VALUE))
+            .addGroup(ReceiptDlgLayout.createSequentialGroup()
+                .addGap(146, 146, 146)
+                .addComponent(ReceiptPrintBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        ReceiptDlgLayout.setVerticalGroup(
+            ReceiptDlgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ReceiptDlgLayout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addComponent(jLabel20)
+                .addGap(18, 18, 18)
+                .addGroup(ReceiptDlgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel21)
+                    .addComponent(ReceiptCurruntDateLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(ReceiptDlgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel26)
+                    .addComponent(ReceiptEntranceDateLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(ReceiptDlgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel28)
+                    .addComponent(ReceiptExitDateLabel))
+                .addGap(22, 22, 22)
+                .addComponent(jLabel30)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(ReceiptDlgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel29)
+                    .addComponent(ReceiptRoomRateLabel))
+                .addGap(18, 18, 18)
+                .addGroup(ReceiptDlgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel31)
+                    .addComponent(ReceiptServiceRateLabel))
+                .addGap(18, 18, 18)
+                .addGroup(ReceiptDlgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel32)
+                    .addComponent(ReceiptExtraDateLabel))
+                .addGap(18, 18, 18)
+                .addGroup(ReceiptDlgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel33)
+                    .addComponent(ReceiptExtraRateLabel))
+                .addGap(25, 25, 25)
+                .addComponent(jLabel24)
+                .addGap(18, 18, 18)
+                .addGroup(ReceiptDlgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel23)
+                    .addComponent(ReceiptTotalRateLabel))
+                .addGap(19, 19, 19)
+                .addGroup(ReceiptDlgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel22)
+                    .addComponent(ReceiptPaymentTypeLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(ReceiptCardNumLabel)
+                .addGap(21, 21, 21)
+                .addComponent(ReceiptPrintBtn)
+                .addGap(25, 25, 25))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -523,6 +714,10 @@ public class CheckOut extends javax.swing.JFrame {
             rPw.close();
             fileMgmt.writeRevenueFileData("C:\\DB\\RevenueList.txt", revenue);
             JOptionPane.showMessageDialog(null, "체크아웃 완료");
+            createReceipt();
+            ReceiptDlg.setVisible(true);
+            ReceiptDlg.setLocationRelativeTo(this);
+            ReceiptDlg.setSize(350, 600);
         } catch (IOException ex) {
             Logger.getLogger(CheckOut.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "체크아웃 실패");
@@ -578,6 +773,11 @@ public class CheckOut extends javax.swing.JFrame {
         // TODO add your handling code here:
         PaymentTypeDlg.dispose();
     }//GEN-LAST:event_PaymentTypeCancelBtnActionPerformed
+
+    private void ReceiptPrintBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReceiptPrintBtnActionPerformed
+        // TODO add your handling code here:
+        ReceiptDlg.dispose();
+    }//GEN-LAST:event_ReceiptPrintBtnActionPerformed
 
     private void returnGuestData() { //객실, 서비스 금액
         ArrayList<BookingInfo> bookingInfo = new ArrayList<>();
@@ -637,6 +837,25 @@ public class CheckOut extends javax.swing.JFrame {
             CheckOutExtraPriceField.setText("0");
         }
         
+    }
+    
+    private void createReceipt() {
+        ReceiptCurruntDateLabel.setText(CheckOutCurrentDateField.getText());
+        ReceiptEntranceDateLabel.setText(CheckOutEnterField.getText());
+        ReceiptExitDateLabel.setText(CheckOutExitField.getText());
+        ReceiptRoomRateLabel.setText(CheckOutRoomPriceField.getText());
+        ReceiptServiceRateLabel.setText(CheckOutServicePriceField.getText());
+        ReceiptExtraDateLabel.setText(CheckOutExtraDateField.getText());
+        ReceiptExtraRateLabel.setText(CheckOutExtraPriceField.getText());
+        ReceiptTotalRateLabel.setText(CheckOutTotalPriceField.getText());
+        ReceiptPaymentTypeLabel.setText(PaymentTypeLabel.getText());
+        if (ReceiptPaymentTypeLabel.getText().equals("신용카드")) {
+            ReceiptCardNumLabel.setText(CreditCardNumField1.getText() + "- ****" + CreditCardNumField3.getText() + "- ****");
+        } else {
+            ReceiptCardNumLabel.setText("");
+        }
+            
+            
     }
 
     /**
@@ -702,6 +921,18 @@ public class CheckOut extends javax.swing.JFrame {
     private javax.swing.JDialog PaymentTypeDlg;
     private javax.swing.JLabel PaymentTypeLabel;
     private javax.swing.JButton PaymentTypeOkBtn;
+    private javax.swing.JLabel ReceiptCardNumLabel;
+    private javax.swing.JLabel ReceiptCurruntDateLabel;
+    private javax.swing.JDialog ReceiptDlg;
+    private javax.swing.JLabel ReceiptEntranceDateLabel;
+    private javax.swing.JLabel ReceiptExitDateLabel;
+    private javax.swing.JLabel ReceiptExtraDateLabel;
+    private javax.swing.JLabel ReceiptExtraRateLabel;
+    private javax.swing.JLabel ReceiptPaymentTypeLabel;
+    private javax.swing.JButton ReceiptPrintBtn;
+    private javax.swing.JLabel ReceiptRoomRateLabel;
+    private javax.swing.JLabel ReceiptServiceRateLabel;
+    private javax.swing.JLabel ReceiptTotalRateLabel;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -715,7 +946,19 @@ public class CheckOut extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
+    private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
