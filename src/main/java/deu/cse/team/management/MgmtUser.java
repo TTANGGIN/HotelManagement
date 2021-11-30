@@ -147,14 +147,14 @@ public class MgmtUser extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("굴림", 0, 18)); // NOI18N
         jLabel1.setText("사용자 관리");
 
-        MgmtAddUserBtn.setText("관리자 추가");
+        MgmtAddUserBtn.setText("사용자 추가");
         MgmtAddUserBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MgmtAddUserBtnActionPerformed(evt);
             }
         });
 
-        MgmtDeleteUserBtn.setText("관리자 삭제");
+        MgmtDeleteUserBtn.setText("사용자 삭제");
         MgmtDeleteUserBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MgmtDeleteUserBtnActionPerformed(evt);

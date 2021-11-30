@@ -215,7 +215,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="MgmtAddUserBtn">
       <Properties>
-        <Property name="text" type="java.lang.String" value="&#xad00;&#xb9ac;&#xc790; &#xcd94;&#xac00;"/>
+        <Property name="text" type="java.lang.String" value="&#xc0ac;&#xc6a9;&#xc790; &#xcd94;&#xac00;"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MgmtAddUserBtnActionPerformed"/>
@@ -223,7 +223,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="MgmtDeleteUserBtn">
       <Properties>
-        <Property name="text" type="java.lang.String" value="&#xad00;&#xb9ac;&#xc790; &#xc0ad;&#xc81c;"/>
+        <Property name="text" type="java.lang.String" value="&#xc0ac;&#xc6a9;&#xc790; &#xc0ad;&#xc81c;"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MgmtDeleteUserBtnActionPerformed"/>
