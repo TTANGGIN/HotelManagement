@@ -297,7 +297,11 @@ public class RoomService extends javax.swing.JFrame {
 
     private void ConfirmRoomServiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConfirmRoomServiceActionPerformed
         // TODO add your handling code here:
-        FileMgmt fileMgmt = new FileMgmt();
+        if(jTable2.getRowCount()==0){
+            JOptionPane.showMessageDialog(null, "주문할 상품을 선택해주세요.");
+        }
+        else{
+            FileMgmt fileMgmt = new FileMgmt();
         String index = OrderIndexField.getText();
         String service = "룸서비스";
         String room = RoomNumCB.getSelectedItem().toString();
@@ -320,8 +324,9 @@ public class RoomService extends javax.swing.JFrame {
         } catch (IOException ex) {
             Logger.getLogger(RoomService.class.getName()).log(Level.SEVERE, null, ex);
         }
-        JOptionPane.showMessageDialog(null, "주문이 완료되었습니다.");
         initServiceList();
+        JOptionPane.showMessageDialog(null, "주문이 완료되었습니다.");
+        }
     }//GEN-LAST:event_ConfirmRoomServiceActionPerformed
 
     private void OnsitePaymentBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OnsitePaymentBtnActionPerformed

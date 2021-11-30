@@ -276,7 +276,11 @@ public class RestaurantService extends javax.swing.JFrame {
 
     private void ConfirmRestaurantServiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConfirmRestaurantServiceActionPerformed
         // TODO add your handling code here:
-        FileMgmt fileMgmt = new FileMgmt();
+        if(jTable2.getRowCount()==0){
+            JOptionPane.showMessageDialog(null, "주문할 상품을 선택해주세요.");
+        }
+        else{
+            FileMgmt fileMgmt = new FileMgmt();
         String index = OrderIndexField.getText();
         String service = "레스토랑서비스";
         String room = RoomNumCB.getSelectedItem().toString();
@@ -301,6 +305,8 @@ public class RestaurantService extends javax.swing.JFrame {
         }
         initServiceList();
         JOptionPane.showMessageDialog(null, "주문이 완료되었습니다.");
+        }
+        
     }//GEN-LAST:event_ConfirmRestaurantServiceActionPerformed
 
     private void SelectRoomBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SelectRoomBtnActionPerformed
