@@ -10,7 +10,12 @@ import deu.cse.team.source.FileMgmt;
 import deu.cse.team.source.LoadBookingData;
 import deu.cse.team.source.RevenueInfo;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
@@ -99,7 +104,15 @@ public class MgmtRevenue extends javax.swing.JFrame {
             new String [] {
                 "고유번호", "객실 수입", "식품 수입", "수입 발생 시간"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(MgmtRevenueTable);
 
         MgmtRevenueOkBtn.setText("확인");
@@ -201,13 +214,13 @@ public class MgmtRevenue extends javax.swing.JFrame {
         // TODO add your handling code here:
         DefaultTableModel model = (DefaultTableModel) MgmtRevenueTable.getModel();
         model.setNumRows(0);
-        
-        int from = Integer.parseInt(MgmtRevenueDateCB1.getSelectedItem().toString() 
-                +MgmtRevenueDateCB2.getSelectedItem().toString()
-                +MgmtRevenueDateCB3.getSelectedItem().toString());
-        int to = Integer.parseInt(MgmtRevenueDateCB4.getSelectedItem().toString() 
-                +MgmtRevenueDateCB5.getSelectedItem().toString()
-                +MgmtRevenueDateCB6.getSelectedItem().toString());
+
+        int from = Integer.parseInt(MgmtRevenueDateCB1.getSelectedItem().toString()
+                + MgmtRevenueDateCB2.getSelectedItem().toString()
+                + MgmtRevenueDateCB3.getSelectedItem().toString());
+        int to = Integer.parseInt(MgmtRevenueDateCB4.getSelectedItem().toString()
+                + MgmtRevenueDateCB5.getSelectedItem().toString()
+                + MgmtRevenueDateCB6.getSelectedItem().toString());
         int estimatedIncome = 0; //예상수입
         int roomRevenue = 0; //객실수입
         int serviceIncome = 0; //서비스수입
@@ -220,24 +233,38 @@ public class MgmtRevenue extends javax.swing.JFrame {
             String[] splitWave;
             String[] splitLine;
             String str;
-             for (int i = 0; i < revenueInfo.size(); i++) {
+            
+
+            for (int i = 0; i < revenueInfo.size(); i++) {
                 splitWave = revenueInfo.get(i).getStay().split("~");
                 splitLine = splitWave[1].split("-");
-                str = splitLine[0]+splitLine[1]+splitLine[2];
-                if(Integer.parseInt(str)>=from&&Integer.parseInt(str)<=to){
-                    roomRevenue = Integer.parseInt(revenueInfo.get(i).getBasicRate())+Integer.parseInt(revenueInfo.get(i).getAdditionalRate());
+                str = splitLine[0] + splitLine[1] + splitLine[2];
+                Calendar cal = Calendar.getInstance();
+                SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
+                DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+                try {
+                    Date dt = format.parse(str);
+                    cal.setTime(dt);
+                    cal.add(Calendar.DATE, Integer.parseInt(revenueInfo.get(i).getAdditionalDate()));
+                } catch (ParseException ex) {
+                    Logger.getLogger(MgmtRevenue.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            
+                if (Integer.parseInt(str) >= from && Integer.parseInt(str) <= to) {
+                    roomRevenue = Integer.parseInt(revenueInfo.get(i).getBasicRate()) + Integer.parseInt(revenueInfo.get(i).getAdditionalRate());
                     serviceIncome = Integer.parseInt(revenueInfo.get(i).getServiceRate());
                     estimatedIncome += roomRevenue + serviceIncome;
-                    model.addRow(new Object[]{revenueInfo.get(i).getIndex(),
+                    model.addRow(new Object[]{
+                        revenueInfo.get(i).getIndex(),
                         roomRevenue,
                         revenueInfo.get(i).getServiceRate(),
-                        splitWave[1]});
+                        df.format(cal.getTime())});
                 }
             }
         } catch (IOException ex) {
             Logger.getLogger(MgmtRevenue.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         ArrayList<BookingInfo> bookingInfo = new ArrayList<>();
         try {
             FileMgmt fileMgmt = new FileMgmt();
@@ -249,18 +276,18 @@ public class MgmtRevenue extends javax.swing.JFrame {
             int guest = 0;
             for (int i = 0; i < bookingInfo.size(); i++) {
                 splitLine = bookingInfo.get(i).getExit().split("-");
-                str = splitLine[0]+splitLine[1]+splitLine[2];
-                if((Integer.parseInt(str)>=from&&Integer.parseInt(str)<=to)&&(!bookingInfo.get(i).getStatus().equals("C"))){
+                str = splitLine[0] + splitLine[1] + splitLine[2];
+                if ((Integer.parseInt(str) >= from && Integer.parseInt(str) <= to) && (!bookingInfo.get(i).getStatus().equals("C"))) {
                     guest++;
                 }
             }
-            double estimatedShare = (guest/1000.0)*100.0;
+            double estimatedShare = (guest / 1000.0) * 100.0;
             EstimatedShareLabel.setText(String.format("%.2f%%", estimatedShare));
         } catch (IOException ex) {
             Logger.getLogger(MgmtRevenue.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        jLabel4.setText(Integer.toString(estimatedIncome)+"원");
+
+        jLabel4.setText(Integer.toString(estimatedIncome) + "원");
     }//GEN-LAST:event_MgmtRevenueSearchBtnActionPerformed
 
     private void MgmtRevenueDateCB1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MgmtRevenueDateCB1ActionPerformed
