@@ -271,32 +271,36 @@ public class ServiceConfirm extends javax.swing.JFrame {
 
     private void CheckServiceBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckServiceBtnActionPerformed
         // TODO add your handling code here:
-        int row = OrderTable.getSelectedRow();
-        String str = String.valueOf(OrderTable.getValueAt(row, 3));
         DefaultTableModel model = (DefaultTableModel) RequestTable.getModel();
         model.setNumRows(0);
-        try (FileReader r = new FileReader("C:\\DB\\ServiceOrderList.txt")) {
-            BufferedReader reader = new BufferedReader(r);
-            String array;
-            String[] Arr;
-            String[] productname;
-            String[] money;
-            while ((array = reader.readLine()) != null) {
-                Arr = array.split("\t");
-                if (str.equals(Arr[3])) {
-                    productname = Arr[4].split("/");
-                    money = Arr[5].split("/");
-                    for (int i = 0; i < productname.length; i++) {
-                        model.addRow(new Object[]{
-                            productname[i],
-                            money[i]
-                        });
+        int row[] = OrderTable.getSelectedRows();
+        BufferedReader reader;
+        String array;
+        String[] Arr;
+        String[] productname;
+        String[] money;
+        String str;
+        for(int i=0;i<row.length;i++){
+            str = String.valueOf(OrderTable.getValueAt(row[i], 3));
+            try (FileReader r = new FileReader("C:\\DB\\ServiceOrderList.txt")) {
+                reader = new BufferedReader(r);
+                while ((array = reader.readLine()) != null) {
+                    Arr = array.split("\t");
+                    if (str.equals(Arr[3])) {
+                        productname = Arr[4].split("/");
+                        money = Arr[5].split("/");
+                        for (int j = 0; j < productname.length; j++) {
+                            model.addRow(new Object[]{
+                                productname[j],
+                                money[j]
+                            });
+                        }
                     }
                 }
+            } catch (IOException e) {
             }
-        } catch (IOException e) {
         }
-
+  
     }//GEN-LAST:event_CheckServiceBtnActionPerformed
 
     private void loadServiceConfirmData() {
