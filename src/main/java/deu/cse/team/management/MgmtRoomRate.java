@@ -281,7 +281,7 @@ public class MgmtRoomRate extends javax.swing.JFrame {
     private void ModifyRoomDataOkBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModifyRoomDataOkBtnActionPerformed
         // TODO add your handling code here:
         DefaultTableModel model = (DefaultTableModel) MgmtRoomRateTable.getModel();
-        int index = Integer.parseInt(ModifyRoomNumLabel.getText()) - 100;
+        int index = Integer.parseInt(ModifyRoomNumLabel.getText());
         String status;
         if (RoomStatusYRB.isSelected())
             status = "Y";
