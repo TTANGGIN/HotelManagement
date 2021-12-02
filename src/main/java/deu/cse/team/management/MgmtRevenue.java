@@ -18,6 +18,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -221,6 +222,9 @@ public class MgmtRevenue extends javax.swing.JFrame {
         int to = Integer.parseInt(MgmtRevenueDateCB4.getSelectedItem().toString()
                 + MgmtRevenueDateCB5.getSelectedItem().toString()
                 + MgmtRevenueDateCB6.getSelectedItem().toString());
+        if(from>to){
+            JOptionPane.showMessageDialog(null, "날짜가 유효하지 않습니다.");
+        }
         int estimatedIncome = 0; //예상수입
         int roomRevenue = 0; //객실수입
         int serviceIncome = 0; //서비스수입
