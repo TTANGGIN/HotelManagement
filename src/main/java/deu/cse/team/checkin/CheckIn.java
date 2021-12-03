@@ -238,22 +238,21 @@ public class CheckIn extends javax.swing.JFrame {
         int count[] = CheckInBookingTable.getSelectedRows();
         if(count.length == 1){
             DefaultTableModel model = (DefaultTableModel) CheckInBookingTable.getModel();
-        int row = CheckInBookingTable.getSelectedRow();
-        String[] data = new String[10];
-        for (int i = 0; i < 10; i++) {
-            data[i] = model.getValueAt(row, i).toString();
-        }
-        if (data[7].equals("N")) {
-            data[7] = "Y";
-            model.removeRow(row);
-            model.insertRow(row, data);
-            new ModifyBookingData(model, 0);
-            JOptionPane.showMessageDialog(null, data[2] + "호실을 체크인 하였습니다.");
+            int row = CheckInBookingTable.getSelectedRow();
+            String[] data = new String[10];
+            for (int i = 0; i < 10; i++) {
+                data[i] = model.getValueAt(row, i).toString();
+            }
+            if (data[7].equals("N")) {
+                data[7] = "Y";
+                model.removeRow(row);
+                model.insertRow(row, data);
+                new ModifyBookingData(model, 0);
+                JOptionPane.showMessageDialog(null, data[2] + "호실을 체크인 하였습니다.");
+            } else {
+                JOptionPane.showMessageDialog(null, "유효하지 않은 고객입니다.");
+            }
         } else {
-            JOptionPane.showMessageDialog(null, "유효하지 않은 고객입니다.");
-        }
-        }
-        else{
         JOptionPane.showMessageDialog(null, "하나의 데이터만 선택해주세요.");
         }
         
