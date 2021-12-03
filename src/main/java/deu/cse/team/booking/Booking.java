@@ -963,15 +963,19 @@ public class Booking extends javax.swing.JFrame {
         if (JOptionPane.showConfirmDialog(this, "예약을 취소하시겠습니까?", "", JOptionPane.YES_NO_OPTION) == 0) {
             DefaultTableModel model = (DefaultTableModel) ModifyBookingTable.getModel();
             int row = ModifyBookingTable.getSelectedRow();
-            String[] data = new String[10];
-            for (int i = 0; i < 10; i++) {
-                data[i] = model.getValueAt(row, i).toString();
+            if (row < 0) {
+                JOptionPane.showMessageDialog(null, "선택된 항목이 없습니다!");
+            } else {
+                String[] data = new String[10];
+                for (int i = 0; i < 10; i++) {
+                    data[i] = model.getValueAt(row, i).toString();
+                }
+                data[7] = "C";
+                model.removeRow(row);
+                model.insertRow(row, data);
+                new ModifyBookingData(model);
+                ModifyBookingDlg.dispose();
             }
-            data[7] = "C";
-            model.removeRow(row);
-            model.insertRow(row, data);
-            new ModifyBookingData(model);
-            ModifyBookingDlg.dispose();
         }
     }//GEN-LAST:event_ModifyBookingCancelBtnActionPerformed
 
